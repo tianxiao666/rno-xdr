@@ -1,0 +1,127 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.mme.home.title">Mmes</span>
+        <button class="btn btn-primary float-right create-mme" [routerLink]="['/', { outlets: { popup: ['mme-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.mme.home.createLabel">
+            Create new Mme
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.mme.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="mmes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdate"><span jhiTranslate="backendApp.mme.pdate">Pdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phour"><span jhiTranslate="backendApp.mme.phour">Phour</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cell"><span jhiTranslate="backendApp.mme.cell">Cell</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imei"><span jhiTranslate="backendApp.mme.imei">Imei</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imsi"><span jhiTranslate="backendApp.mme.imsi">Imsi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="attachRequest"><span jhiTranslate="backendApp.mme.attachRequest">Attach Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="attachSuccess"><span jhiTranslate="backendApp.mme.attachSuccess">Attach Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="attachSuccessRate"><span jhiTranslate="backendApp.mme.attachSuccessRate">Attach Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceRequest"><span jhiTranslate="backendApp.mme.serviceRequest">Service Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceRequestSuccess"><span jhiTranslate="backendApp.mme.serviceRequestSuccess">Service Request Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceSuccessRate"><span jhiTranslate="backendApp.mme.serviceSuccessRate">Service Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="defaultBearerActivateRequest"><span jhiTranslate="backendApp.mme.defaultBearerActivateRequest">Default Bearer Activate Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="defaultBearerActivateSuccess"><span jhiTranslate="backendApp.mme.defaultBearerActivateSuccess">Default Bearer Activate Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="defaultBearerSetupSuccessRate"><span jhiTranslate="backendApp.mme.defaultBearerSetupSuccessRate">Default Bearer Setup Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdnRequest"><span jhiTranslate="backendApp.mme.pdnRequest">Pdn Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdnRequestSuccess"><span jhiTranslate="backendApp.mme.pdnRequestSuccess">Pdn Request Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdnRequestSuccessRate"><span jhiTranslate="backendApp.mme.pdnRequestSuccessRate">Pdn Request Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tauRequest"><span jhiTranslate="backendApp.mme.tauRequest">Tau Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tauSuccess"><span jhiTranslate="backendApp.mme.tauSuccess">Tau Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tauSuccessRate"><span jhiTranslate="backendApp.mme.tauSuccessRate">Tau Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="xhoRequest"><span jhiTranslate="backendApp.mme.xhoRequest">Xho Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="xhoSuccess"><span jhiTranslate="backendApp.mme.xhoSuccess">Xho Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="xhoSuccessRate"><span jhiTranslate="backendApp.mme.xhoSuccessRate">Xho Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shoRequest"><span jhiTranslate="backendApp.mme.shoRequest">Sho Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shoSuccess"><span jhiTranslate="backendApp.mme.shoSuccess">Sho Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shoSuccessRate"><span jhiTranslate="backendApp.mme.shoSuccessRate">Sho Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mme of mmes ;trackBy: trackId">
+                <td><a [routerLink]="['../mme', mme.id ]">{{mme.id}}</a></td>
+                <td>{{mme.pdate | date:'mediumDate'}}</td>
+                <td>{{mme.phour}}</td>
+                <td>{{mme.cell}}</td>
+                <td>{{mme.imei}}</td>
+                <td>{{mme.imsi}}</td>
+                <td>{{mme.attachRequest}}</td>
+                <td>{{mme.attachSuccess}}</td>
+                <td>{{mme.attachSuccessRate}}</td>
+                <td>{{mme.serviceRequest}}</td>
+                <td>{{mme.serviceRequestSuccess}}</td>
+                <td>{{mme.serviceSuccessRate}}</td>
+                <td>{{mme.defaultBearerActivateRequest}}</td>
+                <td>{{mme.defaultBearerActivateSuccess}}</td>
+                <td>{{mme.defaultBearerSetupSuccessRate}}</td>
+                <td>{{mme.pdnRequest}}</td>
+                <td>{{mme.pdnRequestSuccess}}</td>
+                <td>{{mme.pdnRequestSuccessRate}}</td>
+                <td>{{mme.tauRequest}}</td>
+                <td>{{mme.tauSuccess}}</td>
+                <td>{{mme.tauSuccessRate}}</td>
+                <td>{{mme.xhoRequest}}</td>
+                <td>{{mme.xhoSuccess}}</td>
+                <td>{{mme.xhoSuccessRate}}</td>
+                <td>{{mme.shoRequest}}</td>
+                <td>{{mme.shoSuccess}}</td>
+                <td>{{mme.shoSuccessRate}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../mme', mme.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mme/'+ mme.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mme/'+ mme.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="mmes && mmes.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

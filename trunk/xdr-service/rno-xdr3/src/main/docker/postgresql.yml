@@ -1,0 +1,11 @@
+version: '2'
+services:
+    rnoxdr3-postgresql:
+        image: postgres:9.6.2
+        # volumes:
+        #     - ~/volumes/jhipster/rnoxdr3/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=rnoxdr3
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

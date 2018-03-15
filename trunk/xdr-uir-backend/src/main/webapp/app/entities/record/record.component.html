@@ -1,0 +1,81 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.record.home.title">Records</span>
+        <button class="btn btn-primary float-right create-record" [routerLink]="['/', { outlets: { popup: ['record-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.record.home.createLabel">
+            Create new Record
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.record.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="records">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="backendApp.record.area">Area</span></th>
+            <th><span jhiTranslate="backendApp.record.date">Date</span></th>
+            <th><span jhiTranslate="backendApp.record.userId">User Id</span></th>
+            <th><span jhiTranslate="backendApp.record.title">Title</span></th>
+            <th><span jhiTranslate="backendApp.record.type">Type</span></th>
+            <th><span jhiTranslate="backendApp.record.size">Size</span></th>
+            <th><span jhiTranslate="backendApp.record.records">Records</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let record of records ;trackBy: trackId">
+                <td><a [routerLink]="['../record', record.id ]">{{record.id}}</a></td>
+                <td>{{record.area}}</td>
+                <td>{{record.date | date:'medium'}}</td>
+                <td>{{record.userId}}</td>
+                <td>{{record.title}}</td>
+                <td>{{record.type}}</td>
+                <td>{{record.size}}</td>
+                <td>{{record.records}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../record', record.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'record/'+ record.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'record/'+ record.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

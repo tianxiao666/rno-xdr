@@ -1,0 +1,127 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.mr.home.title">Mrs</span>
+        <button class="btn btn-primary float-right create-mr" [routerLink]="['/', { outlets: { popup: ['mr-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.mr.home.createLabel">
+            Create new Mr
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.mr.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="mrs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdate"><span jhiTranslate="backendApp.mr.pdate">Pdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phour"><span jhiTranslate="backendApp.mr.phour">Phour</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cell"><span jhiTranslate="backendApp.mr.cell">Cell</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imei"><span jhiTranslate="backendApp.mr.imei">Imei</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imsi"><span jhiTranslate="backendApp.mr.imsi">Imsi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rsrpSum"><span jhiTranslate="backendApp.mr.rsrpSum">Rsrp Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rsrpCount"><span jhiTranslate="backendApp.mr.rsrpCount">Rsrp Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rsrpAvg"><span jhiTranslate="backendApp.mr.rsrpAvg">Rsrp Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rsrqSum"><span jhiTranslate="backendApp.mr.rsrqSum">Rsrq Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rsrqCount"><span jhiTranslate="backendApp.mr.rsrqCount">Rsrq Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rsrqAvg"><span jhiTranslate="backendApp.mr.rsrqAvg">Rsrq Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ulsinrSum"><span jhiTranslate="backendApp.mr.ulsinrSum">Ulsinr Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ulsinrCount"><span jhiTranslate="backendApp.mr.ulsinrCount">Ulsinr Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ulsinrAvg"><span jhiTranslate="backendApp.mr.ulsinrAvg">Ulsinr Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phrSum"><span jhiTranslate="backendApp.mr.phrSum">Phr Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phrCount"><span jhiTranslate="backendApp.mr.phrCount">Phr Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phrAvg"><span jhiTranslate="backendApp.mr.phrAvg">Phr Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="erpSum"><span jhiTranslate="backendApp.mr.erpSum">Erp Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="erpCount"><span jhiTranslate="backendApp.mr.erpCount">Erp Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="erpAvg"><span jhiTranslate="backendApp.mr.erpAvg">Erp Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="taSum"><span jhiTranslate="backendApp.mr.taSum">Ta Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="taCount"><span jhiTranslate="backendApp.mr.taCount">Ta Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="taAvg"><span jhiTranslate="backendApp.mr.taAvg">Ta Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="overlapSum"><span jhiTranslate="backendApp.mr.overlapSum">Overlap Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="overlapCount"><span jhiTranslate="backendApp.mr.overlapCount">Overlap Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="overlapAvg"><span jhiTranslate="backendApp.mr.overlapAvg">Overlap Avg</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mr of mrs ;trackBy: trackId">
+                <td><a [routerLink]="['../mr', mr.id ]">{{mr.id}}</a></td>
+                <td>{{mr.pdate | date:'mediumDate'}}</td>
+                <td>{{mr.phour}}</td>
+                <td>{{mr.cell}}</td>
+                <td>{{mr.imei}}</td>
+                <td>{{mr.imsi}}</td>
+                <td>{{mr.rsrpSum}}</td>
+                <td>{{mr.rsrpCount}}</td>
+                <td>{{mr.rsrpAvg}}</td>
+                <td>{{mr.rsrqSum}}</td>
+                <td>{{mr.rsrqCount}}</td>
+                <td>{{mr.rsrqAvg}}</td>
+                <td>{{mr.ulsinrSum}}</td>
+                <td>{{mr.ulsinrCount}}</td>
+                <td>{{mr.ulsinrAvg}}</td>
+                <td>{{mr.phrSum}}</td>
+                <td>{{mr.phrCount}}</td>
+                <td>{{mr.phrAvg}}</td>
+                <td>{{mr.erpSum}}</td>
+                <td>{{mr.erpCount}}</td>
+                <td>{{mr.erpAvg}}</td>
+                <td>{{mr.taSum}}</td>
+                <td>{{mr.taCount}}</td>
+                <td>{{mr.taAvg}}</td>
+                <td>{{mr.overlapSum}}</td>
+                <td>{{mr.overlapCount}}</td>
+                <td>{{mr.overlapAvg}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../mr', mr.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mr/'+ mr.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mr/'+ mr.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="mrs && mrs.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

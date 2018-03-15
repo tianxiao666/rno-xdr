@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity ExceptionStats.
+    -->
+    <changeSet id="20170715062022-1" author="jhipster">
+        <createTable tableName="exception_stats">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="pdate" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="cell" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="imei" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="imsi" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="attach_fault_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="attach_request" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="attach_fault" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="service_fault_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="service_request" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="service_fault" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="csfb_fault_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="csfb_request" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="csfb_fault" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="context_activate_fault_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="context_activate_request" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="context_activate_fault" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pdn_request_fault_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pdn_request" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pdn_request_fault" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tau_fault_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tau_request" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tau_fault" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xho_fault_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xho_request" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xho_fault" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sho_fault_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sho_request" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sho_fault" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,118 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pdate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phour",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cell",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imei",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imsi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "attachRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "attachSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "attachSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "serviceRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "serviceRequestSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "serviceSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "defaultBearerActivateRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "defaultBearerActivateSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "defaultBearerSetupSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "pdnRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "pdnRequestSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "pdnRequestSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "tauRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tauSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tauSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "xhoRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "xhoSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "xhoSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "shoRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "shoSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "shoSuccessRate",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170715062007",
+    "entityTableName": "mme",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

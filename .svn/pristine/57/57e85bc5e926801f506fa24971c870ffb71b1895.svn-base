@@ -1,0 +1,25 @@
+<div class="row">
+  <ba-card class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+           title="用户信令事件回溯" baCardClass="traffic-panel auto-card">
+
+    <signaling  (search)="searchData($event)"
+               (export)="exportData($event)"></signaling>
+
+    <!-- 分隔 -->
+    <div style="height: 15px"></div>
+    <div *ngIf="isShowLoading" class="loading">加载中...</div>
+    <div #notFoundData style="display: none" class="warning">没有找到相应的数据</div>
+    <div #programError style="display: none" class="warning">后台程序服务错误</div>
+
+    <!--<dataTables></dataTables>-->
+    <div style="width: 100%; overflow:auto;">
+      <signalingshow [hidden]="isShowDetailTable==false"
+                 (paragram)="searchParameterData($event)"
+                 (pageChange)="pageParameterData($event)"
+                 [input]="data"
+      >
+      </signalingshow>
+    </div>
+
+  </ba-card>
+</div>

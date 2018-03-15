@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar >
+    <ion-title>结果展示</ion-title>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="toIndex()">
+        <ion-icon name="md-home"></ion-icon>
+      </button>
+
+      <button ion-button icon-only (click)="download()">
+        <ion-icon name="cloud-download"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="scroll-conten">
+    <table class="table  table-condensed table-striped table-display-inline">
+      <thead>
+      <tr>
+        <th *ngFor="let prop of props" style="text-align: left;height: 32px;padding-left: 10px">{{prop}}</th>
+      </tr>
+      </thead>
+      <tbody >
+      <tr *ngFor="let one of datas">
+        <td *ngFor="let on of one" style="height: 32px;padding-left: 10px">{{on}}</td>
+      </tr>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

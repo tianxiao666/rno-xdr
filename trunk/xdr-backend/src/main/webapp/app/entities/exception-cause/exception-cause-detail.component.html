@@ -1,0 +1,49 @@
+
+<div *ngIf="exceptionCause">
+    <h2><span jhiTranslate="backendApp.exceptionCause.detail.title">Exception Cause</span> {{exceptionCause.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.exceptionCause.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{exceptionCause.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionCause.cell">Cell</span></dt>
+        <dd>
+            <span>{{exceptionCause.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionCause.imei">Imei</span></dt>
+        <dd>
+            <span>{{exceptionCause.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionCause.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{exceptionCause.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionCause.indicatorType">Indicator Type</span></dt>
+        <dd>
+            <span>{{exceptionCause.indicatorType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionCause.cause">Cause</span></dt>
+        <dd>
+            <span>{{exceptionCause.cause}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionCause.causeCount">Cause Count</span></dt>
+        <dd>
+            <span>{{exceptionCause.causeCount}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'exception-cause/'+ exceptionCause.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

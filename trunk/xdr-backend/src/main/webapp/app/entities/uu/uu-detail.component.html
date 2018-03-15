@@ -1,0 +1,197 @@
+
+<div *ngIf="uu">
+    <h2><span jhiTranslate="backendApp.uu.detail.title">Uu</span> {{uu.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.uu.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{uu.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.phour">Phour</span></dt>
+        <dd>
+            <span>{{uu.phour}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.cell">Cell</span></dt>
+        <dd>
+            <span>{{uu.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.imei">Imei</span></dt>
+        <dd>
+            <span>{{uu.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{uu.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcConnectRequest">Rrc Connect Request</span></dt>
+        <dd>
+            <span>{{uu.rrcConnectRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcConnectSuccess">Rrc Connect Success</span></dt>
+        <dd>
+            <span>{{uu.rrcConnectSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcConnectSuccessRate">Rrc Connect Success Rate</span></dt>
+        <dd>
+            <span>{{uu.rrcConnectSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReconfigRequest">Rrc Reconfig Request</span></dt>
+        <dd>
+            <span>{{uu.rrcReconfigRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReconfigSuccess">Rrc Reconfig Success</span></dt>
+        <dd>
+            <span>{{uu.rrcReconfigSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReconfigSuccessRate">Rrc Reconfig Success Rate</span></dt>
+        <dd>
+            <span>{{uu.rrcReconfigSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReconstructionRequest">Rrc Reconstruction Request</span></dt>
+        <dd>
+            <span>{{uu.rrcReconstructionRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReconstructionSuccess">Rrc Reconstruction Success</span></dt>
+        <dd>
+            <span>{{uu.rrcReconstructionSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReconstructionSuccessRate">Rrc Reconstruction Success Rate</span></dt>
+        <dd>
+            <span>{{uu.rrcReconstructionSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReleaseRequest">Rrc Release Request</span></dt>
+        <dd>
+            <span>{{uu.rrcReleaseRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReleaseSuccess">Rrc Release Success</span></dt>
+        <dd>
+            <span>{{uu.rrcReleaseSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.rrcReleaseSuccessRate">Rrc Release Success Rate</span></dt>
+        <dd>
+            <span>{{uu.rrcReleaseSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.smActivateRequest">Sm Activate Request</span></dt>
+        <dd>
+            <span>{{uu.smActivateRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.smActivateSuccess">Sm Activate Success</span></dt>
+        <dd>
+            <span>{{uu.smActivateSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.smActivateSuccessRate">Sm Activate Success Rate</span></dt>
+        <dd>
+            <span>{{uu.smActivateSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.cellInterHandoverRequest">Cell Inter Handover Request</span></dt>
+        <dd>
+            <span>{{uu.cellInterHandoverRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.cellInterHandoverSuccess">Cell Inter Handover Success</span></dt>
+        <dd>
+            <span>{{uu.cellInterHandoverSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.cellInterHandoverSuccessRate">Cell Inter Handover Success Rate</span></dt>
+        <dd>
+            <span>{{uu.cellInterHandoverSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.stationIntraHandoverRequest">Station Intra Handover Request</span></dt>
+        <dd>
+            <span>{{uu.stationIntraHandoverRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.stationIntraHandoverSuccess">Station Intra Handover Success</span></dt>
+        <dd>
+            <span>{{uu.stationIntraHandoverSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.stationIntraHandoverSuccessRate">Station Intra Handover Success Rate</span></dt>
+        <dd>
+            <span>{{uu.stationIntraHandoverSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.stationInterHandoverRequest">Station Inter Handover Request</span></dt>
+        <dd>
+            <span>{{uu.stationInterHandoverRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.stationInterHandoverSuccess">Station Inter Handover Success</span></dt>
+        <dd>
+            <span>{{uu.stationInterHandoverSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.stationInterHandoverSuccessRate">Station Inter Handover Success Rate</span></dt>
+        <dd>
+            <span>{{uu.stationInterHandoverSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.ratInRequest">Rat In Request</span></dt>
+        <dd>
+            <span>{{uu.ratInRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.ratInSuccess">Rat In Success</span></dt>
+        <dd>
+            <span>{{uu.ratInSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.ratInSuccessRate">Rat In Success Rate</span></dt>
+        <dd>
+            <span>{{uu.ratInSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.ratOutRequest">Rat Out Request</span></dt>
+        <dd>
+            <span>{{uu.ratOutRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.ratOutSuccess">Rat Out Success</span></dt>
+        <dd>
+            <span>{{uu.ratOutSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.ratOutSuccessRate">Rat Out Success Rate</span></dt>
+        <dd>
+            <span>{{uu.ratOutSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.psPagingRequest">Ps Paging Request</span></dt>
+        <dd>
+            <span>{{uu.psPagingRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.psPagingSuccess">Ps Paging Success</span></dt>
+        <dd>
+            <span>{{uu.psPagingSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.psPagingSuccessRate">Ps Paging Success Rate</span></dt>
+        <dd>
+            <span>{{uu.psPagingSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.csPagingRequest">Cs Paging Request</span></dt>
+        <dd>
+            <span>{{uu.csPagingRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.csPagingSuccess">Cs Paging Success</span></dt>
+        <dd>
+            <span>{{uu.csPagingSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.csPagingSuccessRate">Cs Paging Success Rate</span></dt>
+        <dd>
+            <span>{{uu.csPagingSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.othereventRequest">Otherevent Request</span></dt>
+        <dd>
+            <span>{{uu.othereventRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.othereventSuccess">Otherevent Success</span></dt>
+        <dd>
+            <span>{{uu.othereventSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uu.othereventSuccessRate">Otherevent Success Rate</span></dt>
+        <dd>
+            <span>{{uu.othereventSuccessRate}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'uu/'+ uu.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

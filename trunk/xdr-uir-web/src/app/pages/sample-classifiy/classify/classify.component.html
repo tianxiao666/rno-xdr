@@ -1,0 +1,43 @@
+<form >
+  <div class="form-group form-inline">
+    <label for="city" style="color:black">地市：</label>
+    <div class="input-group">
+    <select class="form-control" id="city" style="width: 100px;
+                margin-right: 20px;margin-left: 10px"
+            [(ngModel)]="classify.city" name="city">
+      <option>广州</option>
+    </select>
+    </div>
+    <label for="name" style="color:black">分类名称：</label>
+    <div class="input-group">
+    <input class="form-control" id="name" style="width: 150px;margin-right: 20px;margin-left: 10px" [(ngModel)]="classify.classifyName" name="classifyName"/>
+    </div>
+    <label for="status" style="color:black">分类状态：</label>
+    <div class="input-group">
+    <select class="form-control" id="status" style="width: 100px;margin-left: 10px" [(ngModel)]="classify.classifyStatus" name="classifyStatus">
+      <option>进行中</option>
+      <option>正常完成</option>
+      <option>解析错误</option>
+    </select>
+    </div>
+    <label style="color:black;margin-left: 20px">提交时间从：</label>
+    <div class="input-group">
+    <my-date-picker name="dateFrom"   style="width: 150px;margin-bottom:-4px"
+                    [(ngModel)]="classify.dateFrom"   [options]="myDatePickerOptions"></my-date-picker>
+    </div>
+      <label style="color:black;margin-left: 20px;margin-right: 20px">到：</label>
+    <div class="input-group">
+    <my-date-picker name="dateTo"   style="width: 150px;;margin-bottom:-4px"
+                    [(ngModel)]="classify.dateTo"   [options]="myDatePickerOptions"></my-date-picker>
+    </div>
+    <div class="input-group">
+      <button class="btn btn-info " style="width: 92px;height:34px;margin-right: 20px;margin-left: 20px"
+            (click)="searchClassifyClick($event)">查询</button>
+    </div>
+    <div class="input-group">
+    <button class="btn btn-success " (click)="add()" style="width: 92px;height: 34px">新增分类</button>
+    </div>
+  </div>
+</form>
+
+

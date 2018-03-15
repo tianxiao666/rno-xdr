@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>用户信令事件回溯</ion-title>
+    <ion-buttons end (click)="toIndex()">
+      <button ion-button icon-only>
+        <ion-icon name="md-home">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="cards-bg">
+  <ion-list>
+    <ion-card-header class="ionCardHeader">
+      查询条件
+    </ion-card-header>
+
+    <ion-item>
+      <ion-label style="color:black">日期</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" placeholder="选择日期" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label style="color:black">开始时间</ion-label>
+      <ion-select  style="color:black" [(ngModel)]="beg" (ionChange)="checkTime('beg')">
+        <div *ngFor="let begin of beginTime;let i = index">
+          <ion-option *ngIf="i == 0" selected>{{begin}}</ion-option>
+          <ion-option *ngIf="i != 0">{{begin}}</ion-option>
+        </div>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label style="color:black">结束时间</ion-label>
+      <ion-select style="color:black" [(ngModel)]="en" (ionChange)="checkTime('en')">
+        <div *ngFor="let end of endTime;let i = index">
+          <ion-option *ngIf="i !=23">{{end}}</ion-option>
+          <ion-option *ngIf="i ==23" selected>{{end}}</ion-option>
+        </div>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label style="color:black">IMSI</ion-label>
+      <ion-input value="460000340879716" placeholder="输入IMSI" [(ngModel)]="imsi"></ion-input>
+    </ion-item>
+
+
+  </ion-list>
+
+
+  <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>
+  <button ion-button color="warning" class="button-work" (click)="doExport()">提取</button>
+</ion-content>
+<style>
+  .cards-bg{
+    background: #efeff4;
+  }
+  .ionCardHeader{
+    color: #00f;
+  }
+  .button-work{
+    border-radius: 2px;
+    width: 100%;
+  }
+  .ion-option{
+    color: #8e8e93;
+  }
+
+  input.text-input{
+    text-align:right
+  }
+
+</style>

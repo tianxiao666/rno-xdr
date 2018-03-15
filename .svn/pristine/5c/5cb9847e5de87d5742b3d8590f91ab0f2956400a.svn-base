@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pdate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phour",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cell",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imei",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imsi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "switchRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "switchSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "switchSuccessRate",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170715062011",
+    "entityTableName": "x_2",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

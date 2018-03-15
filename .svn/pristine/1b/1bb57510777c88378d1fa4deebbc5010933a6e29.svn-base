@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062007_added_entity_Mme.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062008_added_entity_Mr.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062009_added_entity_Uhttp.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062010_added_entity_Uu.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062011_added_entity_X2.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062020_added_entity_Track.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062021_added_entity_ExceptionCause.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062022_added_entity_ExceptionStats.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170715062023_added_entity_Signalling.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

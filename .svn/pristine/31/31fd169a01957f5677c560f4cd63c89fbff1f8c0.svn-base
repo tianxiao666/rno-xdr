@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="xdr@192.168.6.70" uuid="e0c7cc88-79b2-4dfe-b7f9-9d3a9a07f7dd">
+      <database-info product="PostgreSQL" version="9.6.4" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4.1212">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>xdr</user-name>
+      <introspection-schemas>xdr:public</introspection-schemas>
+    </data-source>
+  </component>
+</project>

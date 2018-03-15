@@ -1,0 +1,41 @@
+
+<div *ngIf="area">
+    <h2><span jhiTranslate="backendApp.area.detail.title">Area</span> {{area.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.area.name">Name</span></dt>
+        <dd>
+            <span>{{area.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.area.areaLevel">Area Level</span></dt>
+        <dd>
+            <span>{{area.areaLevel}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.area.parentId">Parent Id</span></dt>
+        <dd>
+            <span>{{area.parentId}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.area.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{area.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.area.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{area.latitude}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'area/'+ area.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

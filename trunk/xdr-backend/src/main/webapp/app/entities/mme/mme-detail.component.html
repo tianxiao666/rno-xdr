@@ -1,0 +1,125 @@
+
+<div *ngIf="mme">
+    <h2><span jhiTranslate="backendApp.mme.detail.title">Mme</span> {{mme.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.mme.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{mme.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.phour">Phour</span></dt>
+        <dd>
+            <span>{{mme.phour}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.cell">Cell</span></dt>
+        <dd>
+            <span>{{mme.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.imei">Imei</span></dt>
+        <dd>
+            <span>{{mme.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{mme.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.attachRequest">Attach Request</span></dt>
+        <dd>
+            <span>{{mme.attachRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.attachSuccess">Attach Success</span></dt>
+        <dd>
+            <span>{{mme.attachSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.attachSuccessRate">Attach Success Rate</span></dt>
+        <dd>
+            <span>{{mme.attachSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.serviceRequest">Service Request</span></dt>
+        <dd>
+            <span>{{mme.serviceRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.serviceRequestSuccess">Service Request Success</span></dt>
+        <dd>
+            <span>{{mme.serviceRequestSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.serviceSuccessRate">Service Success Rate</span></dt>
+        <dd>
+            <span>{{mme.serviceSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.defaultBearerActivateRequest">Default Bearer Activate Request</span></dt>
+        <dd>
+            <span>{{mme.defaultBearerActivateRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.defaultBearerActivateSuccess">Default Bearer Activate Success</span></dt>
+        <dd>
+            <span>{{mme.defaultBearerActivateSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.defaultBearerSetupSuccessRate">Default Bearer Setup Success Rate</span></dt>
+        <dd>
+            <span>{{mme.defaultBearerSetupSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.pdnRequest">Pdn Request</span></dt>
+        <dd>
+            <span>{{mme.pdnRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.pdnRequestSuccess">Pdn Request Success</span></dt>
+        <dd>
+            <span>{{mme.pdnRequestSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.pdnRequestSuccessRate">Pdn Request Success Rate</span></dt>
+        <dd>
+            <span>{{mme.pdnRequestSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.tauRequest">Tau Request</span></dt>
+        <dd>
+            <span>{{mme.tauRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.tauSuccess">Tau Success</span></dt>
+        <dd>
+            <span>{{mme.tauSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.tauSuccessRate">Tau Success Rate</span></dt>
+        <dd>
+            <span>{{mme.tauSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.xhoRequest">Xho Request</span></dt>
+        <dd>
+            <span>{{mme.xhoRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.xhoSuccess">Xho Success</span></dt>
+        <dd>
+            <span>{{mme.xhoSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.xhoSuccessRate">Xho Success Rate</span></dt>
+        <dd>
+            <span>{{mme.xhoSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.shoRequest">Sho Request</span></dt>
+        <dd>
+            <span>{{mme.shoRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.shoSuccess">Sho Success</span></dt>
+        <dd>
+            <span>{{mme.shoSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mme.shoSuccessRate">Sho Success Rate</span></dt>
+        <dd>
+            <span>{{mme.shoSuccessRate}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mme/'+ mme.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

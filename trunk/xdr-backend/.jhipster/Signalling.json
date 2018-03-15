@@ -1,0 +1,223 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pdate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "startTime",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "endTime",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "interfaceType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cell",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "imei",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "imsi",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "appType",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "appStatus",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "protocolType",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "appSubType",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ulData",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "dlData",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "lastHttpResponseDelay",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "procedureType",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "procedureStatus",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cause",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "keyword",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "targetCellid",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "csfbIndication",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "reqCauseType",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "reqCause",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "failureCauseType",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "failureCause",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "errorCauseType",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "errorCause",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hoCancelCauseType",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hoCancelCause",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rowCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "servingRsrp",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "servingRsrpAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "servingRsrpStdDev",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "servingRsrq",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "servingRsrqAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "servingRsrqStdDev",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "aoa",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "aoaAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "aoaStdDev",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ta",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "taAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "taStdDev",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ulSinr",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ulSinrAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ulSinrStdDev",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "enbReceivedPower",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "enbReceivedPowerAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "enbReceivedPowerStdDev",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "phr",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "phrAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "phrStdDev",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170715062023",
+    "entityTableName": "signalling",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

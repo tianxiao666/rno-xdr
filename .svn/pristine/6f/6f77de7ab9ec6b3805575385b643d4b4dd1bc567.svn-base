@@ -1,0 +1,312 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySignallingLabel" jhiTranslate="backendApp.signalling.home.createOrEditLabel">Create or edit a Signalling</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!signalling.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="signalling.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.pdate" for="field_pdate">Pdate</label>
+            <div class="input-group">
+                <input id="field_pdate" type="text" class="form-control" name="pdate" ngbDatepicker  #pdateDp="ngbDatepicker" [(ngModel)]="signalling.pdate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="pdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.pdate?.dirty && editForm.controls.pdate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pdate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.startTime" for="field_startTime">Start Time</label>
+            <input type="number" class="form-control" name="startTime" id="field_startTime"
+                [(ngModel)]="signalling.startTime" required />
+            <div [hidden]="!(editForm.controls.startTime?.dirty && editForm.controls.startTime?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.startTime?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.startTime?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.endTime" for="field_endTime">End Time</label>
+            <input type="number" class="form-control" name="endTime" id="field_endTime"
+                [(ngModel)]="signalling.endTime" required />
+            <div [hidden]="!(editForm.controls.endTime?.dirty && editForm.controls.endTime?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.endTime?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.endTime?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.interfaceType" for="field_interfaceType">Interface Type</label>
+            <input type="text" class="form-control" name="interfaceType" id="field_interfaceType"
+                [(ngModel)]="signalling.interfaceType" required />
+            <div [hidden]="!(editForm.controls.interfaceType?.dirty && editForm.controls.interfaceType?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.interfaceType?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.cell" for="field_cell">Cell</label>
+            <input type="number" class="form-control" name="cell" id="field_cell"
+                [(ngModel)]="signalling.cell"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.imei" for="field_imei">Imei</label>
+            <input type="number" class="form-control" name="imei" id="field_imei"
+                [(ngModel)]="signalling.imei"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.imsi" for="field_imsi">Imsi</label>
+            <input type="number" class="form-control" name="imsi" id="field_imsi"
+                [(ngModel)]="signalling.imsi"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.appType" for="field_appType">App Type</label>
+            <input type="number" class="form-control" name="appType" id="field_appType"
+                [(ngModel)]="signalling.appType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.appStatus" for="field_appStatus">App Status</label>
+            <input type="number" class="form-control" name="appStatus" id="field_appStatus"
+                [(ngModel)]="signalling.appStatus"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.protocolType" for="field_protocolType">Protocol Type</label>
+            <input type="number" class="form-control" name="protocolType" id="field_protocolType"
+                [(ngModel)]="signalling.protocolType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.appSubType" for="field_appSubType">App Sub Type</label>
+            <input type="number" class="form-control" name="appSubType" id="field_appSubType"
+                [(ngModel)]="signalling.appSubType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.ulData" for="field_ulData">Ul Data</label>
+            <input type="number" class="form-control" name="ulData" id="field_ulData"
+                [(ngModel)]="signalling.ulData"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.dlData" for="field_dlData">Dl Data</label>
+            <input type="number" class="form-control" name="dlData" id="field_dlData"
+                [(ngModel)]="signalling.dlData"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.lastHttpResponseDelay" for="field_lastHttpResponseDelay">Last Http Response Delay</label>
+            <input type="number" class="form-control" name="lastHttpResponseDelay" id="field_lastHttpResponseDelay"
+                [(ngModel)]="signalling.lastHttpResponseDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.procedureType" for="field_procedureType">Procedure Type</label>
+            <input type="number" class="form-control" name="procedureType" id="field_procedureType"
+                [(ngModel)]="signalling.procedureType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.procedureStatus" for="field_procedureStatus">Procedure Status</label>
+            <input type="number" class="form-control" name="procedureStatus" id="field_procedureStatus"
+                [(ngModel)]="signalling.procedureStatus"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.cause" for="field_cause">Cause</label>
+            <input type="number" class="form-control" name="cause" id="field_cause"
+                [(ngModel)]="signalling.cause"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.keyword" for="field_keyword">Keyword</label>
+            <input type="number" class="form-control" name="keyword" id="field_keyword"
+                [(ngModel)]="signalling.keyword"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.targetCellid" for="field_targetCellid">Target Cellid</label>
+            <input type="number" class="form-control" name="targetCellid" id="field_targetCellid"
+                [(ngModel)]="signalling.targetCellid"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.csfbIndication" for="field_csfbIndication">Csfb Indication</label>
+            <input type="number" class="form-control" name="csfbIndication" id="field_csfbIndication"
+                [(ngModel)]="signalling.csfbIndication"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.reqCauseType" for="field_reqCauseType">Req Cause Type</label>
+            <input type="number" class="form-control" name="reqCauseType" id="field_reqCauseType"
+                [(ngModel)]="signalling.reqCauseType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.reqCause" for="field_reqCause">Req Cause</label>
+            <input type="number" class="form-control" name="reqCause" id="field_reqCause"
+                [(ngModel)]="signalling.reqCause"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.failureCauseType" for="field_failureCauseType">Failure Cause Type</label>
+            <input type="number" class="form-control" name="failureCauseType" id="field_failureCauseType"
+                [(ngModel)]="signalling.failureCauseType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.failureCause" for="field_failureCause">Failure Cause</label>
+            <input type="number" class="form-control" name="failureCause" id="field_failureCause"
+                [(ngModel)]="signalling.failureCause"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.errorCauseType" for="field_errorCauseType">Error Cause Type</label>
+            <input type="number" class="form-control" name="errorCauseType" id="field_errorCauseType"
+                [(ngModel)]="signalling.errorCauseType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.errorCause" for="field_errorCause">Error Cause</label>
+            <input type="number" class="form-control" name="errorCause" id="field_errorCause"
+                [(ngModel)]="signalling.errorCause"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.hoCancelCauseType" for="field_hoCancelCauseType">Ho Cancel Cause Type</label>
+            <input type="number" class="form-control" name="hoCancelCauseType" id="field_hoCancelCauseType"
+                [(ngModel)]="signalling.hoCancelCauseType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.hoCancelCause" for="field_hoCancelCause">Ho Cancel Cause</label>
+            <input type="number" class="form-control" name="hoCancelCause" id="field_hoCancelCause"
+                [(ngModel)]="signalling.hoCancelCause"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.rowCount" for="field_rowCount">Row Count</label>
+            <input type="number" class="form-control" name="rowCount" id="field_rowCount"
+                [(ngModel)]="signalling.rowCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.servingRsrp" for="field_servingRsrp">Serving Rsrp</label>
+            <input type="number" class="form-control" name="servingRsrp" id="field_servingRsrp"
+                [(ngModel)]="signalling.servingRsrp"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.servingRsrpAvg" for="field_servingRsrpAvg">Serving Rsrp Avg</label>
+            <input type="number" class="form-control" name="servingRsrpAvg" id="field_servingRsrpAvg"
+                [(ngModel)]="signalling.servingRsrpAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.servingRsrpStdDev" for="field_servingRsrpStdDev">Serving Rsrp Std Dev</label>
+            <input type="number" class="form-control" name="servingRsrpStdDev" id="field_servingRsrpStdDev"
+                [(ngModel)]="signalling.servingRsrpStdDev"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.servingRsrq" for="field_servingRsrq">Serving Rsrq</label>
+            <input type="number" class="form-control" name="servingRsrq" id="field_servingRsrq"
+                [(ngModel)]="signalling.servingRsrq"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.servingRsrqAvg" for="field_servingRsrqAvg">Serving Rsrq Avg</label>
+            <input type="number" class="form-control" name="servingRsrqAvg" id="field_servingRsrqAvg"
+                [(ngModel)]="signalling.servingRsrqAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.servingRsrqStdDev" for="field_servingRsrqStdDev">Serving Rsrq Std Dev</label>
+            <input type="number" class="form-control" name="servingRsrqStdDev" id="field_servingRsrqStdDev"
+                [(ngModel)]="signalling.servingRsrqStdDev"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.aoa" for="field_aoa">Aoa</label>
+            <input type="number" class="form-control" name="aoa" id="field_aoa"
+                [(ngModel)]="signalling.aoa"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.aoaAvg" for="field_aoaAvg">Aoa Avg</label>
+            <input type="number" class="form-control" name="aoaAvg" id="field_aoaAvg"
+                [(ngModel)]="signalling.aoaAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.aoaStdDev" for="field_aoaStdDev">Aoa Std Dev</label>
+            <input type="number" class="form-control" name="aoaStdDev" id="field_aoaStdDev"
+                [(ngModel)]="signalling.aoaStdDev"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.ta" for="field_ta">Ta</label>
+            <input type="number" class="form-control" name="ta" id="field_ta"
+                [(ngModel)]="signalling.ta"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.taAvg" for="field_taAvg">Ta Avg</label>
+            <input type="number" class="form-control" name="taAvg" id="field_taAvg"
+                [(ngModel)]="signalling.taAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.taStdDev" for="field_taStdDev">Ta Std Dev</label>
+            <input type="number" class="form-control" name="taStdDev" id="field_taStdDev"
+                [(ngModel)]="signalling.taStdDev"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.ulSinr" for="field_ulSinr">Ul Sinr</label>
+            <input type="number" class="form-control" name="ulSinr" id="field_ulSinr"
+                [(ngModel)]="signalling.ulSinr"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.ulSinrAvg" for="field_ulSinrAvg">Ul Sinr Avg</label>
+            <input type="number" class="form-control" name="ulSinrAvg" id="field_ulSinrAvg"
+                [(ngModel)]="signalling.ulSinrAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.ulSinrStdDev" for="field_ulSinrStdDev">Ul Sinr Std Dev</label>
+            <input type="number" class="form-control" name="ulSinrStdDev" id="field_ulSinrStdDev"
+                [(ngModel)]="signalling.ulSinrStdDev"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.enbReceivedPower" for="field_enbReceivedPower">Enb Received Power</label>
+            <input type="number" class="form-control" name="enbReceivedPower" id="field_enbReceivedPower"
+                [(ngModel)]="signalling.enbReceivedPower"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.enbReceivedPowerAvg" for="field_enbReceivedPowerAvg">Enb Received Power Avg</label>
+            <input type="number" class="form-control" name="enbReceivedPowerAvg" id="field_enbReceivedPowerAvg"
+                [(ngModel)]="signalling.enbReceivedPowerAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.enbReceivedPowerStdDev" for="field_enbReceivedPowerStdDev">Enb Received Power Std Dev</label>
+            <input type="number" class="form-control" name="enbReceivedPowerStdDev" id="field_enbReceivedPowerStdDev"
+                [(ngModel)]="signalling.enbReceivedPowerStdDev"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.phr" for="field_phr">Phr</label>
+            <input type="number" class="form-control" name="phr" id="field_phr"
+                [(ngModel)]="signalling.phr"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.phrAvg" for="field_phrAvg">Phr Avg</label>
+            <input type="number" class="form-control" name="phrAvg" id="field_phrAvg"
+                [(ngModel)]="signalling.phrAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.signalling.phrStdDev" for="field_phrStdDev">Phr Std Dev</label>
+            <input type="number" class="form-control" name="phrStdDev" id="field_phrStdDev"
+                [(ngModel)]="signalling.phrStdDev"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

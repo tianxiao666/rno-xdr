@@ -1,0 +1,166 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMrLabel" jhiTranslate="backendApp.mr.home.createOrEditLabel">Create or edit a Mr</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!mr.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="mr.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.pdate" for="field_pdate">Pdate</label>
+            <div class="input-group">
+                <input id="field_pdate" type="text" class="form-control" name="pdate" ngbDatepicker  #pdateDp="ngbDatepicker" [(ngModel)]="mr.pdate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="pdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.pdate?.dirty && editForm.controls.pdate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pdate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.phour" for="field_phour">Phour</label>
+            <input type="number" class="form-control" name="phour" id="field_phour"
+                [(ngModel)]="mr.phour"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.cell" for="field_cell">Cell</label>
+            <input type="text" class="form-control" name="cell" id="field_cell"
+                [(ngModel)]="mr.cell"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.imei" for="field_imei">Imei</label>
+            <input type="text" class="form-control" name="imei" id="field_imei"
+                [(ngModel)]="mr.imei"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.imsi" for="field_imsi">Imsi</label>
+            <input type="text" class="form-control" name="imsi" id="field_imsi"
+                [(ngModel)]="mr.imsi"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.rsrpSum" for="field_rsrpSum">Rsrp Sum</label>
+            <input type="number" class="form-control" name="rsrpSum" id="field_rsrpSum"
+                [(ngModel)]="mr.rsrpSum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.rsrpCount" for="field_rsrpCount">Rsrp Count</label>
+            <input type="number" class="form-control" name="rsrpCount" id="field_rsrpCount"
+                [(ngModel)]="mr.rsrpCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.rsrpAvg" for="field_rsrpAvg">Rsrp Avg</label>
+            <input type="number" class="form-control" name="rsrpAvg" id="field_rsrpAvg"
+                [(ngModel)]="mr.rsrpAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.rsrqSum" for="field_rsrqSum">Rsrq Sum</label>
+            <input type="number" class="form-control" name="rsrqSum" id="field_rsrqSum"
+                [(ngModel)]="mr.rsrqSum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.rsrqCount" for="field_rsrqCount">Rsrq Count</label>
+            <input type="number" class="form-control" name="rsrqCount" id="field_rsrqCount"
+                [(ngModel)]="mr.rsrqCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.rsrqAvg" for="field_rsrqAvg">Rsrq Avg</label>
+            <input type="number" class="form-control" name="rsrqAvg" id="field_rsrqAvg"
+                [(ngModel)]="mr.rsrqAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.ulsinrSum" for="field_ulsinrSum">Ulsinr Sum</label>
+            <input type="number" class="form-control" name="ulsinrSum" id="field_ulsinrSum"
+                [(ngModel)]="mr.ulsinrSum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.ulsinrCount" for="field_ulsinrCount">Ulsinr Count</label>
+            <input type="number" class="form-control" name="ulsinrCount" id="field_ulsinrCount"
+                [(ngModel)]="mr.ulsinrCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.ulsinrAvg" for="field_ulsinrAvg">Ulsinr Avg</label>
+            <input type="number" class="form-control" name="ulsinrAvg" id="field_ulsinrAvg"
+                [(ngModel)]="mr.ulsinrAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.phrSum" for="field_phrSum">Phr Sum</label>
+            <input type="number" class="form-control" name="phrSum" id="field_phrSum"
+                [(ngModel)]="mr.phrSum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.phrCount" for="field_phrCount">Phr Count</label>
+            <input type="number" class="form-control" name="phrCount" id="field_phrCount"
+                [(ngModel)]="mr.phrCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.phrAvg" for="field_phrAvg">Phr Avg</label>
+            <input type="number" class="form-control" name="phrAvg" id="field_phrAvg"
+                [(ngModel)]="mr.phrAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.erpSum" for="field_erpSum">Erp Sum</label>
+            <input type="number" class="form-control" name="erpSum" id="field_erpSum"
+                [(ngModel)]="mr.erpSum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.erpCount" for="field_erpCount">Erp Count</label>
+            <input type="number" class="form-control" name="erpCount" id="field_erpCount"
+                [(ngModel)]="mr.erpCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.erpAvg" for="field_erpAvg">Erp Avg</label>
+            <input type="number" class="form-control" name="erpAvg" id="field_erpAvg"
+                [(ngModel)]="mr.erpAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.taSum" for="field_taSum">Ta Sum</label>
+            <input type="number" class="form-control" name="taSum" id="field_taSum"
+                [(ngModel)]="mr.taSum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.taCount" for="field_taCount">Ta Count</label>
+            <input type="number" class="form-control" name="taCount" id="field_taCount"
+                [(ngModel)]="mr.taCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.taAvg" for="field_taAvg">Ta Avg</label>
+            <input type="number" class="form-control" name="taAvg" id="field_taAvg"
+                [(ngModel)]="mr.taAvg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.overlapSum" for="field_overlapSum">Overlap Sum</label>
+            <input type="number" class="form-control" name="overlapSum" id="field_overlapSum"
+                [(ngModel)]="mr.overlapSum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.overlapCount" for="field_overlapCount">Overlap Count</label>
+            <input type="number" class="form-control" name="overlapCount" id="field_overlapCount"
+                [(ngModel)]="mr.overlapCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mr.overlapAvg" for="field_overlapAvg">Overlap Avg</label>
+            <input type="number" class="form-control" name="overlapAvg" id="field_overlapAvg"
+                [(ngModel)]="mr.overlapAvg"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

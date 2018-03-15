@@ -1,0 +1,18 @@
+:host /deep/ .pagination > li > a {
+  color:#0275d8;
+  background: transparent;
+}
+
+:host /deep/ .table > tbody > tr > td {
+  padding: 0px 8px;
+  line-height: 35px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: #333333;
+  white-space: nowrap;
+}
+
+:host /deep/ .table > thead > tr > th{
+  color: #333333;
+  font-weight:bold;
+  white-space: nowrap;
+}

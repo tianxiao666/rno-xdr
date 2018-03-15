@@ -1,0 +1,9 @@
+page-track-result {
+  .div-charts {
+    width: 100%;
+    height: 100%;
+  }
+  @import 'ol.scss';
+  @import 'openlayer.scss';
+
+}

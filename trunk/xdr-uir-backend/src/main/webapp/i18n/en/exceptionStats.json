@@ -1,0 +1,49 @@
+{
+    "backendApp": {
+        "exceptionStats" : {
+            "home": {
+                "title": "Exception Stats",
+                "createLabel": "Create a new Exception Stats",
+                "createOrEditLabel": "Create or edit a Exception Stats",
+                "search": "Search for Exception Stats"
+            },
+            "created": "A new Exception Stats is created with identifier {{ param }}",
+            "updated": "A Exception Stats is updated with identifier {{ param }}",
+            "deleted": "A Exception Stats is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Exception Stats {{ id }}?"
+            },
+            "detail": {
+                "title": "Exception Stats"
+            },
+            "pdate": "Pdate",
+            "cell": "Cell",
+            "imei": "Imei",
+            "imsi": "Imsi",
+            "attachFaultRate": "Attach Fault Rate",
+            "attachRequest": "Attach Request",
+            "attachFault": "Attach Fault",
+            "serviceFaultRate": "Service Fault Rate",
+            "serviceRequest": "Service Request",
+            "serviceFault": "Service Fault",
+            "csfbFaultRate": "Csfb Fault Rate",
+            "csfbRequest": "Csfb Request",
+            "csfbFault": "Csfb Fault",
+            "contextActivateFaultRate": "Context Activate Fault Rate",
+            "contextActivateRequest": "Context Activate Request",
+            "contextActivateFault": "Context Activate Fault",
+            "pdnRequestFaultRate": "Pdn Request Fault Rate",
+            "pdnRequest": "Pdn Request",
+            "pdnRequestFault": "Pdn Request Fault",
+            "tauFaultRate": "Tau Fault Rate",
+            "tauRequest": "Tau Request",
+            "tauFault": "Tau Fault",
+            "xhoFaultRate": "Xho Fault Rate",
+            "xhoRequest": "Xho Request",
+            "xhoFault": "Xho Fault",
+            "shoFaultRate": "Sho Fault Rate",
+            "shoRequest": "Sho Request",
+            "shoFault": "Sho Fault"
+        }
+    }
+}

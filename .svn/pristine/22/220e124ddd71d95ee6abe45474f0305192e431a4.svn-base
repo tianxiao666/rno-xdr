@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+  <table class="table table-striped"
+         [mfData]="datalist"
+         #mf="mfDataTable"
+         [mfRowsOnPage]="rowsOnPage"
+         [(mfSortBy)]="sortBy"
+         [(mfSortOrder)]="sortOrder"
+         [mfActivePage]="activePage"
+         (mfOnPageChange)="onPageChange($event)"
+         [mfIsServerPagination]="true"
+         [(mfAmountOfRows)]="itemsTotal"
+  >
+    <thead>
+    <tr>
+      <th *ngFor="let key of dataName" align="left">
+        {{key}}
+      </th>
+      <th *ngIf="dataName.length != 0">操作</th>
+    <tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of mf.data;">
+      <td *ngFor="let key of dataId;">{{item[key]}}</td>
+      <td><a type="button" class="btn btn-sm btn-success">查看运行报告</a>
+        </td>
+    <tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan='100'>
+        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,30]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

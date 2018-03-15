@@ -1,0 +1,174 @@
+<!-- 详细信息总览 -->
+<form *ngIf="!isEditable">
+  <div style="height: 20px"></div>
+  <h3>设置</h3>
+  <div style="height: 20px"></div>
+<table class="table table-hover table-striped" style="color: #6d6d6d" >
+  <thead>
+  <tr>
+    <th>账号</th>
+    <th>姓名</th>
+    <th>邮箱</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      <span>{{userData?.login}}</span>
+    </td>
+    <td>
+      <span>{{userData?.firstName}}</span>
+    </td>
+    <td>
+      <span>{{userData?.email}}</span>
+    </td>
+    <td>
+      <button class="btn btn-primary" (click)="editInfo()">编辑资料</button>
+      <button class="btn btn-primary" (click)="modifyPass()">修改密码</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</form>
+
+<!-- 编辑资料 -->
+<form class="form-horizontal" *ngIf="isEditInfo" #editInfoForm>
+  <div style="height: 20px"></div>
+  <h3>编辑资料</h3>
+  <hr/>
+  <div style="height: 50px"></div>
+  <div class="form-group form-inline">
+    <label for="account" class="col-sm-2 control-label">账号</label>
+    <div class="col-sm-6">
+      <span id="account" name="account">{{userData?.login}}</span>
+    </div>
+  </div>
+
+  <div class="form-group form-inline">
+    <label for="firstName" class="col-sm-2 control-label">姓名</label>
+    <div class="form-inline col-sm-6">
+      <input [(ngModel)]="firstName" #firstNameInput="ngModel" style="width: 300px"
+             class="form-control" id="firstName" name="firstName" maxlength=50/>
+      <div *ngIf="firstNameInput.dirty && firstNameInput.invalid">
+        <span class="alert alert-danger" *ngIf="firstNameInput.errors.maxlength" translate>
+        {{"global.messages.validate.firstname.maxlength"}}
+      </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group form-inline">
+    <label for="email" class="col-sm-2 control-label">邮箱</label>
+    <div class="form-inline col-sm-6">
+      <input [(ngModel)]="email" #emailInput="ngModel" type="email" style="width: 300px"
+             class="form-control" id="email" name="email"
+             minlength=5 maxlength=50 required (keyup)="testValid()"/>
+      <div *ngIf="emailInput.dirty && emailInput.invalid">
+      <span class="alert alert-danger" *ngIf="emailInput.errors.required" translate>
+        {{"global.messages.validate.email.required"}}
+      </span>
+        <span class="alert alert-danger" *ngIf="emailInput.errors.minlength" translate>
+        {{"global.messages.validate.email.minlength"}}
+      </span>
+        <span class="alert alert-danger" *ngIf="emailInput.errors.maxlength" translate>
+        {{"global.messages.validate.email.maxlength"}}
+      </span>
+      </div>
+      <div *ngIf="!emailInput.invalid && isEmailInvalid">
+        <span class="alert alert-danger" translate>
+        {{"global.messages.validate.email.invalid"}}
+      </span>
+      </div>
+      <div>
+        <span class="alert alert-danger"
+              *ngIf="status==400" translate>
+        {{"global.messages.error.email.inuse"}}
+      </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group form-inline">
+    <label for="btn" class="col-sm-2 control-label"></label>
+    <div class="col-sm-offset-6 col-sm-6">
+      <button id="btn" class="btn btn-primary" [disabled]="emailInput.invalid || isEmailInvalid"
+              (click)="infoSubmit()">提交</button>
+      <button class="btn btn-info" (click)="resetInfo()">重置</button>
+      <button class="btn btn-default" (click)="cancelInfo()">取消</button>
+    </div>
+  </div>
+</form>
+
+<!-- 修改密码 -->
+<form class="form-horizontal" *ngIf="isModifyPass" #modifyPassForm>
+  <div style="height: 20px"></div>
+  <h3>修改密码</h3>
+  <hr/>
+  <div style="height: 50px"></div>
+
+  <div class="form-group form-inline">
+    <label for="password" class="col-sm-2 control-label">新密码</label>
+    <div class="form-inline col-sm-6">
+      <input [(ngModel)]="password" name="password" id="password" style="width: 300px"
+        #passwordInput="ngModel" type="password" class="form-control"
+              placeholder="请输入新密码" minlength=4 maxlength=50 required/>
+      <div *ngIf="passwordInput.dirty && passwordInput.invalid">
+      <span class="alert alert-danger" *ngIf="passwordInput.errors.required" translate>
+        {{"global.messages.validate.newpassword.required"}}
+      </span>
+        <span class="alert alert-danger" *ngIf="passwordInput.errors.minlength" translate>
+        {{"global.messages.validate.newpassword.minlength"}}
+      </span>
+        <span class="alert alert-danger" *ngIf="passwordInput.errors.maxlength" translate>
+        {{"global.messages.validate.newpassword.maxlength"}}
+      </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group form-inline">
+    <label for="confirmPassword" class="col-sm-2 control-label">确认密码</label>
+    <div class="form-inline col-sm-6">
+      <input [(ngModel)]="confirmPassword" name="confirmPassword" id="confirmPassword"
+        #confirmPasswordInput="ngModel" type="password" class="form-control" style="width: 300px"
+              placeholder="再次输入新密码" minlength=4 maxlength=50 required
+             (keyup)="finishModifyPass()"/>
+      <div *ngIf="confirmPasswordInput.dirty && confirmPasswordInput.invalid">
+      <span class="alert alert-danger"
+            *ngIf="confirmPasswordInput.errors.required" translate>
+        {{"global.messages.validate.confirmpassword.required"}}
+      </span>
+        <span class="alert alert-danger "
+              *ngIf="confirmPasswordInput.errors.minlength" translate>
+        {{"global.messages.validate.confirmpassword.minlength"}}
+      </span>
+        <span class="alert alert-danger"
+              *ngIf="confirmPasswordInput.errors.maxlength" translate>
+        {{"global.messages.validate.confirmpassword.maxlength"}}
+      </span>
+      </div>
+      <div>
+        <span class="alert alert-danger"
+              *ngIf="!confirmPasswordInput.invalid&&isShowUnMatch" translate>
+        {{"global.messages.error.dontmatch"}}
+      </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group form-inline">
+    <label for="btn1" class="col-sm-2 control-label"></label>
+    <div class="col-sm-offset-6 col-sm-6">
+      <button id="btn1" [disabled]="isUnSubmitable" class="btn btn-primary"
+      (click)="passSubmit()">提交</button>
+      <button class="btn btn-info" (click)="resetPass(modifyPassForm)">重置</button>
+      <button class="btn btn-default" (click)="cancelPass(modifyPassForm)">取消</button>
+    </div>
+  </div>
+</form>
+<div #infoSuccess style="display: none" class="success">编辑成功</div>
+<div #infoError style="display: none" class="error">编辑失败</div>
+<div #passSuccess style="display: none" class="success">密码修改成功</div>
+<div #passError style="display: none" class="error">密码修改失败</div>
+

@@ -1,0 +1,131 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.exceptionStats.home.title">Exception Stats</span>
+        <button class="btn btn-primary float-right create-exception-stats" [routerLink]="['/', { outlets: { popup: ['exception-stats-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.exceptionStats.home.createLabel">
+            Create new Exception Stats
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.exceptionStats.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="exceptionStats">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdate"><span jhiTranslate="backendApp.exceptionStats.pdate">Pdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cell"><span jhiTranslate="backendApp.exceptionStats.cell">Cell</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imei"><span jhiTranslate="backendApp.exceptionStats.imei">Imei</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imsi"><span jhiTranslate="backendApp.exceptionStats.imsi">Imsi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="attachFaultRate"><span jhiTranslate="backendApp.exceptionStats.attachFaultRate">Attach Fault Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="attachRequest"><span jhiTranslate="backendApp.exceptionStats.attachRequest">Attach Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="attachFault"><span jhiTranslate="backendApp.exceptionStats.attachFault">Attach Fault</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceFaultRate"><span jhiTranslate="backendApp.exceptionStats.serviceFaultRate">Service Fault Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceRequest"><span jhiTranslate="backendApp.exceptionStats.serviceRequest">Service Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceFault"><span jhiTranslate="backendApp.exceptionStats.serviceFault">Service Fault</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="csfbFaultRate"><span jhiTranslate="backendApp.exceptionStats.csfbFaultRate">Csfb Fault Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="csfbRequest"><span jhiTranslate="backendApp.exceptionStats.csfbRequest">Csfb Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="csfbFault"><span jhiTranslate="backendApp.exceptionStats.csfbFault">Csfb Fault</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="contextActivateFaultRate"><span jhiTranslate="backendApp.exceptionStats.contextActivateFaultRate">Context Activate Fault Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="contextActivateRequest"><span jhiTranslate="backendApp.exceptionStats.contextActivateRequest">Context Activate Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="contextActivateFault"><span jhiTranslate="backendApp.exceptionStats.contextActivateFault">Context Activate Fault</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdnRequestFaultRate"><span jhiTranslate="backendApp.exceptionStats.pdnRequestFaultRate">Pdn Request Fault Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdnRequest"><span jhiTranslate="backendApp.exceptionStats.pdnRequest">Pdn Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdnRequestFault"><span jhiTranslate="backendApp.exceptionStats.pdnRequestFault">Pdn Request Fault</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tauFaultRate"><span jhiTranslate="backendApp.exceptionStats.tauFaultRate">Tau Fault Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tauRequest"><span jhiTranslate="backendApp.exceptionStats.tauRequest">Tau Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tauFault"><span jhiTranslate="backendApp.exceptionStats.tauFault">Tau Fault</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="xhoFaultRate"><span jhiTranslate="backendApp.exceptionStats.xhoFaultRate">Xho Fault Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="xhoRequest"><span jhiTranslate="backendApp.exceptionStats.xhoRequest">Xho Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="xhoFault"><span jhiTranslate="backendApp.exceptionStats.xhoFault">Xho Fault</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shoFaultRate"><span jhiTranslate="backendApp.exceptionStats.shoFaultRate">Sho Fault Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shoRequest"><span jhiTranslate="backendApp.exceptionStats.shoRequest">Sho Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shoFault"><span jhiTranslate="backendApp.exceptionStats.shoFault">Sho Fault</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let exceptionStats of exceptionStats ;trackBy: trackId">
+                <td><a [routerLink]="['../exception-stats', exceptionStats.id ]">{{exceptionStats.id}}</a></td>
+                <td>{{exceptionStats.pdate | date:'mediumDate'}}</td>
+                <td>{{exceptionStats.cell}}</td>
+                <td>{{exceptionStats.imei}}</td>
+                <td>{{exceptionStats.imsi}}</td>
+                <td>{{exceptionStats.attachFaultRate}}</td>
+                <td>{{exceptionStats.attachRequest}}</td>
+                <td>{{exceptionStats.attachFault}}</td>
+                <td>{{exceptionStats.serviceFaultRate}}</td>
+                <td>{{exceptionStats.serviceRequest}}</td>
+                <td>{{exceptionStats.serviceFault}}</td>
+                <td>{{exceptionStats.csfbFaultRate}}</td>
+                <td>{{exceptionStats.csfbRequest}}</td>
+                <td>{{exceptionStats.csfbFault}}</td>
+                <td>{{exceptionStats.contextActivateFaultRate}}</td>
+                <td>{{exceptionStats.contextActivateRequest}}</td>
+                <td>{{exceptionStats.contextActivateFault}}</td>
+                <td>{{exceptionStats.pdnRequestFaultRate}}</td>
+                <td>{{exceptionStats.pdnRequest}}</td>
+                <td>{{exceptionStats.pdnRequestFault}}</td>
+                <td>{{exceptionStats.tauFaultRate}}</td>
+                <td>{{exceptionStats.tauRequest}}</td>
+                <td>{{exceptionStats.tauFault}}</td>
+                <td>{{exceptionStats.xhoFaultRate}}</td>
+                <td>{{exceptionStats.xhoRequest}}</td>
+                <td>{{exceptionStats.xhoFault}}</td>
+                <td>{{exceptionStats.shoFaultRate}}</td>
+                <td>{{exceptionStats.shoRequest}}</td>
+                <td>{{exceptionStats.shoFault}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../exception-stats', exceptionStats.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'exception-stats/'+ exceptionStats.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'exception-stats/'+ exceptionStats.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="exceptionStats && exceptionStats.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

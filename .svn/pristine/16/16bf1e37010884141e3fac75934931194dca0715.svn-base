@@ -1,0 +1,166 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMmeLabel" jhiTranslate="backendApp.mme.home.createOrEditLabel">Create or edit a Mme</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!mme.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="mme.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.pdate" for="field_pdate">Pdate</label>
+            <div class="input-group">
+                <input id="field_pdate" type="text" class="form-control" name="pdate" ngbDatepicker  #pdateDp="ngbDatepicker" [(ngModel)]="mme.pdate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="pdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.pdate?.dirty && editForm.controls.pdate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pdate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.phour" for="field_phour">Phour</label>
+            <input type="number" class="form-control" name="phour" id="field_phour"
+                [(ngModel)]="mme.phour"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.cell" for="field_cell">Cell</label>
+            <input type="text" class="form-control" name="cell" id="field_cell"
+                [(ngModel)]="mme.cell"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.imei" for="field_imei">Imei</label>
+            <input type="text" class="form-control" name="imei" id="field_imei"
+                [(ngModel)]="mme.imei"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.imsi" for="field_imsi">Imsi</label>
+            <input type="text" class="form-control" name="imsi" id="field_imsi"
+                [(ngModel)]="mme.imsi"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.attachRequest" for="field_attachRequest">Attach Request</label>
+            <input type="number" class="form-control" name="attachRequest" id="field_attachRequest"
+                [(ngModel)]="mme.attachRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.attachSuccess" for="field_attachSuccess">Attach Success</label>
+            <input type="number" class="form-control" name="attachSuccess" id="field_attachSuccess"
+                [(ngModel)]="mme.attachSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.attachSuccessRate" for="field_attachSuccessRate">Attach Success Rate</label>
+            <input type="number" class="form-control" name="attachSuccessRate" id="field_attachSuccessRate"
+                [(ngModel)]="mme.attachSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.serviceRequest" for="field_serviceRequest">Service Request</label>
+            <input type="number" class="form-control" name="serviceRequest" id="field_serviceRequest"
+                [(ngModel)]="mme.serviceRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.serviceRequestSuccess" for="field_serviceRequestSuccess">Service Request Success</label>
+            <input type="number" class="form-control" name="serviceRequestSuccess" id="field_serviceRequestSuccess"
+                [(ngModel)]="mme.serviceRequestSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.serviceSuccessRate" for="field_serviceSuccessRate">Service Success Rate</label>
+            <input type="number" class="form-control" name="serviceSuccessRate" id="field_serviceSuccessRate"
+                [(ngModel)]="mme.serviceSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.defaultBearerActivateRequest" for="field_defaultBearerActivateRequest">Default Bearer Activate Request</label>
+            <input type="number" class="form-control" name="defaultBearerActivateRequest" id="field_defaultBearerActivateRequest"
+                [(ngModel)]="mme.defaultBearerActivateRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.defaultBearerActivateSuccess" for="field_defaultBearerActivateSuccess">Default Bearer Activate Success</label>
+            <input type="number" class="form-control" name="defaultBearerActivateSuccess" id="field_defaultBearerActivateSuccess"
+                [(ngModel)]="mme.defaultBearerActivateSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.defaultBearerSetupSuccessRate" for="field_defaultBearerSetupSuccessRate">Default Bearer Setup Success Rate</label>
+            <input type="number" class="form-control" name="defaultBearerSetupSuccessRate" id="field_defaultBearerSetupSuccessRate"
+                [(ngModel)]="mme.defaultBearerSetupSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.pdnRequest" for="field_pdnRequest">Pdn Request</label>
+            <input type="number" class="form-control" name="pdnRequest" id="field_pdnRequest"
+                [(ngModel)]="mme.pdnRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.pdnRequestSuccess" for="field_pdnRequestSuccess">Pdn Request Success</label>
+            <input type="number" class="form-control" name="pdnRequestSuccess" id="field_pdnRequestSuccess"
+                [(ngModel)]="mme.pdnRequestSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.pdnRequestSuccessRate" for="field_pdnRequestSuccessRate">Pdn Request Success Rate</label>
+            <input type="number" class="form-control" name="pdnRequestSuccessRate" id="field_pdnRequestSuccessRate"
+                [(ngModel)]="mme.pdnRequestSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.tauRequest" for="field_tauRequest">Tau Request</label>
+            <input type="number" class="form-control" name="tauRequest" id="field_tauRequest"
+                [(ngModel)]="mme.tauRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.tauSuccess" for="field_tauSuccess">Tau Success</label>
+            <input type="number" class="form-control" name="tauSuccess" id="field_tauSuccess"
+                [(ngModel)]="mme.tauSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.tauSuccessRate" for="field_tauSuccessRate">Tau Success Rate</label>
+            <input type="number" class="form-control" name="tauSuccessRate" id="field_tauSuccessRate"
+                [(ngModel)]="mme.tauSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.xhoRequest" for="field_xhoRequest">Xho Request</label>
+            <input type="number" class="form-control" name="xhoRequest" id="field_xhoRequest"
+                [(ngModel)]="mme.xhoRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.xhoSuccess" for="field_xhoSuccess">Xho Success</label>
+            <input type="number" class="form-control" name="xhoSuccess" id="field_xhoSuccess"
+                [(ngModel)]="mme.xhoSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.xhoSuccessRate" for="field_xhoSuccessRate">Xho Success Rate</label>
+            <input type="number" class="form-control" name="xhoSuccessRate" id="field_xhoSuccessRate"
+                [(ngModel)]="mme.xhoSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.shoRequest" for="field_shoRequest">Sho Request</label>
+            <input type="number" class="form-control" name="shoRequest" id="field_shoRequest"
+                [(ngModel)]="mme.shoRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.shoSuccess" for="field_shoSuccess">Sho Success</label>
+            <input type="number" class="form-control" name="shoSuccess" id="field_shoSuccess"
+                [(ngModel)]="mme.shoSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.mme.shoSuccessRate" for="field_shoSuccessRate">Sho Success Rate</label>
+            <input type="number" class="form-control" name="shoSuccessRate" id="field_shoSuccessRate"
+                [(ngModel)]="mme.shoSuccessRate"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

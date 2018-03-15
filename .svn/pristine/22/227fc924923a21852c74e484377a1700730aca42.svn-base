@@ -1,0 +1,176 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myExceptionStatsLabel" jhiTranslate="backendApp.exceptionStats.home.createOrEditLabel">Create or edit a Exception Stats</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!exceptionStats.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="exceptionStats.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.pdate" for="field_pdate">Pdate</label>
+            <div class="input-group">
+                <input id="field_pdate" type="text" class="form-control" name="pdate" ngbDatepicker  #pdateDp="ngbDatepicker" [(ngModel)]="exceptionStats.pdate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="pdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.pdate?.dirty && editForm.controls.pdate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pdate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.cell" for="field_cell">Cell</label>
+            <input type="number" class="form-control" name="cell" id="field_cell"
+                [(ngModel)]="exceptionStats.cell"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.imei" for="field_imei">Imei</label>
+            <input type="number" class="form-control" name="imei" id="field_imei"
+                [(ngModel)]="exceptionStats.imei"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.imsi" for="field_imsi">Imsi</label>
+            <input type="number" class="form-control" name="imsi" id="field_imsi"
+                [(ngModel)]="exceptionStats.imsi"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.attachFaultRate" for="field_attachFaultRate">Attach Fault Rate</label>
+            <input type="number" class="form-control" name="attachFaultRate" id="field_attachFaultRate"
+                [(ngModel)]="exceptionStats.attachFaultRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.attachRequest" for="field_attachRequest">Attach Request</label>
+            <input type="number" class="form-control" name="attachRequest" id="field_attachRequest"
+                [(ngModel)]="exceptionStats.attachRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.attachFault" for="field_attachFault">Attach Fault</label>
+            <input type="number" class="form-control" name="attachFault" id="field_attachFault"
+                [(ngModel)]="exceptionStats.attachFault"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.serviceFaultRate" for="field_serviceFaultRate">Service Fault Rate</label>
+            <input type="number" class="form-control" name="serviceFaultRate" id="field_serviceFaultRate"
+                [(ngModel)]="exceptionStats.serviceFaultRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.serviceRequest" for="field_serviceRequest">Service Request</label>
+            <input type="number" class="form-control" name="serviceRequest" id="field_serviceRequest"
+                [(ngModel)]="exceptionStats.serviceRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.serviceFault" for="field_serviceFault">Service Fault</label>
+            <input type="number" class="form-control" name="serviceFault" id="field_serviceFault"
+                [(ngModel)]="exceptionStats.serviceFault"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.csfbFaultRate" for="field_csfbFaultRate">Csfb Fault Rate</label>
+            <input type="number" class="form-control" name="csfbFaultRate" id="field_csfbFaultRate"
+                [(ngModel)]="exceptionStats.csfbFaultRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.csfbRequest" for="field_csfbRequest">Csfb Request</label>
+            <input type="number" class="form-control" name="csfbRequest" id="field_csfbRequest"
+                [(ngModel)]="exceptionStats.csfbRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.csfbFault" for="field_csfbFault">Csfb Fault</label>
+            <input type="number" class="form-control" name="csfbFault" id="field_csfbFault"
+                [(ngModel)]="exceptionStats.csfbFault"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.contextActivateFaultRate" for="field_contextActivateFaultRate">Context Activate Fault Rate</label>
+            <input type="number" class="form-control" name="contextActivateFaultRate" id="field_contextActivateFaultRate"
+                [(ngModel)]="exceptionStats.contextActivateFaultRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.contextActivateRequest" for="field_contextActivateRequest">Context Activate Request</label>
+            <input type="number" class="form-control" name="contextActivateRequest" id="field_contextActivateRequest"
+                [(ngModel)]="exceptionStats.contextActivateRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.contextActivateFault" for="field_contextActivateFault">Context Activate Fault</label>
+            <input type="number" class="form-control" name="contextActivateFault" id="field_contextActivateFault"
+                [(ngModel)]="exceptionStats.contextActivateFault"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.pdnRequestFaultRate" for="field_pdnRequestFaultRate">Pdn Request Fault Rate</label>
+            <input type="number" class="form-control" name="pdnRequestFaultRate" id="field_pdnRequestFaultRate"
+                [(ngModel)]="exceptionStats.pdnRequestFaultRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.pdnRequest" for="field_pdnRequest">Pdn Request</label>
+            <input type="number" class="form-control" name="pdnRequest" id="field_pdnRequest"
+                [(ngModel)]="exceptionStats.pdnRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.pdnRequestFault" for="field_pdnRequestFault">Pdn Request Fault</label>
+            <input type="number" class="form-control" name="pdnRequestFault" id="field_pdnRequestFault"
+                [(ngModel)]="exceptionStats.pdnRequestFault"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.tauFaultRate" for="field_tauFaultRate">Tau Fault Rate</label>
+            <input type="number" class="form-control" name="tauFaultRate" id="field_tauFaultRate"
+                [(ngModel)]="exceptionStats.tauFaultRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.tauRequest" for="field_tauRequest">Tau Request</label>
+            <input type="number" class="form-control" name="tauRequest" id="field_tauRequest"
+                [(ngModel)]="exceptionStats.tauRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.tauFault" for="field_tauFault">Tau Fault</label>
+            <input type="number" class="form-control" name="tauFault" id="field_tauFault"
+                [(ngModel)]="exceptionStats.tauFault"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.xhoFaultRate" for="field_xhoFaultRate">Xho Fault Rate</label>
+            <input type="number" class="form-control" name="xhoFaultRate" id="field_xhoFaultRate"
+                [(ngModel)]="exceptionStats.xhoFaultRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.xhoRequest" for="field_xhoRequest">Xho Request</label>
+            <input type="number" class="form-control" name="xhoRequest" id="field_xhoRequest"
+                [(ngModel)]="exceptionStats.xhoRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.xhoFault" for="field_xhoFault">Xho Fault</label>
+            <input type="number" class="form-control" name="xhoFault" id="field_xhoFault"
+                [(ngModel)]="exceptionStats.xhoFault"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.shoFaultRate" for="field_shoFaultRate">Sho Fault Rate</label>
+            <input type="number" class="form-control" name="shoFaultRate" id="field_shoFaultRate"
+                [(ngModel)]="exceptionStats.shoFaultRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.shoRequest" for="field_shoRequest">Sho Request</label>
+            <input type="number" class="form-control" name="shoRequest" id="field_shoRequest"
+                [(ngModel)]="exceptionStats.shoRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionStats.shoFault" for="field_shoFault">Sho Fault</label>
+            <input type="number" class="form-control" name="shoFault" id="field_shoFault"
+                [(ngModel)]="exceptionStats.shoFault"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

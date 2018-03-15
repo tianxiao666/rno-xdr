@@ -1,0 +1,15 @@
+<div class="row">
+  <ba-card class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+           title="异常事件原因分析" baCardClass="traffic-panel auto-card">
+
+    <xdr-cause (query)="searchForData($event);"></xdr-cause>
+
+    <!-- 分隔 -->
+    <div style="height: 50px" *ngIf="isShowEcharts"></div>
+    <div *ngIf="isShowLoading" class="loading">加载中...</div>
+    <div #notFoundData style="display: none" class="warning">没有找到相应的数据</div>
+    <div #programError style="display: none" class="warning">后台程序服务错误</div>
+    <div echarts (chartInit)="onChartInit($event)" *ngIf="isShowEcharts" [options]="echartsOption"
+         class="demo-chart"></div>
+  </ba-card>
+</div>

@@ -1,0 +1,71 @@
+{
+    "backendApp": {
+        "signalling" : {
+            "home": {
+                "title": "Signallings",
+                "createLabel": "Create a new Signalling",
+                "createOrEditLabel": "Create or edit a Signalling",
+                "search": "Search for Signalling"
+            },
+            "created": "A new Signalling is created with identifier {{ param }}",
+            "updated": "A Signalling is updated with identifier {{ param }}",
+            "deleted": "A Signalling is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Signalling {{ id }}?"
+            },
+            "detail": {
+                "title": "Signalling"
+            },
+            "pdate": "Pdate",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "interfaceType": "Interface Type",
+            "cell": "Cell",
+            "imei": "Imei",
+            "imsi": "Imsi",
+            "appType": "App Type",
+            "appStatus": "App Status",
+            "protocolType": "Protocol Type",
+            "appSubType": "App Sub Type",
+            "ulData": "Ul Data",
+            "dlData": "Dl Data",
+            "lastHttpResponseDelay": "Last Http Response Delay",
+            "procedureType": "Procedure Type",
+            "procedureStatus": "Procedure Status",
+            "cause": "Cause",
+            "keyword": "Keyword",
+            "targetCellid": "Target Cellid",
+            "csfbIndication": "Csfb Indication",
+            "reqCauseType": "Req Cause Type",
+            "reqCause": "Req Cause",
+            "failureCauseType": "Failure Cause Type",
+            "failureCause": "Failure Cause",
+            "errorCauseType": "Error Cause Type",
+            "errorCause": "Error Cause",
+            "hoCancelCauseType": "Ho Cancel Cause Type",
+            "hoCancelCause": "Ho Cancel Cause",
+            "rowCount": "Row Count",
+            "servingRsrp": "Serving Rsrp",
+            "servingRsrpAvg": "Serving Rsrp Avg",
+            "servingRsrpStdDev": "Serving Rsrp Std Dev",
+            "servingRsrq": "Serving Rsrq",
+            "servingRsrqAvg": "Serving Rsrq Avg",
+            "servingRsrqStdDev": "Serving Rsrq Std Dev",
+            "aoa": "Aoa",
+            "aoaAvg": "Aoa Avg",
+            "aoaStdDev": "Aoa Std Dev",
+            "ta": "Ta",
+            "taAvg": "Ta Avg",
+            "taStdDev": "Ta Std Dev",
+            "ulSinr": "Ul Sinr",
+            "ulSinrAvg": "Ul Sinr Avg",
+            "ulSinrStdDev": "Ul Sinr Std Dev",
+            "enbReceivedPower": "Enb Received Power",
+            "enbReceivedPowerAvg": "Enb Received Power Avg",
+            "enbReceivedPowerStdDev": "Enb Received Power Std Dev",
+            "phr": "Phr",
+            "phrAvg": "Phr Avg",
+            "phrStdDev": "Phr Std Dev"
+        }
+    }
+}

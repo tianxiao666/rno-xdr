@@ -1,0 +1,221 @@
+
+<div *ngIf="signalling">
+    <h2><span jhiTranslate="backendApp.signalling.detail.title">Signalling</span> {{signalling.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.signalling.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{signalling.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.startTime">Start Time</span></dt>
+        <dd>
+            <span>{{signalling.startTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.endTime">End Time</span></dt>
+        <dd>
+            <span>{{signalling.endTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.interfaceType">Interface Type</span></dt>
+        <dd>
+            <span>{{signalling.interfaceType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.cell">Cell</span></dt>
+        <dd>
+            <span>{{signalling.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.imei">Imei</span></dt>
+        <dd>
+            <span>{{signalling.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{signalling.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.appType">App Type</span></dt>
+        <dd>
+            <span>{{signalling.appType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.appStatus">App Status</span></dt>
+        <dd>
+            <span>{{signalling.appStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.protocolType">Protocol Type</span></dt>
+        <dd>
+            <span>{{signalling.protocolType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.appSubType">App Sub Type</span></dt>
+        <dd>
+            <span>{{signalling.appSubType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.ulData">Ul Data</span></dt>
+        <dd>
+            <span>{{signalling.ulData}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.dlData">Dl Data</span></dt>
+        <dd>
+            <span>{{signalling.dlData}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.lastHttpResponseDelay">Last Http Response Delay</span></dt>
+        <dd>
+            <span>{{signalling.lastHttpResponseDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.procedureType">Procedure Type</span></dt>
+        <dd>
+            <span>{{signalling.procedureType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.procedureStatus">Procedure Status</span></dt>
+        <dd>
+            <span>{{signalling.procedureStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.cause">Cause</span></dt>
+        <dd>
+            <span>{{signalling.cause}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.keyword">Keyword</span></dt>
+        <dd>
+            <span>{{signalling.keyword}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.targetCellid">Target Cellid</span></dt>
+        <dd>
+            <span>{{signalling.targetCellid}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.csfbIndication">Csfb Indication</span></dt>
+        <dd>
+            <span>{{signalling.csfbIndication}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.reqCauseType">Req Cause Type</span></dt>
+        <dd>
+            <span>{{signalling.reqCauseType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.reqCause">Req Cause</span></dt>
+        <dd>
+            <span>{{signalling.reqCause}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.failureCauseType">Failure Cause Type</span></dt>
+        <dd>
+            <span>{{signalling.failureCauseType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.failureCause">Failure Cause</span></dt>
+        <dd>
+            <span>{{signalling.failureCause}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.errorCauseType">Error Cause Type</span></dt>
+        <dd>
+            <span>{{signalling.errorCauseType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.errorCause">Error Cause</span></dt>
+        <dd>
+            <span>{{signalling.errorCause}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.hoCancelCauseType">Ho Cancel Cause Type</span></dt>
+        <dd>
+            <span>{{signalling.hoCancelCauseType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.hoCancelCause">Ho Cancel Cause</span></dt>
+        <dd>
+            <span>{{signalling.hoCancelCause}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.rowCount">Row Count</span></dt>
+        <dd>
+            <span>{{signalling.rowCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.servingRsrp">Serving Rsrp</span></dt>
+        <dd>
+            <span>{{signalling.servingRsrp}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.servingRsrpAvg">Serving Rsrp Avg</span></dt>
+        <dd>
+            <span>{{signalling.servingRsrpAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.servingRsrpStdDev">Serving Rsrp Std Dev</span></dt>
+        <dd>
+            <span>{{signalling.servingRsrpStdDev}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.servingRsrq">Serving Rsrq</span></dt>
+        <dd>
+            <span>{{signalling.servingRsrq}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.servingRsrqAvg">Serving Rsrq Avg</span></dt>
+        <dd>
+            <span>{{signalling.servingRsrqAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.servingRsrqStdDev">Serving Rsrq Std Dev</span></dt>
+        <dd>
+            <span>{{signalling.servingRsrqStdDev}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.aoa">Aoa</span></dt>
+        <dd>
+            <span>{{signalling.aoa}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.aoaAvg">Aoa Avg</span></dt>
+        <dd>
+            <span>{{signalling.aoaAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.aoaStdDev">Aoa Std Dev</span></dt>
+        <dd>
+            <span>{{signalling.aoaStdDev}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.ta">Ta</span></dt>
+        <dd>
+            <span>{{signalling.ta}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.taAvg">Ta Avg</span></dt>
+        <dd>
+            <span>{{signalling.taAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.taStdDev">Ta Std Dev</span></dt>
+        <dd>
+            <span>{{signalling.taStdDev}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.ulSinr">Ul Sinr</span></dt>
+        <dd>
+            <span>{{signalling.ulSinr}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.ulSinrAvg">Ul Sinr Avg</span></dt>
+        <dd>
+            <span>{{signalling.ulSinrAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.ulSinrStdDev">Ul Sinr Std Dev</span></dt>
+        <dd>
+            <span>{{signalling.ulSinrStdDev}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.enbReceivedPower">Enb Received Power</span></dt>
+        <dd>
+            <span>{{signalling.enbReceivedPower}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.enbReceivedPowerAvg">Enb Received Power Avg</span></dt>
+        <dd>
+            <span>{{signalling.enbReceivedPowerAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.enbReceivedPowerStdDev">Enb Received Power Std Dev</span></dt>
+        <dd>
+            <span>{{signalling.enbReceivedPowerStdDev}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.phr">Phr</span></dt>
+        <dd>
+            <span>{{signalling.phr}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.phrAvg">Phr Avg</span></dt>
+        <dd>
+            <span>{{signalling.phrAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.signalling.phrStdDev">Phr Std Dev</span></dt>
+        <dd>
+            <span>{{signalling.phrStdDev}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'signalling/'+ signalling.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

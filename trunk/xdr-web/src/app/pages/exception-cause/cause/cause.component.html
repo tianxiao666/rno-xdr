@@ -1,0 +1,58 @@
+<form class="form-inline">
+
+  <div class="form-group">
+    <div class="input-group">
+      <my-date-picker #datePicker="ngModel" name="datePicker" [locale]="locale" [(ngModel)]="condition.date1"></my-date-picker>
+    </div>
+    <div [hidden]="condition.date1!=null" class="alert alert-danger" style="padding: 0.53rem 1rem;">
+      时间为必填项！
+    </div>
+  </div>
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" title="网络类型" name="cellType" [(ngModel)]="condition.cellType" style="width: 170px;height: 36px">
+        <option *ngFor="let op of _cellTypes" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 2px" [hidden]="condition.cellType=='network'"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" title="输入框" #cellId="ngModel" [hidden]="condition.cellType=='network'"
+             [(ngModel)]="condition.cellInput" name="cellId" required>
+    </div>
+    <div [hidden]="cellId.valid||condition.cellType=='network'" class="alert alert-danger"
+         style="padding: 0.53rem 1rem;">
+      {{condition.cellType}}为必填项！
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" title="指标选择" name="indicatorType" [(ngModel)]="condition.indicatorType" style="width: 170px;height: 36px">
+        <option *ngFor="let op of _indicatorTypes" [ngValue]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <button type="button" class="btn btn-default" [disabled]="condition.date1==null||
+             condition.cellType!='network'&&condition.cellInput==''"
+              (click)="searchClick($event)" icon="fa-search">查询</button>
+    </div>
+  </div>
+
+</form>

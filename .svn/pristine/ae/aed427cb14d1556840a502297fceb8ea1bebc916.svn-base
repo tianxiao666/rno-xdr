@@ -1,0 +1,17 @@
+.ng-valid[required], .ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
+}
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}
+:host /deep/ button {
+  height: 36px;
+}
+:host /deep/ .mydp .selection {
+  position: relative;
+  display: inline-block;
+}
+my-date-picker{
+  height: 36px;
+  width: 170px;
+}

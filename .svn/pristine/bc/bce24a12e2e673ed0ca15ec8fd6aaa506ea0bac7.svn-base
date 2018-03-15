@@ -1,0 +1,32 @@
+[
+  {
+    "name": "brd39",
+    "columns": {
+      "attach_fault_rat":"Attach失败率",
+      "attach_request":"Attach请求次数",
+      "attach_fault":"Attach失败",
+      "service_fault_rat":"SERVICE失败率",
+      "service_request":"SERVICE请求次数",
+      "service_fault":"SERVICE失败",
+      "csfb_fault_rat":"Extended Service失败率（for CSFB）",
+      "csfb_request":"Extended Service请求次数（for CSFB）",
+      "csfb_fault":"Extended Service失败（for CSFB）",
+      "context_activate_fault_rat":"默认承载激活失败率",
+      "contextdef_activate_request":"默认承载激活请求次数",
+      "context_activate_fault":"默认承载激活失败",
+      "pdn_request_fault_rat":"UE请求PDN连接失败率",
+      "pdn_request":"UE请求PDN连接请求次数",
+      "pdn_request_fault":"UE请求PDN连接失败",
+      "tau_fault_rat":"TAU失败率",
+      "tau_request":"TAU请求次数",
+      "tau_fault":"TAU失败",
+      "x2_inter_fault_rat":"X2接口切换失败率",
+      "x2_inter_request":"X2接口切换尝试数",
+      "x2_inter_fault":"X2接口切换失败",
+      "s1_inter_fault_rat":"S1接口切换失败率",
+      "s1_inter_request":"S1接口切换请求次数",
+      "s1_inter_fault":"S1接口切换失败"
+    }
+  }
+]
+

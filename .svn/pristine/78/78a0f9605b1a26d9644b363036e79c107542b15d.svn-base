@@ -1,0 +1,49 @@
+
+<div *ngIf="dataImport">
+    <h2><span jhiTranslate="backendApp.dataImport.detail.title">Data Import</span> {{dataImport.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.dataImport.dataArea">Data Area</span></dt>
+        <dd>
+            <span>{{dataImport.dataArea}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.dataImport.dataDate">Data Date</span></dt>
+        <dd>
+            <span>{{dataImport.dataDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.dataImport.user">User</span></dt>
+        <dd>
+            <span>{{dataImport.user}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.dataImport.fileTitle">File Title</span></dt>
+        <dd>
+            <span>{{dataImport.fileTitle}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.dataImport.fileType">File Type</span></dt>
+        <dd>
+            <span>{{dataImport.fileType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.dataImport.fileSize">File Size</span></dt>
+        <dd>
+            <span>{{dataImport.fileSize}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.dataImport.state">State</span></dt>
+        <dd>
+            <span>{{dataImport.state}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'data-import/'+ dataImport.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

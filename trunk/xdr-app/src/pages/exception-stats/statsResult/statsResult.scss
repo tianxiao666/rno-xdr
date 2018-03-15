@@ -1,0 +1,15 @@
+page-stats-result {
+  .table-display-inline {
+    white-space: nowrap;
+    border: 1px solid #DCE1E3;
+  }
+  table tbody tr:nth-child(odd) {
+    background-color: #D9EDF7;
+  }
+  table tbody tr:nth-child(even) {
+    background-color: #F5F5F5;
+  }
+  .scroll-conten{
+    overflow: auto;
+  }
+}

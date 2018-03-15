@@ -1,0 +1,15 @@
+<div class="row">
+  <ba-card class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+           title="用户指标轨迹呈现" baCardClass="traffic-panel auto-card">
+
+    <xdr-present (track)="searchForData($event)"></xdr-present>
+
+    <!-- 分隔 -->
+    <div *ngIf="isShowLoading" class="loading">正在加载...</div>
+    <div #notFoundDataDiv style="display: none" class="warning">没有找到相应的数据</div>
+    <div #programError style="display: none" class="warning">后台程序服务错误</div>
+    <div #map id="myMap" style="width: 100%; height: 700px;"></div>
+  </ba-card>
+</div>
+
+

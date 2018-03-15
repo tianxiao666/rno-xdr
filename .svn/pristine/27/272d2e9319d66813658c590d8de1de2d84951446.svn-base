@@ -1,0 +1,301 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUhttpLabel" jhiTranslate="backendApp.uhttp.home.createOrEditLabel">Create or edit a Uhttp</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!uhttp.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="uhttp.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.pdate" for="field_pdate">Pdate</label>
+            <div class="input-group">
+                <input id="field_pdate" type="text" class="form-control" name="pdate" ngbDatepicker  #pdateDp="ngbDatepicker" [(ngModel)]="uhttp.pdate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="pdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.pdate?.dirty && editForm.controls.pdate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pdate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.phour" for="field_phour">Phour</label>
+            <input type="number" class="form-control" name="phour" id="field_phour"
+                [(ngModel)]="uhttp.phour"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.cell" for="field_cell">Cell</label>
+            <input type="text" class="form-control" name="cell" id="field_cell"
+                [(ngModel)]="uhttp.cell"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.imei" for="field_imei">Imei</label>
+            <input type="text" class="form-control" name="imei" id="field_imei"
+                [(ngModel)]="uhttp.imei"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.imsi" for="field_imsi">Imsi</label>
+            <input type="text" class="form-control" name="imsi" id="field_imsi"
+                [(ngModel)]="uhttp.imsi"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.flowSum" for="field_flowSum">Flow Sum</label>
+            <input type="number" class="form-control" name="flowSum" id="field_flowSum"
+                [(ngModel)]="uhttp.flowSum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlowRate" for="field_rateFlowRate">Rate Flow Rate</label>
+            <input type="number" class="form-control" name="rateFlowRate" id="field_rateFlowRate"
+                [(ngModel)]="uhttp.rateFlowRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlowSuccessRate" for="field_rateFlowSuccessRate">Rate Flow Success Rate</label>
+            <input type="number" class="form-control" name="rateFlowSuccessRate" id="field_rateFlowSuccessRate"
+                [(ngModel)]="uhttp.rateFlowSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlowSuccessDRate" for="field_rateFlowSuccessDRate">Rate Flow Success D Rate</label>
+            <input type="number" class="form-control" name="rateFlowSuccessDRate" id="field_rateFlowSuccessDRate"
+                [(ngModel)]="uhttp.rateFlowSuccessDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlow" for="field_rateFlow">Rate Flow</label>
+            <input type="number" class="form-control" name="rateFlow" id="field_rateFlow"
+                [(ngModel)]="uhttp.rateFlow"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlowRequest" for="field_rateFlowRequest">Rate Flow Request</label>
+            <input type="number" class="form-control" name="rateFlowRequest" id="field_rateFlowRequest"
+                [(ngModel)]="uhttp.rateFlowRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlowBpSpeed" for="field_rateFlowBpSpeed">Rate Flow Bp Speed</label>
+            <input type="number" class="form-control" name="rateFlowBpSpeed" id="field_rateFlowBpSpeed"
+                [(ngModel)]="uhttp.rateFlowBpSpeed"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlowBpSpeedDRate" for="field_rateFlowBpSpeedDRate">Rate Flow Bp Speed D Rate</label>
+            <input type="number" class="form-control" name="rateFlowBpSpeedDRate" id="field_rateFlowBpSpeedDRate"
+                [(ngModel)]="uhttp.rateFlowBpSpeedDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlowSpDelay" for="field_rateFlowSpDelay">Rate Flow Sp Delay</label>
+            <input type="number" class="form-control" name="rateFlowSpDelay" id="field_rateFlowSpDelay"
+                [(ngModel)]="uhttp.rateFlowSpDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.rateFlowSpDelayDRate" for="field_rateFlowSpDelayDRate">Rate Flow Sp Delay D Rate</label>
+            <input type="number" class="form-control" name="rateFlowSpDelayDRate" id="field_rateFlowSpDelayDRate"
+                [(ngModel)]="uhttp.rateFlowSpDelayDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlowRate" for="field_delayFlowRate">Delay Flow Rate</label>
+            <input type="number" class="form-control" name="delayFlowRate" id="field_delayFlowRate"
+                [(ngModel)]="uhttp.delayFlowRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlowSuccessRate" for="field_delayFlowSuccessRate">Delay Flow Success Rate</label>
+            <input type="number" class="form-control" name="delayFlowSuccessRate" id="field_delayFlowSuccessRate"
+                [(ngModel)]="uhttp.delayFlowSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlowSuccessDRate" for="field_delayFlowSuccessDRate">Delay Flow Success D Rate</label>
+            <input type="number" class="form-control" name="delayFlowSuccessDRate" id="field_delayFlowSuccessDRate"
+                [(ngModel)]="uhttp.delayFlowSuccessDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlow" for="field_delayFlow">Delay Flow</label>
+            <input type="number" class="form-control" name="delayFlow" id="field_delayFlow"
+                [(ngModel)]="uhttp.delayFlow"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlowRequest" for="field_delayFlowRequest">Delay Flow Request</label>
+            <input type="number" class="form-control" name="delayFlowRequest" id="field_delayFlowRequest"
+                [(ngModel)]="uhttp.delayFlowRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlowBpSpeed" for="field_delayFlowBpSpeed">Delay Flow Bp Speed</label>
+            <input type="number" class="form-control" name="delayFlowBpSpeed" id="field_delayFlowBpSpeed"
+                [(ngModel)]="uhttp.delayFlowBpSpeed"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlowBpSpeedDRate" for="field_delayFlowBpSpeedDRate">Delay Flow Bp Speed D Rate</label>
+            <input type="number" class="form-control" name="delayFlowBpSpeedDRate" id="field_delayFlowBpSpeedDRate"
+                [(ngModel)]="uhttp.delayFlowBpSpeedDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlowSpDelay" for="field_delayFlowSpDelay">Delay Flow Sp Delay</label>
+            <input type="number" class="form-control" name="delayFlowSpDelay" id="field_delayFlowSpDelay"
+                [(ngModel)]="uhttp.delayFlowSpDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.delayFlowSpDelayDRate" for="field_delayFlowSpDelayDRate">Delay Flow Sp Delay D Rate</label>
+            <input type="number" class="form-control" name="delayFlowSpDelayDRate" id="field_delayFlowSpDelayDRate"
+                [(ngModel)]="uhttp.delayFlowSpDelayDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlowRate" for="field_refreshFlowRate">Refresh Flow Rate</label>
+            <input type="number" class="form-control" name="refreshFlowRate" id="field_refreshFlowRate"
+                [(ngModel)]="uhttp.refreshFlowRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlowSuccessRate" for="field_refreshFlowSuccessRate">Refresh Flow Success Rate</label>
+            <input type="number" class="form-control" name="refreshFlowSuccessRate" id="field_refreshFlowSuccessRate"
+                [(ngModel)]="uhttp.refreshFlowSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlowSuccessDRate" for="field_refreshFlowSuccessDRate">Refresh Flow Success D Rate</label>
+            <input type="number" class="form-control" name="refreshFlowSuccessDRate" id="field_refreshFlowSuccessDRate"
+                [(ngModel)]="uhttp.refreshFlowSuccessDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlow" for="field_refreshFlow">Refresh Flow</label>
+            <input type="number" class="form-control" name="refreshFlow" id="field_refreshFlow"
+                [(ngModel)]="uhttp.refreshFlow"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlowRequest" for="field_refreshFlowRequest">Refresh Flow Request</label>
+            <input type="number" class="form-control" name="refreshFlowRequest" id="field_refreshFlowRequest"
+                [(ngModel)]="uhttp.refreshFlowRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlowBpSpeed" for="field_refreshFlowBpSpeed">Refresh Flow Bp Speed</label>
+            <input type="number" class="form-control" name="refreshFlowBpSpeed" id="field_refreshFlowBpSpeed"
+                [(ngModel)]="uhttp.refreshFlowBpSpeed"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlowBpSpeedDRate" for="field_refreshFlowBpSpeedDRate">Refresh Flow Bp Speed D Rate</label>
+            <input type="number" class="form-control" name="refreshFlowBpSpeedDRate" id="field_refreshFlowBpSpeedDRate"
+                [(ngModel)]="uhttp.refreshFlowBpSpeedDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlowSpDelay" for="field_refreshFlowSpDelay">Refresh Flow Sp Delay</label>
+            <input type="number" class="form-control" name="refreshFlowSpDelay" id="field_refreshFlowSpDelay"
+                [(ngModel)]="uhttp.refreshFlowSpDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.refreshFlowSpDelayDRate" for="field_refreshFlowSpDelayDRate">Refresh Flow Sp Delay D Rate</label>
+            <input type="number" class="form-control" name="refreshFlowSpDelayDRate" id="field_refreshFlowSpDelayDRate"
+                [(ngModel)]="uhttp.refreshFlowSpDelayDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlowRate" for="field_instantFlowRate">Instant Flow Rate</label>
+            <input type="number" class="form-control" name="instantFlowRate" id="field_instantFlowRate"
+                [(ngModel)]="uhttp.instantFlowRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlowSuccessRate" for="field_instantFlowSuccessRate">Instant Flow Success Rate</label>
+            <input type="number" class="form-control" name="instantFlowSuccessRate" id="field_instantFlowSuccessRate"
+                [(ngModel)]="uhttp.instantFlowSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlowSuccessDRate" for="field_instantFlowSuccessDRate">Instant Flow Success D Rate</label>
+            <input type="number" class="form-control" name="instantFlowSuccessDRate" id="field_instantFlowSuccessDRate"
+                [(ngModel)]="uhttp.instantFlowSuccessDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlow" for="field_instantFlow">Instant Flow</label>
+            <input type="number" class="form-control" name="instantFlow" id="field_instantFlow"
+                [(ngModel)]="uhttp.instantFlow"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlowRequest" for="field_instantFlowRequest">Instant Flow Request</label>
+            <input type="number" class="form-control" name="instantFlowRequest" id="field_instantFlowRequest"
+                [(ngModel)]="uhttp.instantFlowRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlowBpSpeed" for="field_instantFlowBpSpeed">Instant Flow Bp Speed</label>
+            <input type="number" class="form-control" name="instantFlowBpSpeed" id="field_instantFlowBpSpeed"
+                [(ngModel)]="uhttp.instantFlowBpSpeed"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlowBpSpeedDRate" for="field_instantFlowBpSpeedDRate">Instant Flow Bp Speed D Rate</label>
+            <input type="number" class="form-control" name="instantFlowBpSpeedDRate" id="field_instantFlowBpSpeedDRate"
+                [(ngModel)]="uhttp.instantFlowBpSpeedDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlowSpDelay" for="field_instantFlowSpDelay">Instant Flow Sp Delay</label>
+            <input type="number" class="form-control" name="instantFlowSpDelay" id="field_instantFlowSpDelay"
+                [(ngModel)]="uhttp.instantFlowSpDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.instantFlowSpDelayDRate" for="field_instantFlowSpDelayDRate">Instant Flow Sp Delay D Rate</label>
+            <input type="number" class="form-control" name="instantFlowSpDelayDRate" id="field_instantFlowSpDelayDRate"
+                [(ngModel)]="uhttp.instantFlowSpDelayDRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.tcpCreactlinkDelay" for="field_tcpCreactlinkDelay">Tcp Creactlink Delay</label>
+            <input type="number" class="form-control" name="tcpCreactlinkDelay" id="field_tcpCreactlinkDelay"
+                [(ngModel)]="uhttp.tcpCreactlinkDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.tcpCreactlinkCount" for="field_tcpCreactlinkCount">Tcp Creactlink Count</label>
+            <input type="number" class="form-control" name="tcpCreactlinkCount" id="field_tcpCreactlinkCount"
+                [(ngModel)]="uhttp.tcpCreactlinkCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.tcpCreactlinkResponseDelay" for="field_tcpCreactlinkResponseDelay">Tcp Creactlink Response Delay</label>
+            <input type="number" class="form-control" name="tcpCreactlinkResponseDelay" id="field_tcpCreactlinkResponseDelay"
+                [(ngModel)]="uhttp.tcpCreactlinkResponseDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.tcpCreactlinkResponseCount" for="field_tcpCreactlinkResponseCount">Tcp Creactlink Response Count</label>
+            <input type="number" class="form-control" name="tcpCreactlinkResponseCount" id="field_tcpCreactlinkResponseCount"
+                [(ngModel)]="uhttp.tcpCreactlinkResponseCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.tcpCreactlinkConfirmDelay" for="field_tcpCreactlinkConfirmDelay">Tcp Creactlink Confirm Delay</label>
+            <input type="number" class="form-control" name="tcpCreactlinkConfirmDelay" id="field_tcpCreactlinkConfirmDelay"
+                [(ngModel)]="uhttp.tcpCreactlinkConfirmDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.tcpCreactlinkConfirmCount" for="field_tcpCreactlinkConfirmCount">Tcp Creactlink Confirm Count</label>
+            <input type="number" class="form-control" name="tcpCreactlinkConfirmCount" id="field_tcpCreactlinkConfirmCount"
+                [(ngModel)]="uhttp.tcpCreactlinkConfirmCount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.bpFlow" for="field_bpFlow">Bp Flow</label>
+            <input type="number" class="form-control" name="bpFlow" id="field_bpFlow"
+                [(ngModel)]="uhttp.bpFlow"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.bpDelay" for="field_bpDelay">Bp Delay</label>
+            <input type="number" class="form-control" name="bpDelay" id="field_bpDelay"
+                [(ngModel)]="uhttp.bpDelay"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.serviceRequest" for="field_serviceRequest">Service Request</label>
+            <input type="number" class="form-control" name="serviceRequest" id="field_serviceRequest"
+                [(ngModel)]="uhttp.serviceRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.serviceSuccess" for="field_serviceSuccess">Service Success</label>
+            <input type="number" class="form-control" name="serviceSuccess" id="field_serviceSuccess"
+                [(ngModel)]="uhttp.serviceSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uhttp.tencentVideoServiceRequest" for="field_tencentVideoServiceRequest">Tencent Video Service Request</label>
+            <input type="number" class="form-control" name="tencentVideoServiceRequest" id="field_tencentVideoServiceRequest"
+                [(ngModel)]="uhttp.tencentVideoServiceRequest"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

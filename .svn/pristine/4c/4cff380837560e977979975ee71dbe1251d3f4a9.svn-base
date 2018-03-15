@@ -1,0 +1,65 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDataImportLabel" jhiTranslate="backendApp.dataImport.home.createOrEditLabel">Create or edit a Data Import</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!dataImport.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="dataImport.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.dataImport.dataArea" for="field_dataArea">Data Area</label>
+            <input type="text" class="form-control" name="dataArea" id="field_dataArea"
+                [(ngModel)]="dataImport.dataArea"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.dataImport.dataDate" for="field_dataDate">Data Date</label>
+            <div class="input-group">
+                <input id="field_dataDate" type="text" class="form-control" name="dataDate" ngbDatepicker  #dataDateDp="ngbDatepicker" [(ngModel)]="dataImport.dataDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dataDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.dataImport.user" for="field_user">User</label>
+            <input type="text" class="form-control" name="user" id="field_user"
+                [(ngModel)]="dataImport.user"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.dataImport.fileTitle" for="field_fileTitle">File Title</label>
+            <input type="text" class="form-control" name="fileTitle" id="field_fileTitle"
+                [(ngModel)]="dataImport.fileTitle"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.dataImport.fileType" for="field_fileType">File Type</label>
+            <input type="text" class="form-control" name="fileType" id="field_fileType"
+                [(ngModel)]="dataImport.fileType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.dataImport.fileSize" for="field_fileSize">File Size</label>
+            <input type="text" class="form-control" name="fileSize" id="field_fileSize"
+                [(ngModel)]="dataImport.fileSize"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.dataImport.state" for="field_state">State</label>
+            <input type="text" class="form-control" name="state" id="field_state"
+                [(ngModel)]="dataImport.state"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

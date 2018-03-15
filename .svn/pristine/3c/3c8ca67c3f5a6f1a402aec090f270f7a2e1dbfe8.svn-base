@@ -1,0 +1,118 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pdate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phour",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cell",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imei",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imsi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rsrpSum",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rsrpCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rsrpAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rsrqSum",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rsrqCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rsrqAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ulsinrSum",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "ulsinrCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "ulsinrAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "phrSum",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "phrCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "phrAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "erpSum",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "erpCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "erpAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "taSum",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "taCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "taAvg",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "overlapSum",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "overlapCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "overlapAvg",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170715062008",
+    "entityTableName": "mr",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

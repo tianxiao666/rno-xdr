@@ -1,0 +1,33 @@
+<div class="row">
+  <ba-card class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+           title="干扰数据统计分析" baCardClass="traffic-panel auto-card">
+
+    <xdr-statistics-condition (statisticssearch)="statisticsSearch($event)"
+                   (analysissearch)="statisticsSearch($event)"
+    ></xdr-statistics-condition>
+
+    <!-- 分隔 -->
+    <div style="height: 15px"></div>
+    <div *ngIf="isShowLoading" class="loading">加载中...</div>
+    <div #notFoundData style="display: none" class="warning">没有找到相应的数据</div>
+    <div #programError style="display: none" class="warning">后台程序服务错误</div>
+
+    <div style="width: 100%; overflow:auto;">
+      <xdr-statistics-tableshow [hidden]="isShowDetailTable==false"
+                 (paragram)="searchParameterData($event)"
+                 (pageChange)="pageParameterData($event)"
+                 [input]="data"
+      >
+      </xdr-statistics-tableshow>
+    </div>
+
+    <div echarts [options]="chartOption2" [dataset]="dataset" class="demo-chart" *ngIf="isShowEcharts"></div>
+
+    <div echarts class="demo-chart"
+         [options]="chartOption3"
+         *ngIf="isShowAnalysisEcharts"
+    >
+    </div>
+
+  </ba-card>
+</div>

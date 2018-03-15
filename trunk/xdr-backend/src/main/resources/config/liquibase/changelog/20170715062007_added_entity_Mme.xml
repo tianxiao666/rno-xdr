@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Mme.
+    -->
+    <changeSet id="20170715062007-1" author="jhipster">
+        <createTable tableName="mme">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="pdate" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="phour" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="cell" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="imei" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="imsi" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="attach_request" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="attach_success" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="attach_success_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="service_request" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="service_request_success" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="service_success_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="default_bearer_activate_request" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="default_bearer_activate_success" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="default_bearer_setup_success_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pdn_request" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pdn_request_success" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pdn_request_success_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tau_request" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tau_success" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="tau_success_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xho_request" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xho_success" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xho_success_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sho_request" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sho_success" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sho_success_rate" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

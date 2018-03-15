@@ -1,0 +1,226 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pdate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phour",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cell",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imei",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imsi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "flowSum",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rateFlowRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rateFlowSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rateFlowSuccessDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rateFlow",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rateFlowRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rateFlowBpSpeed",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rateFlowBpSpeedDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rateFlowSpDelay",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "rateFlowSpDelayDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "delayFlowRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "delayFlowSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "delayFlowSuccessDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "delayFlow",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "delayFlowRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "delayFlowBpSpeed",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "delayFlowBpSpeedDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "delayFlowSpDelay",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "delayFlowSpDelayDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "refreshFlowRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "refreshFlowSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "refreshFlowSuccessDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "refreshFlow",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "refreshFlowRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "refreshFlowBpSpeed",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "refreshFlowBpSpeedDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "refreshFlowSpDelay",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "refreshFlowSpDelayDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "instantFlowRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "instantFlowSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "instantFlowSuccessDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "instantFlow",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "instantFlowRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "instantFlowBpSpeed",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "instantFlowBpSpeedDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "instantFlowSpDelay",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "instantFlowSpDelayDRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "tcpCreactlinkDelay",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tcpCreactlinkCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tcpCreactlinkResponseDelay",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tcpCreactlinkResponseCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tcpCreactlinkConfirmDelay",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tcpCreactlinkConfirmCount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "bpFlow",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "bpDelay",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "serviceRequest",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "serviceSuccess",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "tencentVideoServiceRequest",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20170715062009",
+    "entityTableName": "uhttp",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

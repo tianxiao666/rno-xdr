@@ -1,0 +1,163 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.uu.home.title">Uus</span>
+        <button class="btn btn-primary float-right create-uu" [routerLink]="['/', { outlets: { popup: ['uu-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.uu.home.createLabel">
+            Create new Uu
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.uu.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="uus">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdate"><span jhiTranslate="backendApp.uu.pdate">Pdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phour"><span jhiTranslate="backendApp.uu.phour">Phour</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cell"><span jhiTranslate="backendApp.uu.cell">Cell</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imei"><span jhiTranslate="backendApp.uu.imei">Imei</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imsi"><span jhiTranslate="backendApp.uu.imsi">Imsi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcConnectRequest"><span jhiTranslate="backendApp.uu.rrcConnectRequest">Rrc Connect Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcConnectSuccess"><span jhiTranslate="backendApp.uu.rrcConnectSuccess">Rrc Connect Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcConnectSuccessRate"><span jhiTranslate="backendApp.uu.rrcConnectSuccessRate">Rrc Connect Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReconfigRequest"><span jhiTranslate="backendApp.uu.rrcReconfigRequest">Rrc Reconfig Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReconfigSuccess"><span jhiTranslate="backendApp.uu.rrcReconfigSuccess">Rrc Reconfig Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReconfigSuccessRate"><span jhiTranslate="backendApp.uu.rrcReconfigSuccessRate">Rrc Reconfig Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReconstructionRequest"><span jhiTranslate="backendApp.uu.rrcReconstructionRequest">Rrc Reconstruction Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReconstructionSuccess"><span jhiTranslate="backendApp.uu.rrcReconstructionSuccess">Rrc Reconstruction Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReconstructionSuccessRate"><span jhiTranslate="backendApp.uu.rrcReconstructionSuccessRate">Rrc Reconstruction Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReleaseRequest"><span jhiTranslate="backendApp.uu.rrcReleaseRequest">Rrc Release Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReleaseSuccess"><span jhiTranslate="backendApp.uu.rrcReleaseSuccess">Rrc Release Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rrcReleaseSuccessRate"><span jhiTranslate="backendApp.uu.rrcReleaseSuccessRate">Rrc Release Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="smActivateRequest"><span jhiTranslate="backendApp.uu.smActivateRequest">Sm Activate Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="smActivateSuccess"><span jhiTranslate="backendApp.uu.smActivateSuccess">Sm Activate Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="smActivateSuccessRate"><span jhiTranslate="backendApp.uu.smActivateSuccessRate">Sm Activate Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cellInterHandoverRequest"><span jhiTranslate="backendApp.uu.cellInterHandoverRequest">Cell Inter Handover Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cellInterHandoverSuccess"><span jhiTranslate="backendApp.uu.cellInterHandoverSuccess">Cell Inter Handover Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cellInterHandoverSuccessRate"><span jhiTranslate="backendApp.uu.cellInterHandoverSuccessRate">Cell Inter Handover Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="stationIntraHandoverRequest"><span jhiTranslate="backendApp.uu.stationIntraHandoverRequest">Station Intra Handover Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="stationIntraHandoverSuccess"><span jhiTranslate="backendApp.uu.stationIntraHandoverSuccess">Station Intra Handover Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="stationIntraHandoverSuccessRate"><span jhiTranslate="backendApp.uu.stationIntraHandoverSuccessRate">Station Intra Handover Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="stationInterHandoverRequest"><span jhiTranslate="backendApp.uu.stationInterHandoverRequest">Station Inter Handover Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="stationInterHandoverSuccess"><span jhiTranslate="backendApp.uu.stationInterHandoverSuccess">Station Inter Handover Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="stationInterHandoverSuccessRate"><span jhiTranslate="backendApp.uu.stationInterHandoverSuccessRate">Station Inter Handover Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ratInRequest"><span jhiTranslate="backendApp.uu.ratInRequest">Rat In Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ratInSuccess"><span jhiTranslate="backendApp.uu.ratInSuccess">Rat In Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ratInSuccessRate"><span jhiTranslate="backendApp.uu.ratInSuccessRate">Rat In Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ratOutRequest"><span jhiTranslate="backendApp.uu.ratOutRequest">Rat Out Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ratOutSuccess"><span jhiTranslate="backendApp.uu.ratOutSuccess">Rat Out Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ratOutSuccessRate"><span jhiTranslate="backendApp.uu.ratOutSuccessRate">Rat Out Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="psPagingRequest"><span jhiTranslate="backendApp.uu.psPagingRequest">Ps Paging Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="psPagingSuccess"><span jhiTranslate="backendApp.uu.psPagingSuccess">Ps Paging Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="psPagingSuccessRate"><span jhiTranslate="backendApp.uu.psPagingSuccessRate">Ps Paging Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="csPagingRequest"><span jhiTranslate="backendApp.uu.csPagingRequest">Cs Paging Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="csPagingSuccess"><span jhiTranslate="backendApp.uu.csPagingSuccess">Cs Paging Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="csPagingSuccessRate"><span jhiTranslate="backendApp.uu.csPagingSuccessRate">Cs Paging Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="othereventRequest"><span jhiTranslate="backendApp.uu.othereventRequest">Otherevent Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="othereventSuccess"><span jhiTranslate="backendApp.uu.othereventSuccess">Otherevent Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="othereventSuccessRate"><span jhiTranslate="backendApp.uu.othereventSuccessRate">Otherevent Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let uu of uus ;trackBy: trackId">
+                <td><a [routerLink]="['../uu', uu.id ]">{{uu.id}}</a></td>
+                <td>{{uu.pdate | date:'mediumDate'}}</td>
+                <td>{{uu.phour}}</td>
+                <td>{{uu.cell}}</td>
+                <td>{{uu.imei}}</td>
+                <td>{{uu.imsi}}</td>
+                <td>{{uu.rrcConnectRequest}}</td>
+                <td>{{uu.rrcConnectSuccess}}</td>
+                <td>{{uu.rrcConnectSuccessRate}}</td>
+                <td>{{uu.rrcReconfigRequest}}</td>
+                <td>{{uu.rrcReconfigSuccess}}</td>
+                <td>{{uu.rrcReconfigSuccessRate}}</td>
+                <td>{{uu.rrcReconstructionRequest}}</td>
+                <td>{{uu.rrcReconstructionSuccess}}</td>
+                <td>{{uu.rrcReconstructionSuccessRate}}</td>
+                <td>{{uu.rrcReleaseRequest}}</td>
+                <td>{{uu.rrcReleaseSuccess}}</td>
+                <td>{{uu.rrcReleaseSuccessRate}}</td>
+                <td>{{uu.smActivateRequest}}</td>
+                <td>{{uu.smActivateSuccess}}</td>
+                <td>{{uu.smActivateSuccessRate}}</td>
+                <td>{{uu.cellInterHandoverRequest}}</td>
+                <td>{{uu.cellInterHandoverSuccess}}</td>
+                <td>{{uu.cellInterHandoverSuccessRate}}</td>
+                <td>{{uu.stationIntraHandoverRequest}}</td>
+                <td>{{uu.stationIntraHandoverSuccess}}</td>
+                <td>{{uu.stationIntraHandoverSuccessRate}}</td>
+                <td>{{uu.stationInterHandoverRequest}}</td>
+                <td>{{uu.stationInterHandoverSuccess}}</td>
+                <td>{{uu.stationInterHandoverSuccessRate}}</td>
+                <td>{{uu.ratInRequest}}</td>
+                <td>{{uu.ratInSuccess}}</td>
+                <td>{{uu.ratInSuccessRate}}</td>
+                <td>{{uu.ratOutRequest}}</td>
+                <td>{{uu.ratOutSuccess}}</td>
+                <td>{{uu.ratOutSuccessRate}}</td>
+                <td>{{uu.psPagingRequest}}</td>
+                <td>{{uu.psPagingSuccess}}</td>
+                <td>{{uu.psPagingSuccessRate}}</td>
+                <td>{{uu.csPagingRequest}}</td>
+                <td>{{uu.csPagingSuccess}}</td>
+                <td>{{uu.csPagingSuccessRate}}</td>
+                <td>{{uu.othereventRequest}}</td>
+                <td>{{uu.othereventSuccess}}</td>
+                <td>{{uu.othereventSuccessRate}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../uu', uu.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'uu/'+ uu.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'uu/'+ uu.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="uus && uus.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

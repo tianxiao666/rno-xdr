@@ -1,0 +1,531 @@
+
+<div *ngIf="interfere">
+    <h2><span jhiTranslate="backendApp.interfere.detail.title">Interfere</span> {{interfere.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.interfere.time">Time</span></dt>
+        <dd>
+            <span>{{interfere.time | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.fileId">File Id</span></dt>
+        <dd>
+            <span>{{interfere.fileId}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.areaId">Area Id</span></dt>
+        <dd>
+            <span>{{interfere.areaId}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.taskId">Task Id</span></dt>
+        <dd>
+            <span>{{interfere.taskId}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.factory">Factory</span></dt>
+        <dd>
+            <span>{{interfere.factory}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.enodeb">Enodeb</span></dt>
+        <dd>
+            <span>{{interfere.enodeb}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.cellName">Cell Name</span></dt>
+        <dd>
+            <span>{{interfere.cellName}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.cellIdendifier">Cell Idendifier</span></dt>
+        <dd>
+            <span>{{interfere.cellIdendifier}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.coverType">Cover Type</span></dt>
+        <dd>
+            <span>{{interfere.coverType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{interfere.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{interfere.latitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.workBand">Work Band</span></dt>
+        <dd>
+            <span>{{interfere.workBand}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.carrierFrequency">Carrier Frequency</span></dt>
+        <dd>
+            <span>{{interfere.carrierFrequency}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb0">Prb 0</span></dt>
+        <dd>
+            <span>{{interfere.prb0}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb1">Prb 1</span></dt>
+        <dd>
+            <span>{{interfere.prb1}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb2">Prb 2</span></dt>
+        <dd>
+            <span>{{interfere.prb2}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb3">Prb 3</span></dt>
+        <dd>
+            <span>{{interfere.prb3}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb4">Prb 4</span></dt>
+        <dd>
+            <span>{{interfere.prb4}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb5">Prb 5</span></dt>
+        <dd>
+            <span>{{interfere.prb5}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb6">Prb 6</span></dt>
+        <dd>
+            <span>{{interfere.prb6}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb7">Prb 7</span></dt>
+        <dd>
+            <span>{{interfere.prb7}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb8">Prb 8</span></dt>
+        <dd>
+            <span>{{interfere.prb8}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb9">Prb 9</span></dt>
+        <dd>
+            <span>{{interfere.prb9}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb10">Prb 10</span></dt>
+        <dd>
+            <span>{{interfere.prb10}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb11">Prb 11</span></dt>
+        <dd>
+            <span>{{interfere.prb11}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb12">Prb 12</span></dt>
+        <dd>
+            <span>{{interfere.prb12}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb13">Prb 13</span></dt>
+        <dd>
+            <span>{{interfere.prb13}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb14">Prb 14</span></dt>
+        <dd>
+            <span>{{interfere.prb14}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb15">Prb 15</span></dt>
+        <dd>
+            <span>{{interfere.prb15}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb16">Prb 16</span></dt>
+        <dd>
+            <span>{{interfere.prb16}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb17">Prb 17</span></dt>
+        <dd>
+            <span>{{interfere.prb17}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb18">Prb 18</span></dt>
+        <dd>
+            <span>{{interfere.prb18}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb19">Prb 19</span></dt>
+        <dd>
+            <span>{{interfere.prb19}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb20">Prb 20</span></dt>
+        <dd>
+            <span>{{interfere.prb20}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb21">Prb 21</span></dt>
+        <dd>
+            <span>{{interfere.prb21}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb22">Prb 22</span></dt>
+        <dd>
+            <span>{{interfere.prb22}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb23">Prb 23</span></dt>
+        <dd>
+            <span>{{interfere.prb23}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb24">Prb 24</span></dt>
+        <dd>
+            <span>{{interfere.prb24}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb25">Prb 25</span></dt>
+        <dd>
+            <span>{{interfere.prb25}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb26">Prb 26</span></dt>
+        <dd>
+            <span>{{interfere.prb26}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb27">Prb 27</span></dt>
+        <dd>
+            <span>{{interfere.prb27}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb28">Prb 28</span></dt>
+        <dd>
+            <span>{{interfere.prb28}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb29">Prb 29</span></dt>
+        <dd>
+            <span>{{interfere.prb29}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb30">Prb 30</span></dt>
+        <dd>
+            <span>{{interfere.prb30}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb31">Prb 31</span></dt>
+        <dd>
+            <span>{{interfere.prb31}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb32">Prb 32</span></dt>
+        <dd>
+            <span>{{interfere.prb32}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb33">Prb 33</span></dt>
+        <dd>
+            <span>{{interfere.prb33}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb34">Prb 34</span></dt>
+        <dd>
+            <span>{{interfere.prb34}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb35">Prb 35</span></dt>
+        <dd>
+            <span>{{interfere.prb35}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb36">Prb 36</span></dt>
+        <dd>
+            <span>{{interfere.prb36}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb37">Prb 37</span></dt>
+        <dd>
+            <span>{{interfere.prb37}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb38">Prb 38</span></dt>
+        <dd>
+            <span>{{interfere.prb38}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb39">Prb 39</span></dt>
+        <dd>
+            <span>{{interfere.prb39}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb40">Prb 40</span></dt>
+        <dd>
+            <span>{{interfere.prb40}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb41">Prb 41</span></dt>
+        <dd>
+            <span>{{interfere.prb41}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb42">Prb 42</span></dt>
+        <dd>
+            <span>{{interfere.prb42}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb43">Prb 43</span></dt>
+        <dd>
+            <span>{{interfere.prb43}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb44">Prb 44</span></dt>
+        <dd>
+            <span>{{interfere.prb44}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb45">Prb 45</span></dt>
+        <dd>
+            <span>{{interfere.prb45}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb46">Prb 46</span></dt>
+        <dd>
+            <span>{{interfere.prb46}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb47">Prb 47</span></dt>
+        <dd>
+            <span>{{interfere.prb47}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb48">Prb 48</span></dt>
+        <dd>
+            <span>{{interfere.prb48}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb49">Prb 49</span></dt>
+        <dd>
+            <span>{{interfere.prb49}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb50">Prb 50</span></dt>
+        <dd>
+            <span>{{interfere.prb50}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb51">Prb 51</span></dt>
+        <dd>
+            <span>{{interfere.prb51}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb52">Prb 52</span></dt>
+        <dd>
+            <span>{{interfere.prb52}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb53">Prb 53</span></dt>
+        <dd>
+            <span>{{interfere.prb53}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb54">Prb 54</span></dt>
+        <dd>
+            <span>{{interfere.prb54}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb55">Prb 55</span></dt>
+        <dd>
+            <span>{{interfere.prb55}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb56">Prb 56</span></dt>
+        <dd>
+            <span>{{interfere.prb56}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb57">Prb 57</span></dt>
+        <dd>
+            <span>{{interfere.prb57}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb58">Prb 58</span></dt>
+        <dd>
+            <span>{{interfere.prb58}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb59">Prb 59</span></dt>
+        <dd>
+            <span>{{interfere.prb59}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb60">Prb 60</span></dt>
+        <dd>
+            <span>{{interfere.prb60}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb61">Prb 61</span></dt>
+        <dd>
+            <span>{{interfere.prb61}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb62">Prb 62</span></dt>
+        <dd>
+            <span>{{interfere.prb62}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb63">Prb 63</span></dt>
+        <dd>
+            <span>{{interfere.prb63}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb64">Prb 64</span></dt>
+        <dd>
+            <span>{{interfere.prb64}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb65">Prb 65</span></dt>
+        <dd>
+            <span>{{interfere.prb65}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb66">Prb 66</span></dt>
+        <dd>
+            <span>{{interfere.prb66}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb67">Prb 67</span></dt>
+        <dd>
+            <span>{{interfere.prb67}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb68">Prb 68</span></dt>
+        <dd>
+            <span>{{interfere.prb68}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb69">Prb 69</span></dt>
+        <dd>
+            <span>{{interfere.prb69}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb70">Prb 70</span></dt>
+        <dd>
+            <span>{{interfere.prb70}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb71">Prb 71</span></dt>
+        <dd>
+            <span>{{interfere.prb71}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb72">Prb 72</span></dt>
+        <dd>
+            <span>{{interfere.prb72}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb73">Prb 73</span></dt>
+        <dd>
+            <span>{{interfere.prb73}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb74">Prb 74</span></dt>
+        <dd>
+            <span>{{interfere.prb74}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb75">Prb 75</span></dt>
+        <dd>
+            <span>{{interfere.prb75}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb76">Prb 76</span></dt>
+        <dd>
+            <span>{{interfere.prb76}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb77">Prb 77</span></dt>
+        <dd>
+            <span>{{interfere.prb77}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb78">Prb 78</span></dt>
+        <dd>
+            <span>{{interfere.prb78}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb79">Prb 79</span></dt>
+        <dd>
+            <span>{{interfere.prb79}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb80">Prb 80</span></dt>
+        <dd>
+            <span>{{interfere.prb80}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb81">Prb 81</span></dt>
+        <dd>
+            <span>{{interfere.prb81}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb82">Prb 82</span></dt>
+        <dd>
+            <span>{{interfere.prb82}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb83">Prb 83</span></dt>
+        <dd>
+            <span>{{interfere.prb83}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb84">Prb 84</span></dt>
+        <dd>
+            <span>{{interfere.prb84}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb85">Prb 85</span></dt>
+        <dd>
+            <span>{{interfere.prb85}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb86">Prb 86</span></dt>
+        <dd>
+            <span>{{interfere.prb86}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb87">Prb 87</span></dt>
+        <dd>
+            <span>{{interfere.prb87}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb88">Prb 88</span></dt>
+        <dd>
+            <span>{{interfere.prb88}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb89">Prb 89</span></dt>
+        <dd>
+            <span>{{interfere.prb89}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb90">Prb 90</span></dt>
+        <dd>
+            <span>{{interfere.prb90}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb91">Prb 91</span></dt>
+        <dd>
+            <span>{{interfere.prb91}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb92">Prb 92</span></dt>
+        <dd>
+            <span>{{interfere.prb92}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb93">Prb 93</span></dt>
+        <dd>
+            <span>{{interfere.prb93}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb94">Prb 94</span></dt>
+        <dd>
+            <span>{{interfere.prb94}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb95">Prb 95</span></dt>
+        <dd>
+            <span>{{interfere.prb95}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb96">Prb 96</span></dt>
+        <dd>
+            <span>{{interfere.prb96}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb97">Prb 97</span></dt>
+        <dd>
+            <span>{{interfere.prb97}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb98">Prb 98</span></dt>
+        <dd>
+            <span>{{interfere.prb98}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.prb99">Prb 99</span></dt>
+        <dd>
+            <span>{{interfere.prb99}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.averageInterfere">Average Interfere</span></dt>
+        <dd>
+            <span>{{interfere.averageInterfere}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.firstRb">First Rb</span></dt>
+        <dd>
+            <span>{{interfere.firstRb}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.secondRb">Second Rb</span></dt>
+        <dd>
+            <span>{{interfere.secondRb}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.thirdRb">Third Rb</span></dt>
+        <dd>
+            <span>{{interfere.thirdRb}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.fourthRb">Fourth Rb</span></dt>
+        <dd>
+            <span>{{interfere.fourthRb}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.fifthRb">Fifth Rb</span></dt>
+        <dd>
+            <span>{{interfere.fifthRb}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.interferedRb">Interfered Rb</span></dt>
+        <dd>
+            <span>{{interfere.interferedRb}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.interfereCoefficient">Interfere Coefficient</span></dt>
+        <dd>
+            <span>{{interfere.interfereCoefficient}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.interfereGrade">Interfere Grade</span></dt>
+        <dd>
+            <span>{{interfere.interfereGrade}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.interfereType">Interfere Type</span></dt>
+        <dd>
+            <span>{{interfere.interfereType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.areaId">Area Id</span></dt>
+        <dd>
+            <div *ngIf="interfere.areaId">
+                <a [routerLink]="['/area', interfere.areaId?.id]">{{interfere.areaId?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.fileId">File Id</span></dt>
+        <dd>
+            <div *ngIf="interfere.fileId">
+                <a [routerLink]="['/record', interfere.fileId?.id]">{{interfere.fileId?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="backendApp.interfere.taskId">Task Id</span></dt>
+        <dd>
+            <div *ngIf="interfere.taskId">
+                <a [routerLink]="['/task', interfere.taskId?.id]">{{interfere.taskId?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'interfere/'+ interfere.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

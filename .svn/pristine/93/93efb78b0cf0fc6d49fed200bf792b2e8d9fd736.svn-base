@@ -1,0 +1,27 @@
+{
+  "$project": {
+    "_id": 0,
+    "RRC_CONN_STP_success_rat": {
+      "$cond": [
+        {
+          "$eq": [
+            "$RRC_CONN_STP_count",
+            0
+          ]
+        },
+        0,
+        {
+          "$divide": [
+            "$RRC_CONN_STP_success",
+            "$RRC_CONN_STP_count"
+          ]
+        }
+      ]
+    },
+    "RRC_CONN_STP_count": "$RRC_CONN_STP_count",
+    "RRC_CONN_STP_success": "$RRC_CONN_STP_success",
+    "RRC_CONN_STP_false": "$RRC_CONN_STP_false",
+    "RRC_CONN_STP_reject": "$RRC_CONN_STP_reject",
+    "RRC_CONN_STP_timeout": "$RRC_CONN_STP_timeout"
+  }
+}

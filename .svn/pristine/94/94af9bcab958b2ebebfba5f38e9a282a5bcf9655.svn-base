@@ -1,0 +1,126 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pdate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cell",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "imei",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "imsi",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "attachFaultRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "attachRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "attachFault",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "serviceFaultRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "serviceRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "serviceFault",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "csfbFaultRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "csfbRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "csfbFault",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "contextActivateFaultRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "contextActivateRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "contextActivateFault",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pdnRequestFaultRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "pdnRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pdnRequestFault",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tauFaultRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "tauRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tauFault",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "xhoFaultRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "xhoRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "xhoFault",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "shoFaultRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "shoRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "shoFault",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170715062022",
+    "entityTableName": "exception_stats",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

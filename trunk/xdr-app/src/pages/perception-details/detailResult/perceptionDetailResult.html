@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{interfaceType}}接口查询结果</ion-title>
+    <ion-buttons end (click)="toIndex()">
+      <button ion-button icon-only>
+        <ion-icon name="md-home">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <div class="scroll-conten">
+    <table class="table  table-condensed table-striped table-display-inline">
+      <thead>
+      <tr>
+        <th *ngFor="let prop of props" style="text-align: left;height: 32px;padding-left: 10px">{{prop}}</th>
+      </tr>
+      </thead>
+      <tbody >
+      <tr *ngFor="let one of datas">
+        <td *ngFor="let on of one" style="height: 32px;padding-left: 10px">{{on}}</td>
+      </tr>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+      </tbody>
+    </table>
+  </div>
+</ion-content>
+<style>
+  .table-display-inline {
+    white-space: nowrap;
+    border: 1px solid #DCE1E3;
+  }
+  table tbody tr:nth-child(odd) {
+    background-color: #D9EDF7;
+  }
+  table tbody tr:nth-child(even) {
+    background-color: #F5F5F5;
+  }
+  .scroll-conten{
+    overflow: auto;
+  }
+</style>

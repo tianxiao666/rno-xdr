@@ -1,0 +1,19 @@
+<div class="row">
+  <ba-card class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+           title="干扰样本数据测试" baCardClass="traffic-panel auto-card">
+    <uir-test (search)="searchTestData($event)"
+    ></uir-test>
+    <div style="height: 15px"></div>
+    <div *ngIf="isShowLoading" class="loading">加载中...</div>
+    <div #notFoundData style="display: none" class="warning">没有找到相应的数据</div>
+    <div #programError style="display: none" class="warning">后台程序服务错误</div>
+    <div style="width: 100%; overflow:auto;">
+      <xdr-testshow [hidden]="isShowTestTable==false"
+                 (paragram)="searchParameterData($event)"
+                 (pageChange)="pageParameterData($event)" [input]="data">
+      </xdr-testshow>
+    </div>
+
+  </ba-card>
+</div>
+

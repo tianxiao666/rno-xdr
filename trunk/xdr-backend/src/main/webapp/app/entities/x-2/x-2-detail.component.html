@@ -1,0 +1,53 @@
+
+<div *ngIf="x2">
+    <h2><span jhiTranslate="backendApp.x2.detail.title">X 2</span> {{x2.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.x2.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{x2.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.x2.phour">Phour</span></dt>
+        <dd>
+            <span>{{x2.phour}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.x2.cell">Cell</span></dt>
+        <dd>
+            <span>{{x2.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.x2.imei">Imei</span></dt>
+        <dd>
+            <span>{{x2.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.x2.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{x2.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.x2.switchRequest">Switch Request</span></dt>
+        <dd>
+            <span>{{x2.switchRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.x2.switchSuccess">Switch Success</span></dt>
+        <dd>
+            <span>{{x2.switchSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.x2.switchSuccessRate">Switch Success Rate</span></dt>
+        <dd>
+            <span>{{x2.switchSuccessRate}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'x-2/'+ x2.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

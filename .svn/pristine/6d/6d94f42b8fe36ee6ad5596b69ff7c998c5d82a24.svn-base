@@ -1,0 +1,46 @@
+.ng-valid[required], .ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
+}
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}
+ss-multiselect-dropdown {
+  margin-top: 1px;
+}
+:host /deep/ a {
+  color: #333333;
+  line-height: 20px;
+}
+:host /deep/ button {
+  height: 36px;
+}
+:host /deep/ .input-group-sm > input.form-control {
+  width: 50px;
+}
+:host /deep/ .dropdown-item {
+  display: block;
+  padding: 3px 1.5rem;
+  padding-bottom: 0;
+  clear: both;
+  font-weight: normal;
+  color: #292b2c;
+  text-align: inherit;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+}
+:host /deep/ button > i {
+  color: #333333;
+}
+
+.form-control {
+  color: #333333;
+  border-color: #dddddd;
+}
+
+.p-control {
+  color: #333333;
+  height: 18px;
+  font-size : 1em;
+}
+

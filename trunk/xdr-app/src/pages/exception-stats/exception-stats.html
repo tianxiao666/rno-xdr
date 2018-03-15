@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>小区指标异常统计</ion-title>
+    <ion-buttons end (click)="toIndex()">
+      <button ion-button icon-only>
+        <ion-icon name="md-home">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+
+  <ion-list>
+    <ion-card-header class="ionCardHeader">
+      查询条件
+    </ion-card-header>
+
+    <ion-item>
+      <ion-label style="color:black">范围</ion-label>
+      <ion-select [(ngModel)]="cellType" interface="action-sheet">
+        <ion-option *ngFor="let cel of _cellTypes" [value]="cel.value" >{{cel.label}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="cellType!='network'">
+      <ion-label style="color:black;">请输入{{cellType.toUpperCase()}}:</ion-label>
+      <ion-input [(ngModel)]="cellInput" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label style="color:black">日期</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date1"></ion-datetime>
+    </ion-item>
+  </ion-list>
+  <ion-list style="margin-bottom: 0">
+    <ion-item>
+      <ion-select name="candtype" [(ngModel)]="logicalOperationone" style="padding: 16px 5px 16px 5px;width:25%">
+        <ion-option *ngFor="let cand of _logicalOperation"  [value]="cand.value">{{cand.label}}</ion-option>
+      </ion-select>
+      <ion-select  name="selonetype" [(ngModel)]="indicatorSelectitemone" style="padding: 16px 5px 16px 5px;width:50%">
+        <ion-option *ngFor="let sel of _exceptionSelectItems" [value]="sel.value">{{sel.label}}</ion-option>
+      </ion-select>
+      <ion-select name="relonetype" [(ngModel)]="operatorone" style="padding: 16px 5px 16px 5px;width:25%">
+        <ion-option *ngFor="let rel of _operators" [value]="rel.value">{{rel.label}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item id="selInputItem">
+      <ion-input [(ngModel)]="selone" id="selInputOne"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list style="margin-bottom: 0" >
+    <ion-item>
+      <ion-select name="candtype" [(ngModel)]="logicalOperationtwo"style="padding: 16px 5px 16px 5px; width: 25%">
+        <ion-option *ngFor="let cand of _logicalOperations"  [value]="cand.value">{{cand.label}}</ion-option>
+      </ion-select>
+      <ion-select  name="selonetype" [(ngModel)]="indicatorSelectitemtwo" style="padding: 16px 5px 16px 5px;width: 50%">
+        <ion-option *ngFor="let sel of _exceptionSelectItems" [value]="sel.value">{{sel.label}}</ion-option>
+      </ion-select>
+      <ion-select name="relonetype" [(ngModel)]="operatortwo"style="padding: 16px 5px 16px 5px; width: 25%">
+        <ion-option *ngFor="let rel of _operators" [value]="rel.value">{{rel.label}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="seltwo" id="selInputTwo"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list style="margin-bottom: 1em" >
+    <ion-item>
+      <ion-select name="candtype" [(ngModel)]="logicalOperationthree" style="padding: 16px 5px 16px 5px; width: 25%">
+        <ion-option *ngFor="let cand of _logicalOperations"  [value]="cand.value">{{cand.label}}</ion-option>
+      </ion-select>
+      <ion-select  name="selonetype" [(ngModel)]="indicatorSelectitemthree" style="padding: 16px 5px 16px 5px; width: 50%">
+        <ion-option *ngFor="let sel of _exceptionSelectItems" [value]="sel.value">{{sel.label}}</ion-option>
+      </ion-select>
+      <ion-select name="relonetype" [(ngModel)]="operatorthree" style="padding: 16px 5px 16px 5px; width: 25%">
+        <ion-option *ngFor="let rel of _operators" [value]="rel.value">{{rel.label}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="selthree" id="selInputThree"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>
+  <button ion-button color="warning" class="button-work" (click)="doExport()">提取</button>
+</ion-content>
+
+
+
+

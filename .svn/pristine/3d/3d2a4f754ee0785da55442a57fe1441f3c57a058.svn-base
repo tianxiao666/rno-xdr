@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>轨迹呈现结果</ion-title>
+    <ion-buttons end (click)="toIndex()">
+      <button ion-button icon-only>
+        <ion-icon name="md-home">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div #map id="myMap" style="width: 100%; height: 100%;"></div>
+</ion-content>

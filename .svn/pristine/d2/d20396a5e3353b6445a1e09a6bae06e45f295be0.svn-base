@@ -1,0 +1,47 @@
+{
+    "backendApp": {
+        "mr" : {
+            "home": {
+                "title": "Mrs",
+                "createLabel": "Create a new Mr",
+                "createOrEditLabel": "Create or edit a Mr",
+                "search": "Search for Mr"
+            },
+            "created": "A new Mr is created with identifier {{ param }}",
+            "updated": "A Mr is updated with identifier {{ param }}",
+            "deleted": "A Mr is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Mr {{ id }}?"
+            },
+            "detail": {
+                "title": "Mr"
+            },
+            "pdate": "Pdate",
+            "phour": "Phour",
+            "cell": "Cell",
+            "imei": "Imei",
+            "imsi": "Imsi",
+            "rsrpSum": "Rsrp Sum",
+            "rsrpCount": "Rsrp Count",
+            "rsrpAvg": "Rsrp Avg",
+            "rsrqSum": "Rsrq Sum",
+            "rsrqCount": "Rsrq Count",
+            "rsrqAvg": "Rsrq Avg",
+            "ulsinrSum": "Ulsinr Sum",
+            "ulsinrCount": "Ulsinr Count",
+            "ulsinrAvg": "Ulsinr Avg",
+            "phrSum": "Phr Sum",
+            "phrCount": "Phr Count",
+            "phrAvg": "Phr Avg",
+            "erpSum": "Erp Sum",
+            "erpCount": "Erp Count",
+            "erpAvg": "Erp Avg",
+            "taSum": "Ta Sum",
+            "taCount": "Ta Count",
+            "taAvg": "Ta Avg",
+            "overlapSum": "Overlap Sum",
+            "overlapCount": "Overlap Count",
+            "overlapAvg": "Overlap Avg"
+        }
+    }
+}

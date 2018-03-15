@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>网络质量感知趋势</ion-title>
+    <ion-buttons end (click)="toIndex()">
+      <button ion-button icon-only>
+        <ion-icon name="md-home">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+
+    <ion-list>
+      <ion-card-header class="ionCardHeader">
+        查询条件
+      </ion-card-header>
+      <ion-item>
+        <ion-label style="color:black">范围</ion-label>
+        <ion-select [(ngModel)]="cellType" interface="action-sheet">
+          <ion-option value="network" selected>全网</ion-option>
+          <ion-option value="eci">ECI</ion-option>
+          <ion-option value="imsi">IMSI</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="cellType!='network'">
+        <ion-label>请输入{{cellType.toUpperCase()}}:</ion-label>
+        <ion-input [(ngModel)]="cellTypeInput" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color:black">接口类型</ion-label>
+        <ion-select [(ngModel)]="interfaces" interface="action-sheet" (ionChange)="interfacesChange()">
+          <ion-option value="uu">uu</ion-option>
+          <ion-option value="mr">mr</ion-option>
+          <ion-option value="x2">x2</ion-option>
+          <ion-option value="brd31">brd31</ion-option>
+          <ion-option value="brd39">brd39</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color:black">指标</ion-label>
+        <ion-label end style="color:black;text-align: right;width: 60%;" (click)="showCheckbox()">{{showResultOfCondition}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label style="color:black">开始时间</ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="beginTime" (ionChange)="checkTime('beginTime')"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color:black">结束时间</ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="endTime" (ionChange)="checkTime('endTime')"></ion-datetime>
+      </ion-item>
+    </ion-list>
+
+
+  <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>
+
+</ion-content>

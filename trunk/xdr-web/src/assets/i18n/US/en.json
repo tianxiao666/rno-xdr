@@ -1,0 +1,175 @@
+{
+  "login": {
+    "title": "Sign in to ng2-admin",
+    "signup_link": "New to ng2-admin? Sign up!",
+    "email": "Email",
+    "account": "Account",
+    "password": "Password",
+    "sign_in": "Sign in",
+    "sign_out": "Sign out",
+    "forgot_password": "Forgot password?",
+    "remember_me": "Remember Me",
+    "error_authentication": "Failed to sign in! Please check your credentials and try again.",
+    "help": "Help",
+    "setting": "Setting",
+    "directly_sign_in": "Directly sign in"
+  },
+  "reset": {
+    "request": {
+      "title": "Reset your password",
+      "form": {
+        "button": "Reset password"
+      },
+      "messages": {
+        "notfound": "Email address isn't registered! Please check and try again.",
+        "info": "Enter the email address you used to register.",
+        "success": "Check your emails for details on how to reset your password."
+      }
+    },
+    "finish": {
+      "title": "Reset password",
+      "form": {
+        "button": "Validate new password"
+      },
+      "messages": {
+        "info": "Choose a new password",
+        "success": "<strong>Your password has been reset.</strong> Please ",
+        "keymissing": "The reset key is missing.",
+        "error": "Your password couldn't be reset. Remember a password request is only valid for 24 hours."
+      }
+    }
+  },
+  "global": {
+    "form": {
+      "username": "Username",
+      "username.placeholder": "Your username",
+      "newpassword": "New password",
+      "newpassword.placeholder": "New password",
+      "confirmpassword": "New password confirmation",
+      "confirmpassword.placeholder": "Confirm the new password",
+      "email": "Email",
+      "email.placeholder": "Your email"
+    },
+    "messages": {
+      "validate": {
+        "firstname": {
+          "maxlength": "Your name cannot be longer than 50 characters."
+        },
+        "newpassword": {
+          "required": "Your password is required.",
+          "minlength": "Your password is required to be at least 4 characters.",
+          "maxlength": "Your password cannot be longer than 50 characters.",
+          "strength": "Password strength:"
+        },
+        "confirmpassword": {
+          "required": "Your confirmation password is required.",
+          "minlength": "Your confirmation password is required to be at least 4 characters.",
+          "maxlength": "Your confirmation password cannot be longer than 50 characters."
+        },
+        "email": {
+          "required": "Your email is required.",
+          "invalid": "Your email is invalid.",
+          "minlength": "Your email is required to be at least 5 characters.",
+          "maxlength": "Your email cannot be longer than 50 characters."
+        },
+        "error": {
+          "dontmatch": "The password entered twice is inconsistent.",
+          "email.inuse": "Email already in use"
+        }
+      }
+    }
+  },
+  "general": {
+    "akveo": "Akveo",
+    "home": "Home",
+    "forms": {
+      "option1": "Option 1"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "editors": "Editors",
+      "ck_editor": "CKEditor",
+      "components": "Components",
+      "tree_view": "Tree View",
+      "charts": "Charts",
+      "chartist_js": "Chartist.Js",
+      "ui_features": "UI Features",
+      "typography": "Typography",
+      "buttons": "Buttons",
+      "icons": "Icons",
+      "modals": "Modals",
+      "grid": "Grid",
+      "form_elements": "Form Elements",
+      "form_inputs": "Form Inputs",
+      "form_layouts": "Form Layouts",
+      "tables": "Tables",
+      "basic_tables": "Basic Tables",
+      "smart_tables": "Smart Tables",
+      "maps": "Maps",
+      "google_maps": "Google Maps",
+      "leaflet_maps": "Leaflet Maps",
+      "bubble_maps": "Bubble Maps",
+      "line_maps": "Line Maps",
+      "pages": "Pages",
+      "login": "Login",
+      "register": "Register",
+      "menu_level_1": "Menu Level 1",
+      "menu_level_1_1": "Menu Level 1.1",
+      "menu_level_1_2": "Menu Level 1.2",
+      "menu_level_1_2_1": "Menu Level 1.2.1",
+      "external_link": "External Link"
+    },
+    "created_with": "Created with"
+  },
+  "dashboard": {
+    "acquisition_channels": "Acquisition Channels",
+    "users_by_country": "Users by Country",
+    "revenue": "Revenue",
+    "feed": "Feed",
+    "todo_list": "To Do List",
+    "calendar": "Calendar",
+    "new_visits": "New Visits",
+    "purchases": "Purchases",
+    "active_users": "Active Users",
+    "returned": "Returned",
+    "popular_app": {
+      "super_app": "Super App",
+      "most_popular_app": "Most Popular App",
+      "total_visits": "Total Visits",
+      "new_visits": "New Visits",
+      "sales": "Sales"
+    },
+    "todo": {
+      "task_todo": "Task to do.."
+    },
+    "traffic_chart": {
+      "view_total": "Views Total"
+    }
+  },
+  "tree_view": {
+    "title": "basic",
+    "programming": "Programming languages by programming paradigm",
+    "oop": "Object-oriented programming",
+    "java": "Java",
+    "c_plus_plus": "C++",
+    "c_sharp": "C#",
+    "prototype": "Prototype-based programming",
+    "java_script": "JavaScript",
+    "coffee_script": "CoffeeScript",
+    "lua": "Lua"
+  },
+  "chart": {
+    "lines": "Lines",
+    "bars": "Bars",
+    "simple_line_chart": "Simple line chart",
+    "line_chart": "Line chart with area",
+    "bi_polar_line_chart": "Bi-polar line chart with area only",
+    "simple_bar_chart": "Simple bar chart",
+    "multi_line_labels_bar_chart": "Multi-line labels bar chart",
+    "stacked_bar_chart": "Stacked bar chart",
+    "pies_and_donuts": "Pies & Donuts",
+    "simple_pie": "Simple Pie",
+    "pie_with_labels": "Pie with labels",
+    "donut": "Donut"
+  }
+}

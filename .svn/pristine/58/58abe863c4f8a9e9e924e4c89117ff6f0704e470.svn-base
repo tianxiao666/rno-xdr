@@ -1,0 +1,71 @@
+<form class="form-inline">
+
+  <div class="form-group">
+    <div class="input-group">
+      <my-date-picker [ngModelOptions]="{standalone: true}" [options]="myDatePickerOptions"
+                      [locale]="localeOption" [(ngModel)]="cond.date"></my-date-picker>
+    </div>
+    <div [hidden]="cond.date!=null" class="alert alert-danger" style="padding: 0.53rem 1rem;">
+      时间为必填项！
+    </div>
+  </div>
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" id="beginTime" name="beginTime" [(ngModel)]="cond.beginTime"
+              style="width: 170px;height: 36px">
+        <option *ngFor="let op of timeOptions" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" id="endTime" name="endTime" [(ngModel)]="cond.endTime" style="width: 170px;height: 36px">
+        <option *ngFor="let op of timeOptions" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" #cellId="ngModel" [(ngModel)]="cond.imsi" id="cellId" name="cellId"
+             required>
+    </div>
+    <div [hidden]="cellId.valid||cellId.pristine" class="alert alert-danger"
+         style="padding: 0.53rem 1rem;">
+      imsi为必填项！
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" id="indicator" name="indicator" [(ngModel)]="cond.indicatorId"
+              style="width: 170px;height: 36px">
+        <option *ngFor="let op of indicatorOptions" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <button type="button" class="btn btn-default" [disabled]="cond.date==null||
+      cond.imsi==0" (click)="searchClick()">查询</button>
+    </div>
+  </div>
+
+</form>

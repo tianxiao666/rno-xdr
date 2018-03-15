@@ -1,0 +1,275 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.solve.home.title">Solves</span>
+        <button class="btn btn-primary float-right create-solve" [routerLink]="['/', { outlets: { popup: ['solve-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.solve.home.createLabel">
+            Create new Solve
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.solve.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="solves">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb0">Prb 0</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb1">Prb 1</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb2">Prb 2</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb3">Prb 3</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb4">Prb 4</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb5">Prb 5</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb6">Prb 6</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb7">Prb 7</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb8">Prb 8</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb9">Prb 9</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb10">Prb 10</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb11">Prb 11</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb12">Prb 12</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb13">Prb 13</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb14">Prb 14</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb15">Prb 15</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb16">Prb 16</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb17">Prb 17</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb18">Prb 18</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb19">Prb 19</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb20">Prb 20</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb21">Prb 21</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb22">Prb 22</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb23">Prb 23</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb24">Prb 24</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb25">Prb 25</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb26">Prb 26</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb27">Prb 27</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb28">Prb 28</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb29">Prb 29</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb30">Prb 30</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb31">Prb 31</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb32">Prb 32</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb33">Prb 33</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb34">Prb 34</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb35">Prb 35</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb36">Prb 36</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb37">Prb 37</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb38">Prb 38</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb39">Prb 39</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb40">Prb 40</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb41">Prb 41</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb42">Prb 42</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb43">Prb 43</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb44">Prb 44</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb45">Prb 45</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb46">Prb 46</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb47">Prb 47</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb48">Prb 48</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb49">Prb 49</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb50">Prb 50</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb51">Prb 51</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb52">Prb 52</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb53">Prb 53</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb54">Prb 54</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb55">Prb 55</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb56">Prb 56</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb57">Prb 57</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb58">Prb 58</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb59">Prb 59</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb60">Prb 60</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb61">Prb 61</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb62">Prb 62</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb63">Prb 63</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb64">Prb 64</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb65">Prb 65</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb66">Prb 66</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb67">Prb 67</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb68">Prb 68</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb69">Prb 69</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb70">Prb 70</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb71">Prb 71</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb72">Prb 72</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb73">Prb 73</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb74">Prb 74</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb75">Prb 75</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb76">Prb 76</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb77">Prb 77</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb78">Prb 78</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb79">Prb 79</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb80">Prb 80</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb81">Prb 81</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb82">Prb 82</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb83">Prb 83</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb84">Prb 84</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb85">Prb 85</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb86">Prb 86</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb87">Prb 87</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb88">Prb 88</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb89">Prb 89</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb90">Prb 90</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb91">Prb 91</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb92">Prb 92</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb93">Prb 93</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb94">Prb 94</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb95">Prb 95</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb96">Prb 96</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb97">Prb 97</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb98">Prb 98</span></th>
+            <th><span jhiTranslate="backendApp.solve.prb99">Prb 99</span></th>
+            <th><span jhiTranslate="backendApp.solve.taskId">Task Id</span></th>
+            <th><span jhiTranslate="backendApp.solve.taskId">Task Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let solve of solves ;trackBy: trackId">
+                <td><a [routerLink]="['../solve', solve.id ]">{{solve.id}}</a></td>
+                <td>{{solve.prb0}}</td>
+                <td>{{solve.prb1}}</td>
+                <td>{{solve.prb2}}</td>
+                <td>{{solve.prb3}}</td>
+                <td>{{solve.prb4}}</td>
+                <td>{{solve.prb5}}</td>
+                <td>{{solve.prb6}}</td>
+                <td>{{solve.prb7}}</td>
+                <td>{{solve.prb8}}</td>
+                <td>{{solve.prb9}}</td>
+                <td>{{solve.prb10}}</td>
+                <td>{{solve.prb11}}</td>
+                <td>{{solve.prb12}}</td>
+                <td>{{solve.prb13}}</td>
+                <td>{{solve.prb14}}</td>
+                <td>{{solve.prb15}}</td>
+                <td>{{solve.prb16}}</td>
+                <td>{{solve.prb17}}</td>
+                <td>{{solve.prb18}}</td>
+                <td>{{solve.prb19}}</td>
+                <td>{{solve.prb20}}</td>
+                <td>{{solve.prb21}}</td>
+                <td>{{solve.prb22}}</td>
+                <td>{{solve.prb23}}</td>
+                <td>{{solve.prb24}}</td>
+                <td>{{solve.prb25}}</td>
+                <td>{{solve.prb26}}</td>
+                <td>{{solve.prb27}}</td>
+                <td>{{solve.prb28}}</td>
+                <td>{{solve.prb29}}</td>
+                <td>{{solve.prb30}}</td>
+                <td>{{solve.prb31}}</td>
+                <td>{{solve.prb32}}</td>
+                <td>{{solve.prb33}}</td>
+                <td>{{solve.prb34}}</td>
+                <td>{{solve.prb35}}</td>
+                <td>{{solve.prb36}}</td>
+                <td>{{solve.prb37}}</td>
+                <td>{{solve.prb38}}</td>
+                <td>{{solve.prb39}}</td>
+                <td>{{solve.prb40}}</td>
+                <td>{{solve.prb41}}</td>
+                <td>{{solve.prb42}}</td>
+                <td>{{solve.prb43}}</td>
+                <td>{{solve.prb44}}</td>
+                <td>{{solve.prb45}}</td>
+                <td>{{solve.prb46}}</td>
+                <td>{{solve.prb47}}</td>
+                <td>{{solve.prb48}}</td>
+                <td>{{solve.prb49}}</td>
+                <td>{{solve.prb50}}</td>
+                <td>{{solve.prb51}}</td>
+                <td>{{solve.prb52}}</td>
+                <td>{{solve.prb53}}</td>
+                <td>{{solve.prb54}}</td>
+                <td>{{solve.prb55}}</td>
+                <td>{{solve.prb56}}</td>
+                <td>{{solve.prb57}}</td>
+                <td>{{solve.prb58}}</td>
+                <td>{{solve.prb59}}</td>
+                <td>{{solve.prb60}}</td>
+                <td>{{solve.prb61}}</td>
+                <td>{{solve.prb62}}</td>
+                <td>{{solve.prb63}}</td>
+                <td>{{solve.prb64}}</td>
+                <td>{{solve.prb65}}</td>
+                <td>{{solve.prb66}}</td>
+                <td>{{solve.prb67}}</td>
+                <td>{{solve.prb68}}</td>
+                <td>{{solve.prb69}}</td>
+                <td>{{solve.prb70}}</td>
+                <td>{{solve.prb71}}</td>
+                <td>{{solve.prb72}}</td>
+                <td>{{solve.prb73}}</td>
+                <td>{{solve.prb74}}</td>
+                <td>{{solve.prb75}}</td>
+                <td>{{solve.prb76}}</td>
+                <td>{{solve.prb77}}</td>
+                <td>{{solve.prb78}}</td>
+                <td>{{solve.prb79}}</td>
+                <td>{{solve.prb80}}</td>
+                <td>{{solve.prb81}}</td>
+                <td>{{solve.prb82}}</td>
+                <td>{{solve.prb83}}</td>
+                <td>{{solve.prb84}}</td>
+                <td>{{solve.prb85}}</td>
+                <td>{{solve.prb86}}</td>
+                <td>{{solve.prb87}}</td>
+                <td>{{solve.prb88}}</td>
+                <td>{{solve.prb89}}</td>
+                <td>{{solve.prb90}}</td>
+                <td>{{solve.prb91}}</td>
+                <td>{{solve.prb92}}</td>
+                <td>{{solve.prb93}}</td>
+                <td>{{solve.prb94}}</td>
+                <td>{{solve.prb95}}</td>
+                <td>{{solve.prb96}}</td>
+                <td>{{solve.prb97}}</td>
+                <td>{{solve.prb98}}</td>
+                <td>{{solve.prb99}}</td>
+                <td>{{solve.taskId}}</td>
+                <td>
+                    <span *ngFor="let taskId of solve.taskIds; let last = last">
+                            <a class="form-control-static" [routerLink]="['../interfere', taskId?.id ]">{{taskId.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../solve', solve.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'solve/'+ solve.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'solve/'+ solve.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

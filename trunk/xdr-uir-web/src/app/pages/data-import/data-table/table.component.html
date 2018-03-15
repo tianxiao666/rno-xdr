@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+  <table class="table table-striped"
+         [mfData]="datalist"
+         #mf="mfDataTable"
+         [mfRowsOnPage]="rowsOnPage"
+         [(mfSortBy)]="sortBy"
+         [(mfSortOrder)]="sortOrder"
+         [mfActivePage]="activePage"
+         (mfOnPageChange)="onPageChange($event)"
+         [mfIsServerPagination]="true"
+         [(mfAmountOfRows)]="itemsTotal"
+  >
+    <thead>
+    <tr>
+      <th *ngFor="let key of dataName" align="left">
+       {{key}}
+      </th>
+    <tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of mf.data;">
+      <td *ngFor="let key of dataId;">{{item[key]}}</td>
+    <tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan='100'>
+        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+

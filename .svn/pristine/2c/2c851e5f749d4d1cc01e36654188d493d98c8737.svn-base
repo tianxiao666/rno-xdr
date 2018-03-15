@@ -1,0 +1,97 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.track.home.title">Tracks</span>
+        <button class="btn btn-primary float-right create-track" [routerLink]="['/', { outlets: { popup: ['track-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.track.home.createLabel">
+            Create new Track
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.track.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="tracks">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdate"><span jhiTranslate="backendApp.track.pdate">Pdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startTime"><span jhiTranslate="backendApp.track.startTime">Start Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endTime"><span jhiTranslate="backendApp.track.endTime">End Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cell"><span jhiTranslate="backendApp.track.cell">Cell</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imei"><span jhiTranslate="backendApp.track.imei">Imei</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imsi"><span jhiTranslate="backendApp.track.imsi">Imsi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="msisdn"><span jhiTranslate="backendApp.track.msisdn">Msisdn</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lon"><span jhiTranslate="backendApp.track.lon">Lon</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lat"><span jhiTranslate="backendApp.track.lat">Lat</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="indicatorType"><span jhiTranslate="backendApp.track.indicatorType">Indicator Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span jhiTranslate="backendApp.track.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let track of tracks ;trackBy: trackId">
+                <td><a [routerLink]="['../track', track.id ]">{{track.id}}</a></td>
+                <td>{{track.pdate | date:'mediumDate'}}</td>
+                <td>{{track.startTime}}</td>
+                <td>{{track.endTime}}</td>
+                <td>{{track.cell}}</td>
+                <td>{{track.imei}}</td>
+                <td>{{track.imsi}}</td>
+                <td>{{track.msisdn}}</td>
+                <td>{{track.lon}}</td>
+                <td>{{track.lat}}</td>
+                <td>{{track.indicatorType}}</td>
+                <td>{{track.status}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../track', track.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'track/'+ track.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'track/'+ track.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="tracks && tracks.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

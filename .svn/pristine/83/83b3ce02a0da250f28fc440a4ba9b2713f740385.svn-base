@@ -1,0 +1,71 @@
+<form class="form-inline">
+
+  <!--<my-datepicker></my-datepicker>-->
+  <div class="form-group">
+    <div class="input-group">
+      <my-date-picker name="mydate" #datePicker="ngModel" [options]="myDatePickerOptions"
+                      [(ngModel)]="condition.date1"></my-date-picker>
+    </div>
+    <div [hidden]="condition.date1!=null" class="alert alert-danger" style="padding: 0.53rem 1rem;">
+      时间为必填项！
+    </div>
+  </div>
+  <!-- 分隔 -->
+  <div style="width: 5px"></div>
+  <!--[(ngModel)]="condition.cellType"-->
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" name="beginTime" [(ngModel)]="condition.startTime" style="width: 170px;height: 36px">
+        <option *ngFor="let op of hourOptions" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 5px"></div>
+  <!--[(ngModel)]="condition.interfaceType"-->
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" name="endTime" [(ngModel)]="condition.endTime"
+              (ngModelChange)="onChangeType()" style="width: 170px;height: 36px">
+        <option *ngFor="let op of hourOptions" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 5px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <!--<label>imsi:</label>-->
+      <input class="form-control" #cellId="ngModel" [(ngModel)]="condition.imsi" name="cellId" required>
+    </div>
+    <div [hidden]="condition.imsi!=null" class="alert alert-danger" style="padding: 0.53rem 1rem;">
+      imsi为必填项！
+    </div>
+  </div>
+
+
+  <!-- 分隔 -->
+  <div style="width: 5px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <button type="button" class="btn btn-default" (click)="searchClick($event)" [disabled]="condition.date1==null || condition.imsi==''" icon="fa-search"
+      >查询</button>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 5px"></div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <button type="button" class="btn btn-default" (click)="exportClick($event)" [disabled]="condition.date1==null || condition.imsi==''" icon="fa-search"
+      >导出</button>
+    </div>
+  </div>
+
+</form>
+

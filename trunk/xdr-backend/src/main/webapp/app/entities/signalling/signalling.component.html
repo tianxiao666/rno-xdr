@@ -1,0 +1,175 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.signalling.home.title">Signallings</span>
+        <button class="btn btn-primary float-right create-signalling" [routerLink]="['/', { outlets: { popup: ['signalling-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.signalling.home.createLabel">
+            Create new Signalling
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.signalling.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="signallings">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdate"><span jhiTranslate="backendApp.signalling.pdate">Pdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startTime"><span jhiTranslate="backendApp.signalling.startTime">Start Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endTime"><span jhiTranslate="backendApp.signalling.endTime">End Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="interfaceType"><span jhiTranslate="backendApp.signalling.interfaceType">Interface Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cell"><span jhiTranslate="backendApp.signalling.cell">Cell</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imei"><span jhiTranslate="backendApp.signalling.imei">Imei</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imsi"><span jhiTranslate="backendApp.signalling.imsi">Imsi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="appType"><span jhiTranslate="backendApp.signalling.appType">App Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="appStatus"><span jhiTranslate="backendApp.signalling.appStatus">App Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="protocolType"><span jhiTranslate="backendApp.signalling.protocolType">Protocol Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="appSubType"><span jhiTranslate="backendApp.signalling.appSubType">App Sub Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ulData"><span jhiTranslate="backendApp.signalling.ulData">Ul Data</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dlData"><span jhiTranslate="backendApp.signalling.dlData">Dl Data</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastHttpResponseDelay"><span jhiTranslate="backendApp.signalling.lastHttpResponseDelay">Last Http Response Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="procedureType"><span jhiTranslate="backendApp.signalling.procedureType">Procedure Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="procedureStatus"><span jhiTranslate="backendApp.signalling.procedureStatus">Procedure Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cause"><span jhiTranslate="backendApp.signalling.cause">Cause</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="keyword"><span jhiTranslate="backendApp.signalling.keyword">Keyword</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="targetCellid"><span jhiTranslate="backendApp.signalling.targetCellid">Target Cellid</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="csfbIndication"><span jhiTranslate="backendApp.signalling.csfbIndication">Csfb Indication</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reqCauseType"><span jhiTranslate="backendApp.signalling.reqCauseType">Req Cause Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reqCause"><span jhiTranslate="backendApp.signalling.reqCause">Req Cause</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="failureCauseType"><span jhiTranslate="backendApp.signalling.failureCauseType">Failure Cause Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="failureCause"><span jhiTranslate="backendApp.signalling.failureCause">Failure Cause</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="errorCauseType"><span jhiTranslate="backendApp.signalling.errorCauseType">Error Cause Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="errorCause"><span jhiTranslate="backendApp.signalling.errorCause">Error Cause</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hoCancelCauseType"><span jhiTranslate="backendApp.signalling.hoCancelCauseType">Ho Cancel Cause Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hoCancelCause"><span jhiTranslate="backendApp.signalling.hoCancelCause">Ho Cancel Cause</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rowCount"><span jhiTranslate="backendApp.signalling.rowCount">Row Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="servingRsrp"><span jhiTranslate="backendApp.signalling.servingRsrp">Serving Rsrp</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="servingRsrpAvg"><span jhiTranslate="backendApp.signalling.servingRsrpAvg">Serving Rsrp Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="servingRsrpStdDev"><span jhiTranslate="backendApp.signalling.servingRsrpStdDev">Serving Rsrp Std Dev</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="servingRsrq"><span jhiTranslate="backendApp.signalling.servingRsrq">Serving Rsrq</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="servingRsrqAvg"><span jhiTranslate="backendApp.signalling.servingRsrqAvg">Serving Rsrq Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="servingRsrqStdDev"><span jhiTranslate="backendApp.signalling.servingRsrqStdDev">Serving Rsrq Std Dev</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="aoa"><span jhiTranslate="backendApp.signalling.aoa">Aoa</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="aoaAvg"><span jhiTranslate="backendApp.signalling.aoaAvg">Aoa Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="aoaStdDev"><span jhiTranslate="backendApp.signalling.aoaStdDev">Aoa Std Dev</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ta"><span jhiTranslate="backendApp.signalling.ta">Ta</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="taAvg"><span jhiTranslate="backendApp.signalling.taAvg">Ta Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="taStdDev"><span jhiTranslate="backendApp.signalling.taStdDev">Ta Std Dev</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ulSinr"><span jhiTranslate="backendApp.signalling.ulSinr">Ul Sinr</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ulSinrAvg"><span jhiTranslate="backendApp.signalling.ulSinrAvg">Ul Sinr Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ulSinrStdDev"><span jhiTranslate="backendApp.signalling.ulSinrStdDev">Ul Sinr Std Dev</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="enbReceivedPower"><span jhiTranslate="backendApp.signalling.enbReceivedPower">Enb Received Power</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="enbReceivedPowerAvg"><span jhiTranslate="backendApp.signalling.enbReceivedPowerAvg">Enb Received Power Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="enbReceivedPowerStdDev"><span jhiTranslate="backendApp.signalling.enbReceivedPowerStdDev">Enb Received Power Std Dev</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phr"><span jhiTranslate="backendApp.signalling.phr">Phr</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phrAvg"><span jhiTranslate="backendApp.signalling.phrAvg">Phr Avg</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phrStdDev"><span jhiTranslate="backendApp.signalling.phrStdDev">Phr Std Dev</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let signalling of signallings ;trackBy: trackId">
+                <td><a [routerLink]="['../signalling', signalling.id ]">{{signalling.id}}</a></td>
+                <td>{{signalling.pdate | date:'mediumDate'}}</td>
+                <td>{{signalling.startTime}}</td>
+                <td>{{signalling.endTime}}</td>
+                <td>{{signalling.interfaceType}}</td>
+                <td>{{signalling.cell}}</td>
+                <td>{{signalling.imei}}</td>
+                <td>{{signalling.imsi}}</td>
+                <td>{{signalling.appType}}</td>
+                <td>{{signalling.appStatus}}</td>
+                <td>{{signalling.protocolType}}</td>
+                <td>{{signalling.appSubType}}</td>
+                <td>{{signalling.ulData}}</td>
+                <td>{{signalling.dlData}}</td>
+                <td>{{signalling.lastHttpResponseDelay}}</td>
+                <td>{{signalling.procedureType}}</td>
+                <td>{{signalling.procedureStatus}}</td>
+                <td>{{signalling.cause}}</td>
+                <td>{{signalling.keyword}}</td>
+                <td>{{signalling.targetCellid}}</td>
+                <td>{{signalling.csfbIndication}}</td>
+                <td>{{signalling.reqCauseType}}</td>
+                <td>{{signalling.reqCause}}</td>
+                <td>{{signalling.failureCauseType}}</td>
+                <td>{{signalling.failureCause}}</td>
+                <td>{{signalling.errorCauseType}}</td>
+                <td>{{signalling.errorCause}}</td>
+                <td>{{signalling.hoCancelCauseType}}</td>
+                <td>{{signalling.hoCancelCause}}</td>
+                <td>{{signalling.rowCount}}</td>
+                <td>{{signalling.servingRsrp}}</td>
+                <td>{{signalling.servingRsrpAvg}}</td>
+                <td>{{signalling.servingRsrpStdDev}}</td>
+                <td>{{signalling.servingRsrq}}</td>
+                <td>{{signalling.servingRsrqAvg}}</td>
+                <td>{{signalling.servingRsrqStdDev}}</td>
+                <td>{{signalling.aoa}}</td>
+                <td>{{signalling.aoaAvg}}</td>
+                <td>{{signalling.aoaStdDev}}</td>
+                <td>{{signalling.ta}}</td>
+                <td>{{signalling.taAvg}}</td>
+                <td>{{signalling.taStdDev}}</td>
+                <td>{{signalling.ulSinr}}</td>
+                <td>{{signalling.ulSinrAvg}}</td>
+                <td>{{signalling.ulSinrStdDev}}</td>
+                <td>{{signalling.enbReceivedPower}}</td>
+                <td>{{signalling.enbReceivedPowerAvg}}</td>
+                <td>{{signalling.enbReceivedPowerStdDev}}</td>
+                <td>{{signalling.phr}}</td>
+                <td>{{signalling.phrAvg}}</td>
+                <td>{{signalling.phrStdDev}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../signalling', signalling.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'signalling/'+ signalling.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'signalling/'+ signalling.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="signallings && signallings.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

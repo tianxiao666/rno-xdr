@@ -1,0 +1,3373 @@
+webpackJsonp([0],{
+
+/***/ 107:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var LoginPage = LoginPage_1 = (function () {
+    function LoginPage(navCtrl, http, storage, toastCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.http = http;
+        this.storage = storage;
+        this.toastCtrl = toastCtrl;
+        this.username = "";
+        this.password = "";
+        this.env = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */];
+        this.storage.get("rememberMe")
+            .then(function (result) {
+            if (result) {
+                _this.rememberMe = true;
+                _this.storage.get("username").then(function (un) {
+                    _this.username = LoginPage_1.decrypt(un);
+                }).catch(function (error) { });
+                _this.storage.get("password").then(function (pw) {
+                    _this.password = LoginPage_1.decrypt(pw);
+                }).catch(function (error) { });
+            }
+            else {
+                _this.rememberMe = false;
+            }
+        })
+            .catch(function (error) { });
+    }
+    LoginPage.prototype.login = function () {
+        var _this = this;
+        if (this.username.length < 1 || this.username.length > 50) {
+            this.toastCtrl.create({
+                message: '账号长度小于1或大于50个字符',
+                position: 'top',
+                duration: 3000
+            }).present();
+            return;
+        }
+        if (this.password.length < 4 || this.password.length > 100) {
+            this.toastCtrl.create({
+                message: '密码长度小于4或大于100个字符',
+                position: 'top',
+                duration: 3000
+            }).present();
+            return;
+        }
+        var headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["e" /* RequestOptions */]({ headers: headers });
+        this.http.post(this.env.host + '/api/authenticate', { "username": this.username,
+            "password": this.password,
+            "rememberMe": this.rememberMe }, options)
+            .map(function (data) { return data.json(); })
+            .subscribe(function (data) {
+            _this.storage.set("id_token", data.id_token);
+            if (_this.rememberMe) {
+                _this.storage.set("rememberMe", true);
+                _this.storage.set("username", LoginPage_1.encrypt(_this.username));
+                _this.storage.set("password", LoginPage_1.encrypt(_this.password));
+            }
+            else {
+                _this.storage.set("rememberMe", false);
+                _this.storage.set("username", "");
+                _this.storage.set("password", "");
+            }
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
+        }, function (error) {
+            if (error.status == 401) {
+                _this.toastCtrl.create({
+                    message: '账号或密码错误',
+                    position: 'top',
+                    duration: 2000
+                }).present();
+            }
+        });
+    };
+    LoginPage.encrypt = function (code) {
+        var c = String.fromCharCode(code.charCodeAt(0) + code.length);
+        for (var i = 1; i < code.length; i++) {
+            c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1));
+        }
+        return c;
+    };
+    LoginPage.decrypt = function (code) {
+        var c = String.fromCharCode(code.charCodeAt(0) - code.length);
+        for (var i = 1; i < code.length; i++) {
+            c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1));
+        }
+        return c;
+    };
+    return LoginPage;
+}());
+LoginPage = LoginPage_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-login',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\login\login.html"*/'<ion-header>\n  <ion-navbar >\n    <ion-title>登录</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="cards-bg" >\n\n  <ion-card>\n    <ion-card-header class="ionCardHeader">\n      登录\n    </ion-card-header>\n    <ion-item>\n      <ion-label fixed style="color:black">用户名</ion-label>\n      <ion-input type="text" [(ngModel)]="username" placeholder="用户名" autocomplete="on"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label fixed style="color:black">密码</ion-label>\n      <ion-input type="password" [(ngModel)]="password" placeholder="密码" autocomplete="on"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label fixed style="color:black">记住我</ion-label>\n      <ion-checkbox type="rememberMe" [(ngModel)]="rememberMe"></ion-checkbox>\n    </ion-item>\n  </ion-card>\n  <button ion-button color="secondary" class="button-work" (click)="login()">登录</button>\n</ion-content>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\login\login.html"*/,
+        providers: []
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
+], LoginPage);
+
+var LoginPage_1;
+//# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 115:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	return new Promise(function(resolve, reject) { reject(new Error("Cannot find module '" + req + "'.")); });
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 115;
+
+/***/ }),
+
+/***/ 13:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__perception_analysis_perceptionAnalysis__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__perception_trend_perceptionTrend__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__perception_details_perceptionDetails__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__exception_cause_exception_cause__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__track_present_trackPresent__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__event_recall_eventRecall__ = __webpack_require__(217);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+var HomePage = (function () {
+    function HomePage(navCtrl, storage, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.storage = storage;
+        this.alertCtrl = alertCtrl;
+    }
+    HomePage.prototype.pushPerceptionAnalysis = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__perception_analysis_perceptionAnalysis__["a" /* PerceptionAnalysisPage */]);
+    };
+    HomePage.prototype.pushPerceptionTrend = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__perception_trend_perceptionTrend__["a" /* PerceptionTrendPage */]);
+    };
+    HomePage.prototype.pushPerceptionDetail = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__perception_details_perceptionDetails__["a" /* PerceptionDetailsPage */]);
+    };
+    HomePage.prototype.pushExceptionCause = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__exception_cause_exception_cause__["a" /* ExceptionCausePage */]);
+    };
+    HomePage.prototype.pushTrackPresent = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__track_present_trackPresent__["a" /* TrackPresentPage */]);
+    };
+    /*pushExceptionStats(){
+      this.navCtrl.push(ExceptionStatsPage);
+    }*/
+    HomePage.prototype.pushEventRecall = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_9__event_recall_eventRecall__["a" /* EventRecallPage */]);
+    };
+    HomePage.prototype.logout = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            message: '是否注销',
+            buttons: [{
+                    text: 'Cancel'
+                },
+                {
+                    text: 'OK',
+                    handler: function () {
+                        _this.storage.set("id_token", "");
+                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__login_login__["a" /* LoginPage */]);
+                    }
+                }],
+        });
+        alert.present();
+    };
+    return HomePage;
+}());
+HomePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-home',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>主页</ion-title>\n    <ion-buttons end (click)="logout()">\n      <button ion-button icon-only>\n        <ion-icon name="log-out">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-item (click)="pushPerceptionAnalysis()">\n    <ion-thumbnail item-start>\n      <img src="assets/img/analysis.png"/>\n    </ion-thumbnail>\n    <h2>网络质量感知分析</h2>\n  </ion-item>\n  <ion-item (click)="pushPerceptionTrend()">\n    <ion-thumbnail item-start>\n      <img src="assets/img/trend.png"/>\n    </ion-thumbnail>\n    <h2>网络质量感知趋势</h2>\n  </ion-item>\n  <ion-item (click)="pushPerceptionDetail()">\n    <ion-thumbnail item-start>\n      <img src="assets/img/list.png"/>\n    </ion-thumbnail>\n    <h2>网络质量感知详情</h2>\n  </ion-item>\n  <ion-item (click)="pushExceptionCause()">\n    <ion-thumbnail item-start>\n      <img src="assets/img/cause.png"/>\n    </ion-thumbnail>\n    <h2>异常事件原因分析</h2>\n  </ion-item>\n  <ion-item (click)="pushEventRecall()">\n    <ion-thumbnail item-start>\n      <img src="assets/img/signaling-event-track.png">\n    </ion-thumbnail>\n    <h2>用户信令事件回溯</h2>\n  </ion-item>\n  <ion-item (click)="pushTrackPresent()">\n    <ion-thumbnail item-start>\n      <img src="assets/img/track.png"/>\n    </ion-thumbnail>\n    <h2>用户指标轨迹呈现</h2>\n  </ion-item>\n</ion-content>\n\n\n\n\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\home\home.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+], HomePage);
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 157:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	return new Promise(function(resolve, reject) { reject(new Error("Cannot find module '" + req + "'.")); });
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 157;
+
+/***/ }),
+
+/***/ 18:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
+var environment = {
+    production: false,
+    host: 'http://192.168.6.164:8080',
+};
+//# sourceMappingURL=environment.js.map
+
+/***/ }),
+
+/***/ 200:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PerceptionAnalysisPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__condition__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_indicatorService__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__analysisChart_analysisChart__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_home__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * Created by yangch on 2017/7/18.
+ */
+
+
+
+
+
+
+
+
+var PerceptionAnalysisPage = (function () {
+    function PerceptionAnalysisPage(navCtrl, alertCtrl, http, indicatorService) {
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        this.http = http;
+        this.indicatorService = indicatorService;
+        this.submmitted = false;
+        this.time = new Date().toISOString();
+        this.indicatorNames = [];
+        this.env = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */];
+        this.cond = new __WEBPACK_IMPORTED_MODULE_2__condition__["a" /* AnalysisCond */](new Date().toISOString(), "network", null, "uu", null);
+        for (var _i = 0, _a = this.indicatorService.getIndicatorsSelects("uu"); _i < _a.length; _i++) {
+            var indic = _a[_i];
+            this.indicatorNames.push(indic.name);
+        }
+        this.cond.interfaceName = this.indicatorNames;
+    }
+    PerceptionAnalysisPage.prototype.onSubmit = function () { this.submmitted = true; };
+    PerceptionAnalysisPage.prototype.fillIndicatorType = function (interfaceType) {
+        //console.log(interfaceType);
+        this.indicatorNames = [];
+        var indicatorTypes = ["uu", "mr", "x2", "brd31", "brd39"];
+        for (var _i = 0, indicatorTypes_1 = indicatorTypes; _i < indicatorTypes_1.length; _i++) {
+            var indi = indicatorTypes_1[_i];
+            if (interfaceType == indi) {
+                for (var _a = 0, _b = this.indicatorService.getIndicatorsSelects(indi); _a < _b.length; _a++) {
+                    var indic = _b[_a];
+                    this.indicatorNames.push(indic.name);
+                }
+                this.cond.interfaceName = this.indicatorNames;
+            }
+        }
+    };
+    PerceptionAnalysisPage.prototype.doSearch = function () {
+        var interName = document.getElementById("interfaceName").innerText;
+        var interN = [];
+        for (var _i = 0, _a = interName.split(","); _i < _a.length; _i++) {
+            var inter = _a[_i];
+            //console.log(inter.trim());
+            interN.push(inter.trim());
+        }
+        //console.log(this.cond.subIndic);
+        if (this.cond.subIndic == null && this.cond.indicator != "network") {
+            var alert_1 = this.alertCtrl.create({
+                title: this.cond.indicator + '不能为空',
+                buttons: ['确定']
+            });
+            alert_1.present();
+            return false;
+        }
+        //console.log(interN.length);
+        if (interN.length > 5 || interN.toString().trim() === '请选择') {
+            var alert_2 = this.alertCtrl.create({
+                title: '指标选择最多五项，最少一项',
+                buttons: ['确定']
+            });
+            alert_2.present();
+            return false;
+        }
+        var url = "/api/indicator/" + this.cond.interfaceType + '/hour/' + this.cond.indicator
+            + "?date=" + Math.round((new Date(this.cond.time)).setHours(8, 0, 0, 0));
+        switch (this.cond.indicator) {
+            case 'imsi':
+                url = url + '&imsi=' + this.cond.subIndic;
+                break;
+            case 'eci':
+                url = url + '&eci=' + this.cond.subIndic;
+                break;
+            default:
+                break;
+        }
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__analysisChart_analysisChart__["a" /* PerceptionAnalysisChart */], { url: url,
+            interfaceNames: interN,
+            interfaceType: this.cond.interfaceType
+        });
+    };
+    PerceptionAnalysisPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_7__home_home__["a" /* HomePage */]);
+    };
+    return PerceptionAnalysisPage;
+}());
+PerceptionAnalysisPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-perception-analysis',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\perception-analysis\perceptionAnalysis.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>网络质量感知分析</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content class="cards-bg">\n  <form (ngSubmit)="onSubmit()" #perceptionAnalysisForm="ngForm">\n    <div class="cards-list-demo">\n      <ion-card-header class="ionCardHeader">\n        查询条件\n      </ion-card-header>\n      <ion-list>\n        <ion-item>\n          <ion-label>日期</ion-label>\n          <ion-datetime displayFormat="YYYY-MM-DD"\n            [(ngModel)] ="cond.time" name="time" #time="ngModel"></ion-datetime>\n        </ion-item>\n        <ion-item class="form-group">\n          <ion-label>范围</ion-label>\n          <ion-select [(ngModel)]="cond.indicator" name="indicator"\n                      #indicator="ngModel" interface="alert">\n            <ion-option value="network" selected>全网</ion-option>\n            <ion-option value="eci">ECI</ion-option>\n            <ion-option value="imsi">IMSI</ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item *ngIf="cond.indicator !=\'network\' ">\n          <ion-label  for="subIndic">请输入{{cond.indicator}}</ion-label>\n          <ion-input type="text" [(ngModel)] ="cond.subIndic" name="subIndic" id="subIndic"\n                     #subIndic="ngModel"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-label>接口类型</ion-label>\n          <ion-select [(ngModel)]="cond.interfaceType" name="interfaceType" #interfaceType="ngModel"\n                      (ngModelChange)="fillIndicatorType(cond.interfaceType)" interface="alert">\n            <ion-option value="uu">uu</ion-option>\n            <ion-option value="mr">mr</ion-option>\n            <ion-option value="x2">x2</ion-option>\n            <ion-option value="brd31">brd31</ion-option>\n            <ion-option value="brd39">brd39</ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-label>指标</ion-label>\n          <ion-select multiple="true"  id="interfaceName"\n                      name="interfaceName"  interface="alert" placeholder="请选择">\n            <ion-option *ngFor="let one of cond.interfaceName">{{one}}</ion-option>\n          </ion-select>\n        </ion-item>\n      </ion-list>\n    </div>\n    <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>\n  </form>\n</ion-content>\n<style>\n  .cards-bg{\n    background: #efeff4;\n  }\n  .ionCardHeader{\n    color: #00f;\n  }\n  .button-work{\n    border-radius: 2px;\n    width: 100% ;\n  }\n</style>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\perception-analysis\perceptionAnalysis.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__common_indicatorService__["a" /* IndicatorsService */]])
+], PerceptionAnalysisPage);
+
+//# sourceMappingURL=perceptionAnalysis.js.map
+
+/***/ }),
+
+/***/ 201:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnalysisCond; });
+/**
+ * Created by yangch on 2017/7/18.
+ */
+var AnalysisCond = (function () {
+    function AnalysisCond(time, indicator, subIndic, interfaceType, interfaceName) {
+        if (time === void 0) { time = new Date().toISOString(); }
+        if (indicator === void 0) { indicator = "network"; }
+        if (interfaceType === void 0) { interfaceType = "uu"; }
+        this.time = time;
+        this.indicator = indicator;
+        this.subIndic = subIndic;
+        this.interfaceType = interfaceType;
+        this.interfaceName = interfaceName;
+    }
+    return AnalysisCond;
+}());
+
+//# sourceMappingURL=condition.js.map
+
+/***/ }),
+
+/***/ 202:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PerceptionAnalysisChart; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_indicatorService__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_networkService__ = __webpack_require__(34);
+/**
+ * Created by yangch on 2017/7/19.
+ */
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var PerceptionAnalysisChart = (function () {
+    function PerceptionAnalysisChart(navParams, loadingCtrl, toastCtrl, http, indicatorService, platform, navCtrl, networkService) {
+        var _this = this;
+        this.navParams = navParams;
+        this.loadingCtrl = loadingCtrl;
+        this.toastCtrl = toastCtrl;
+        this.http = http;
+        this.indicatorService = indicatorService;
+        this.platform = platform;
+        this.navCtrl = navCtrl;
+        this.networkService = networkService;
+        this.env = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */];
+        this.isShown = true;
+        this.networkService.loadWithTokenByGET(navParams.data.url)
+            .then(function (data) {
+            if (data.toString() == "") {
+                var toast = _this.toastCtrl.create({
+                    message: '抱歉，无查询结果',
+                    position: 'middle',
+                    duration: 3000,
+                });
+                toast.present();
+            }
+            else {
+                _this.data = data;
+                _this.isShown = true;
+                _this.initChart(navParams.data.interfaceNames);
+            }
+        }).catch(function (error) {
+            var toast = _this.toastCtrl.create({
+                message: '连接错误',
+                position: 'middle',
+                duration: 3000,
+            });
+            toast.present();
+        });
+    }
+    PerceptionAnalysisChart.prototype.initChart = function (interfaceNames) {
+        var legend = [];
+        var xAxis = [];
+        var serieses = [];
+        for (var _i = 0, interfaceNames_1 = interfaceNames; _i < interfaceNames_1.length; _i++) {
+            var i = interfaceNames_1[_i];
+            legend.push(i);
+        }
+        for (var j = 0; j < 24; j++) {
+            xAxis.push(j);
+        }
+        var seriesData = [];
+        for (var s = 0; s < interfaceNames.length; s++) {
+            if (!seriesData[s]) {
+                seriesData[s] = [];
+            }
+            for (var w = 0; w < 24; w++) {
+                seriesData[s][w] = parseFloat("0");
+            }
+        }
+        for (var t = 0; t < interfaceNames.length; t++) {
+            var ids = this.indicatorService
+                .getIdByNameAndInter(this.navParams.data.interfaceType, interfaceNames[t]);
+            for (var k = 0; k < 24; k++) {
+                for (var _a = 0, _b = this.data; _a < _b.length; _a++) {
+                    var l = _b[_a];
+                    if (parseInt(l.phour) == k) {
+                        var valu = l[ids];
+                        if (valu.toString().indexOf(".") > -1) {
+                            seriesData[t][k] = (parseFloat(valu) * 100).toFixed(2);
+                        }
+                        else {
+                            seriesData[t][k] = parseInt(valu);
+                        }
+                    }
+                }
+            }
+            for (var m = 0; m < this.data.length; m++) {
+                if (m == 0) {
+                    if (this.data[m][ids].toString().indexOf(".") > -1) {
+                        serieses.push({
+                            name: interfaceNames[t],
+                            type: 'line',
+                            data: seriesData[t],
+                            yAxisIndex: 1
+                        });
+                    }
+                    else {
+                        serieses.push({
+                            name: interfaceNames[t],
+                            type: 'line',
+                            data: seriesData[t],
+                            yAxisIndex: 0
+                        });
+                    }
+                }
+            }
+        }
+        var ctx = this.container.nativeElement;
+        this.chart = echarts.init(ctx);
+        this.chart.setOption({
+            title: {
+                text: '',
+            },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (a) {
+                    var tooltipText = a[0].name;
+                    a.forEach(function (eachline) {
+                        if ((eachline.value + "").indexOf(".") > -1) {
+                            eachline.value = eachline.value + "%";
+                            tooltipText += "<br/>" + eachline.marker + eachline.seriesName + "&nbsp;:&nbsp;" + eachline.value;
+                        }
+                        else {
+                            tooltipText += "<br/>" + eachline.marker + eachline.seriesName + "&nbsp;:&nbsp;" + eachline.value;
+                        }
+                        //console.log(eachline.value);
+                    });
+                    return tooltipText;
+                }
+            },
+            legend: {
+                data: legend,
+                top: '0px'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                y: 150,
+                containLabel: true,
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: xAxis,
+                    splitLine: {
+                        show: false,
+                    },
+                },
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '数量',
+                    splitLine: {
+                        show: false
+                    }
+                }, {
+                    type: 'value',
+                    max: 100,
+                    min: 0,
+                    name: '比率(%)',
+                    splitLine: {
+                        show: false
+                    }
+                },
+            ],
+            series: serieses
+        });
+        window.onresize = this.chart.resize;
+    };
+    PerceptionAnalysisChart.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
+    };
+    return PerceptionAnalysisChart;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('container'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], PerceptionAnalysisChart.prototype, "container", void 0);
+PerceptionAnalysisChart = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-perception-analysis-chart',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\perception-analysis\analysisChart\analysisChart.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>分析结果图例</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content responsive>\n  <div  #container *ngIf="isShown" class="div-charts">\n  </div>\n</ion-content>\n<style>\n  .div-charts {\n    width: 100%;\n    height: 100%;\n  }\n</style>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\perception-analysis\analysisChart\analysisChart.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_4__common_indicatorService__["a" /* IndicatorsService */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_6__common_networkService__["a" /* NetworkService */]])
+], PerceptionAnalysisChart);
+
+//# sourceMappingURL=analysisChart.js.map
+
+/***/ }),
+
+/***/ 203:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PerceptionTrendPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__common_indicatorService__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__trendResult_trendResult__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_home__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var PerceptionTrendPage = (function () {
+    function PerceptionTrendPage(navCtrl, alertCtrl, _allIndicators, http, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        this._allIndicators = _allIndicators;
+        this.http = http;
+        this.toastCtrl = toastCtrl;
+        this.cellType = 'network';
+        this.interfaces = 'uu';
+        this.condition = [];
+        this.showResultOfCondition = "请选择";
+        this.cellTypeInput = "";
+        this.env = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */];
+        // this.beginTime = new Date().toISOString();   //当前时间
+        // this.endTime = new Date().toISOString();     //当前时间
+        this.beginTime = new Date('2016-08-19').toISOString(); //测试时使用的时间
+        this.endTime = new Date('2016-08-26').toISOString(); //测试时使用的时间
+    }
+    PerceptionTrendPage.prototype.interfacesChange = function () {
+        this.condition = [];
+        this.showResultOfCondition = "请选择";
+    };
+    PerceptionTrendPage.prototype.checkTime = function (source) {
+        if (this.beginTime > this.endTime) {
+            if (source == "endTime") {
+                this.beginTime = this.endTime;
+            }
+            else if (source == "beginTime") {
+                this.endTime = this.beginTime;
+            }
+        }
+    };
+    PerceptionTrendPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_8__home_home__["a" /* HomePage */]);
+    };
+    PerceptionTrendPage.prototype.showCheckbox = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create();
+        alert.setTitle("指标");
+        var nowinterface = this._allIndicators.getIndicatorsSelects(this.interfaces);
+        nowinterface.forEach(function (eachNowInterface) {
+            var boo = false;
+            _this.condition.forEach(function (eachCondition) {
+                if (eachCondition == eachNowInterface.id) {
+                    boo = true;
+                }
+            });
+            if (boo) {
+                alert.addInput({
+                    type: 'checkbox',
+                    label: eachNowInterface.name,
+                    value: eachNowInterface.id,
+                    checked: true
+                });
+            }
+            else {
+                alert.addInput({
+                    type: 'checkbox',
+                    label: eachNowInterface.name,
+                    value: eachNowInterface.id
+                });
+            }
+        });
+        alert.addButton('Cancel');
+        alert.addButton({
+            text: 'Okay',
+            handler: function (data) {
+                if (data.length > 5) {
+                    _this.toastCtrl.create({
+                        message: '最多选择5项指标',
+                        position: 'top',
+                        duration: 3000
+                    }).present();
+                    return false;
+                }
+                else if (data.length < 1) {
+                    _this.toastCtrl.create({
+                        message: '至少选择1项指标',
+                        position: 'top',
+                        duration: 3000
+                    }).present();
+                    return false;
+                }
+                else {
+                    _this.condition = [];
+                    nowinterface.forEach(function (a) {
+                        data.forEach(function (eachData) {
+                            if (a.id == eachData) {
+                                _this.condition.push(eachData);
+                            }
+                        });
+                    });
+                    var name_1 = _this._allIndicators.getIndicatorNamebyID(_this.interfaces, _this.condition[0]);
+                    _this.showResultOfCondition = name_1 + "等共" + _this.condition.length + "项";
+                }
+            }
+        });
+        alert.present();
+    };
+    PerceptionTrendPage.prototype.doSearch = function () {
+        if (this.condition.length < 1) {
+            this.toastCtrl.create({
+                message: '至少选择1项指标',
+                position: 'top',
+                duration: 3000
+            }).present();
+        }
+        else if (this.cellType == "eci" && this.cellTypeInput.length < 1) {
+            this.toastCtrl.create({
+                message: 'ECI为必填项',
+                position: 'top',
+                duration: 3000
+            }).present();
+        }
+        else if (this.cellType == "imsi" && this.cellTypeInput.length < 1) {
+            this.toastCtrl.create({
+                message: 'IMSI为必填项',
+                position: 'top',
+                duration: 3000
+            }).present();
+        }
+        else {
+            var bt = Math.round((new Date(this.beginTime)).setHours(8, 0, 0, 0));
+            var et = Math.round((new Date(this.endTime)).setHours(8, 0, 0, 0));
+            var url = '/api/indicator/' + this.interfaces + '/day/' + this.cellType
+                + '?beginDate=' + bt
+                + '&endDate=' + et;
+            switch (this.cellType) {
+                case 'imsi':
+                    url = url + '&imsi=' + this.cellTypeInput;
+                    break;
+                case 'eci':
+                    url = url + '&eci=' + this.cellTypeInput;
+                    break;
+                default:
+                    break;
+            }
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__trendResult_trendResult__["a" /* TrendResultPage */], { url: url, beginTime: bt, endTime: et, condition: this.condition, interfaces: this.interfaces });
+        }
+    };
+    return PerceptionTrendPage;
+}());
+PerceptionTrendPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-perception-trend',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\perception-trend\perceptionTrend.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>网络质量感知趋势</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="cards-bg">\n\n    <ion-list>\n      <ion-card-header class="ionCardHeader">\n        查询条件\n      </ion-card-header>\n      <ion-item>\n        <ion-label style="color:black">范围</ion-label>\n        <ion-select [(ngModel)]="cellType" interface="action-sheet">\n          <ion-option value="network" selected>全网</ion-option>\n          <ion-option value="eci">ECI</ion-option>\n          <ion-option value="imsi">IMSI</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item *ngIf="cellType!=\'network\'">\n        <ion-label>请输入{{cellType.toUpperCase()}}:</ion-label>\n        <ion-input [(ngModel)]="cellTypeInput" ></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label style="color:black">接口类型</ion-label>\n        <ion-select [(ngModel)]="interfaces" interface="action-sheet" (ionChange)="interfacesChange()">\n          <ion-option value="uu">uu</ion-option>\n          <ion-option value="mr">mr</ion-option>\n          <ion-option value="x2">x2</ion-option>\n          <ion-option value="brd31">brd31</ion-option>\n          <ion-option value="brd39">brd39</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label style="color:black">指标</ion-label>\n        <ion-label end style="color:black;text-align: right;width: 60%;" (click)="showCheckbox()">{{showResultOfCondition}}</ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label style="color:black">开始时间</ion-label>\n        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="beginTime" (ionChange)="checkTime(\'beginTime\')"></ion-datetime>\n      </ion-item>\n      <ion-item>\n        <ion-label style="color:black">结束时间</ion-label>\n        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="endTime" (ionChange)="checkTime(\'endTime\')"></ion-datetime>\n      </ion-item>\n    </ion-list>\n\n\n  <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>\n\n</ion-content>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\perception-trend\perceptionTrend.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_2__common_indicatorService__["a" /* IndicatorsService */]]
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__common_indicatorService__["a" /* IndicatorsService */],
+        __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
+], PerceptionTrendPage);
+
+//# sourceMappingURL=perceptionTrend.js.map
+
+/***/ }),
+
+/***/ 205:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrendResultPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_indicatorService__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_networkService__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var TrendResultPage = (function () {
+    function TrendResultPage(navCtrl, _allIndicators, navParams, storage, networkService, app) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this._allIndicators = _allIndicators;
+        this.navParams = navParams;
+        this.storage = storage;
+        this.networkService = networkService;
+        this.app = app;
+        this.env = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */];
+        this.xAxis = [];
+        this.legend = [];
+        this.interfaces = navParams.data.interfaces;
+        this.condition = this.navParams.data.condition;
+        this.beginTime = this.navParams.data.beginTime;
+        this.endTime = this.navParams.data.endTime;
+        var bt = new Date(this.beginTime);
+        var et = new Date(this.endTime);
+        bt = new Date(bt.setDate(bt.getDate() - 1));
+        while (bt.toISOString() != et.toISOString()) {
+            bt = new Date(bt.setDate(bt.getDate() + 1));
+            var yearMonthDayString = bt.toISOString().substr(0, 10);
+            this.xAxis.push(yearMonthDayString);
+        }
+        console.log(navParams.data.url);
+        this.networkService.loadWithTokenByGET(navParams.data.url)
+            .then(function (data) {
+            _this.data = data;
+            _this.networkResultInLines = _this.networkResultsToLines();
+            _this.initChart();
+        })
+            .catch(function (error) { });
+    }
+    TrendResultPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
+    };
+    TrendResultPage.prototype.networkResultsToLines = function () {
+        var _this = this;
+        var collector = [];
+        this.condition.forEach(function (data) {
+            var name = _this._allIndicators.getIndicatorNamebyID(_this.interfaces, data);
+            var row = [];
+            _this.data.forEach(function (eachDayData) {
+                var val;
+                if (eachDayData[data].toString().indexOf(".") > -1) {
+                    val = eachDayData[data] * 100;
+                }
+                else {
+                    val = eachDayData[data];
+                }
+                var content = { "id": data, "name": name, "value": val, "date": eachDayData.pdate };
+                row.push(content);
+            });
+            collector.push(row);
+        });
+        return collector;
+    };
+    TrendResultPage.prototype.initSeries = function (networkResultInLines) {
+        var _this = this;
+        var Series = [];
+        networkResultInLines.forEach(function (eachLine) {
+            var data = [];
+            var val = "";
+            var _loop_1 = function (i) {
+                eachLine.forEach(function (eachColumn) {
+                    if (_this.xAxis[i] == eachColumn.date) {
+                        val = eachColumn.value;
+                    }
+                });
+                if (val != "") {
+                    data.push(val);
+                    val = "";
+                }
+                else {
+                    data.push(0);
+                }
+            };
+            for (var i = 0; i < _this.xAxis.length; i++) {
+                _loop_1(i);
+            }
+            _this.legend.push(eachLine[0].name);
+            var serie;
+            if (eachLine[0].value.toString().indexOf(".") > -1) {
+                serie = {
+                    name: eachLine[0].name,
+                    type: 'line',
+                    smooth: true,
+                    yAxisIndex: 1,
+                    data: data,
+                };
+            }
+            else {
+                serie = {
+                    name: eachLine[0].name,
+                    type: 'line',
+                    smooth: true,
+                    yAxisIndex: 0,
+                    data: data,
+                };
+            }
+            Series.push(serie);
+        });
+        return Series;
+    };
+    TrendResultPage.prototype.initChart = function () {
+        var Series = this.initSeries(this.networkResultInLines);
+        var ctx = this.container.nativeElement;
+        this.chart = echarts.init(ctx);
+        this.chart.setOption({
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (a) {
+                    var tooltipText = a[0].name;
+                    a.forEach(function (eachline) {
+                        if (((eachline.value / 100) + "").startsWith("0.")) {
+                            eachline.data = (eachline.data).toFixed(2) + "%";
+                            tooltipText += "<br/>" + eachline.marker + eachline.seriesName + "&nbsp;:&nbsp;" + eachline.data;
+                        }
+                        else {
+                            tooltipText += "<br/>" + eachline.marker + eachline.seriesName + "&nbsp;:&nbsp;" + eachline.value;
+                        }
+                    });
+                    return tooltipText;
+                },
+                confine: true,
+                axisPointer: {
+                    type: 'line',
+                }
+            },
+            legend: {
+                x: 'center',
+                y: 'top',
+                data: this.legend,
+            },
+            // toolbox: {
+            //   y: 'bottom',
+            //   feature: {
+            //     saveAsImage: {},
+            //   },
+            // },
+            grid: {
+                left: '3%',
+                right: '3%',
+                top: '12%',
+                width: '94%',
+                height: '85%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: this.xAxis,
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '数量',
+                    splitLine: {
+                        show: false,
+                    },
+                },
+                {
+                    type: 'value',
+                    // max: 100,
+                    // min: 0,
+                    name: '比率(%)',
+                    splitLine: {
+                        show: false,
+                    },
+                },
+            ],
+            series: Series,
+        });
+        window.onresize = this.chart.resize;
+    };
+    return TrendResultPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('container'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], TrendResultPage.prototype, "container", void 0);
+TrendResultPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-trend-result',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\perception-trend\trendResult\trendResult.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>趋势结果图</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #container class="div-charts"></div>\n</ion-content>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\perception-trend\trendResult\trendResult.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_4__common_indicatorService__["a" /* IndicatorsService */]]
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_4__common_indicatorService__["a" /* IndicatorsService */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_7__common_networkService__["a" /* NetworkService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]])
+], TrendResultPage);
+
+//# sourceMappingURL=trendResult.js.map
+
+/***/ }),
+
+/***/ 206:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PerceptionDetailsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__perception_analysis_condition__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__detailResult_perceptionDetailResult__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_indicatorService__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_file_saver__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_file_saver__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(210);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Created by yangch on 2017/7/24.
+ */
+var PerceptionDetailsPage = (function () {
+    function PerceptionDetailsPage(navCtrl, loadingCtrl, alertCtrl, platform, http, file, fileTransfer, storage, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.platform = platform;
+        this.http = http;
+        this.file = file;
+        this.fileTransfer = fileTransfer;
+        this.storage = storage;
+        this.toastCtrl = toastCtrl;
+        this.submmitted = false;
+        this.time = new Date().toISOString();
+        this.indicatorNames = [];
+        this.env = __WEBPACK_IMPORTED_MODULE_1__environments_environment__["a" /* environment */];
+        this.page = 0;
+        this.cond = new __WEBPACK_IMPORTED_MODULE_2__perception_analysis_condition__["a" /* AnalysisCond */](new Date().toISOString(), "network", null, "uu", null);
+    }
+    PerceptionDetailsPage.prototype.onSubmit = function () { this.submmitted = true; };
+    PerceptionDetailsPage.prototype.doSearch = function () {
+        if ((this.cond.subIndic == null || this.cond.subIndic.trim() == '') && this.cond.indicator != "network") {
+            var alert_1 = this.alertCtrl.create({
+                title: this.cond.indicator + '不能为空',
+                buttons: ['确定']
+            });
+            alert_1.present();
+            return false;
+        }
+        var url = "/api/indicator/" + this.cond.interfaceType + "/detail/"
+            + this.cond.indicator + "?date=" + Math.round((new Date(this.cond.time)).setHours(8, 0, 0, 0))
+            + "&page=" + this.page + "&size=" + 25;
+        switch (this.cond.indicator) {
+            case 'imsi':
+                url += "&imsi=" + this.cond.subIndic.toString().trim();
+                break;
+            case 'eci':
+                url += "&eci=" + this.cond.subIndic.toString().trim();
+                break;
+            default:
+                break;
+        }
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__detailResult_perceptionDetailResult__["a" /* PerceptionDetailsResult */], {
+            url: url,
+            interfaceType: this.cond.interfaceType,
+            indicator: this.cond.indicator,
+            subIndic: this.cond.subIndic,
+            time: this.cond.time,
+            page: this.page
+        });
+    };
+    PerceptionDetailsPage.prototype.doExport = function () {
+        var _this = this;
+        if (this.cond.indicator == 'network') {
+            var alert_2 = this.alertCtrl.create({
+                title: '数据较多，请指定范围IMSI或ECI进行导出',
+                buttons: ['确定']
+            });
+            alert_2.present();
+            return false;
+        }
+        //console.log(this.cond.subIndic);
+        if (this.cond.subIndic == null || this.cond.subIndic.toString().trim() == '') {
+            var alert_3 = this.alertCtrl.create({
+                title: this.cond.indicator + '为必填项',
+                buttons: ['确定']
+            });
+            alert_3.present();
+            return false;
+        }
+        var url = "/api/indicator/mobile/detail/download/" + this.cond.interfaceType
+            + "/" + this.cond.indicator + "?date=" + Math.round((new Date(this.cond.time)).setHours(8, 0, 0, 0));
+        switch (this.cond.indicator) {
+            case "imsi":
+                url += "&imsi=" + this.cond.subIndic.toString().trim();
+                break;
+            case "eci":
+                url += "&eci=" + this.cond.subIndic.toString().trim();
+            default:
+                break;
+        }
+        this.storage.get("id_token")
+            .then(function (id_token) {
+            var loading = _this.loadingCtrl.create({
+                content: '请稍候...',
+                enableBackdropDismiss: true
+            });
+            loading.present();
+            var headers = new __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* Headers */]({ 'Authorization': 'Bearer ' + id_token });
+            var options = new __WEBPACK_IMPORTED_MODULE_5__angular_http__["e" /* RequestOptions */]({
+                headers: headers,
+                responseType: __WEBPACK_IMPORTED_MODULE_5__angular_http__["f" /* ResponseContentType */].Blob
+            });
+            if (_this.platform.is('mobileweb')) {
+                location.href = _this.env.host + url + '&id_token=' + id_token;
+                loading.dismiss();
+            }
+            else if (_this.platform.is('android')) {
+                var transferObject = _this.fileTransfer.create();
+                transferObject.download(_this.env.host + url, _this.file.externalRootDirectory + "/" + _this.cond.interfaceType + '接口提取结果.xlsx', false, options)
+                    .then(function (entry) {
+                    loading.dismiss();
+                    var alert = _this.alertCtrl.create({
+                        title: '提取成功，文件位置在SD卡根目录下',
+                        buttons: ['确定']
+                    });
+                    alert.present();
+                }, function (error) {
+                    loading.dismiss();
+                    var alert2 = _this.alertCtrl.create({
+                        title: '提取失败，请检查应用是否开启存储权限！',
+                        buttons: ['确定']
+                    });
+                    alert2.present();
+                });
+                loading.present();
+            }
+            else {
+                _this.http.get(_this.env.host + url, options)
+                    .subscribe(function (res) {
+                    Object(__WEBPACK_IMPORTED_MODULE_9_file_saver__["saveAs"])(new Blob([res.blob()], { type: 'application/x.ms-excel' }), _this.cond.interfaceType + '接口提取结果.xlsx');
+                    loading.dismiss();
+                });
+            }
+        });
+    };
+    PerceptionDetailsPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_7__home_home__["a" /* HomePage */]);
+    };
+    return PerceptionDetailsPage;
+}());
+PerceptionDetailsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-perception-details',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\perception-details\perceptionDetails.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>网络质量感知详情</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content  class="cards-bg">\n  <form (ngSubmit)="onSubmit()" #perceptionDetailsForm="ngForm">\n    <div class="cards-list-demo">\n      <ion-card-header class="ionCardHeader">\n        查询条件\n      </ion-card-header>\n      <ion-list>\n        <ion-item>\n          <ion-label>日期</ion-label>\n          <ion-datetime displayFormat="YYYY-MM-DD"\n                        [(ngModel)] ="cond.time" name="time" #time="ngModel"></ion-datetime>\n        </ion-item>\n        <ion-item class="form-group">\n          <ion-label>范围</ion-label>\n          <ion-select [(ngModel)]="cond.indicator" name="indicator"\n                      #indicator="ngModel" interface="alert">\n            <ion-option value="network" selected>全网</ion-option>\n            <ion-option value="eci">ECI</ion-option>\n            <ion-option value="imsi">IMSI</ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item *ngIf="cond.indicator !=\'network\' ">\n          <ion-label  for="subIndic">请输入{{cond.indicator.toUpperCase()}}</ion-label>\n          <ion-input type="text" [(ngModel)] ="cond.subIndic" name="subIndic" id="subIndic"\n                     #subIndic="ngModel"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-label>接口类型</ion-label>\n          <ion-select [(ngModel)]="cond.interfaceType" name="interfaceType" #interfaceType="ngModel"\n                       interface="alert">\n            <ion-option value="uu">uu</ion-option>\n            <ion-option value="mr">mr</ion-option>\n            <ion-option value="x2">x2</ion-option>\n            <ion-option value="brd31">brd31</ion-option>\n            <ion-option value="brd39">brd39</ion-option>\n          </ion-select>\n        </ion-item>\n      </ion-list>\n    </div>\n    <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>\n    <button ion-button color="warning" class="button-work" (click)="doExport()">提取</button>\n  </form>\n</ion-content>\n<style>\n  .cards-bg{\n    background: #efeff4;\n  }\n  .ionCardHeader{\n    color: #00f;\n  }\n  .button-work{\n    border-radius: 2px;\n    width: 100% ;\n  }\n</style>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\perception-details\perceptionDetails.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_6__common_indicatorService__["a" /* IndicatorsService */], __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__["b" /* FileTransferObject */]]
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["g" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* Platform */],
+        __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__["a" /* File */],
+        __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__["a" /* FileTransfer */],
+        __WEBPACK_IMPORTED_MODULE_8__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["l" /* ToastController */]])
+], PerceptionDetailsPage);
+
+//# sourceMappingURL=perceptionDetails.js.map
+
+/***/ }),
+
+/***/ 207:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PerceptionDetailsResult; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__common_networkService__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var PerceptionDetailsResult = (function () {
+    function PerceptionDetailsResult(http, navCtrl, navParams, loadingCtrl, toastCtrl, alertCtrl, networkService, events) {
+        var _this = this;
+        this.http = http;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.loadingCtrl = loadingCtrl;
+        this.toastCtrl = toastCtrl;
+        this.alertCtrl = alertCtrl;
+        this.networkService = networkService;
+        this.events = events;
+        this.interfaceType = '';
+        this.env = __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */];
+        this.props = [];
+        this.datas = [];
+        this.oneData = [];
+        this.interfaceType = this.navParams.data.interfaceType;
+        this.networkService.loadWithTokenByGET(this.navParams.data.url)
+            .then(function (data) {
+            //console.log(data['content']);
+            if (data['content'].toString() == '') {
+                var alert_1 = _this.alertCtrl.create({
+                    title: '抱歉，无查询结果',
+                    buttons: ['OK']
+                });
+                alert_1.onDidDismiss(function () {
+                    _this.events.publish("popToLastPage", "");
+                });
+                alert_1.present();
+            }
+            else {
+                _this.data = data['content'];
+                console.log(_this.data);
+                for (var _i = 0, _a = _this.data; _i < _a.length; _i++) {
+                    var re = _a[_i];
+                    if (_this.data.indexOf(re) == 0) {
+                        for (var r in re) {
+                            if (r != 'id') {
+                                if (r == 'pdate') {
+                                    _this.props.push('日期');
+                                }
+                                else if (r == 'phour') {
+                                    _this.props.push('小时');
+                                }
+                                else {
+                                    _this.props.push(r);
+                                }
+                            }
+                        }
+                    }
+                }
+                for (var _b = 0, _c = _this.data; _b < _c.length; _b++) {
+                    var re = _c[_b];
+                    _this.oneData = [];
+                    for (var a in re) {
+                        if (a != 'id') {
+                            _this.oneData.push(re[a]);
+                        }
+                    }
+                    _this.datas.push(_this.oneData);
+                }
+            }
+        }).catch(function (error) {
+        });
+    }
+    PerceptionDetailsResult.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        var page = this.navParams.data.page + 1;
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                var url = "/api/indicator/" + _this.navParams.data.interfaceType + "/detail/"
+                    + _this.navParams.data.indicator + "?date=" + Math.round((new Date(_this.navParams.data.time)).setHours(8, 0, 0, 0))
+                    + "&page=" + page + "&size=" + 25;
+                switch (_this.navParams.data.indicator) {
+                    case 'imsi':
+                        url += "&imsi=" + _this.navParams.data.subIndic;
+                        break;
+                    case 'eci':
+                        url += "&eci=" + _this.navParams.data.subIndic;
+                        break;
+                    default:
+                        break;
+                }
+                _this.networkService.loadWithTokenByGetNoBack(url)
+                    .then(function (data) {
+                    _this.data = data['content'];
+                    //console.log(this.data);
+                    for (var _i = 0, _a = _this.data; _i < _a.length; _i++) {
+                        var re = _a[_i];
+                        _this.oneData = [];
+                        for (var a in re) {
+                            if (a != 'id') {
+                                _this.oneData.push(re[a]);
+                            }
+                        }
+                        _this.datas.push(_this.oneData);
+                    }
+                    resolve(_this.datas);
+                });
+                infiniteScroll.complete();
+            }, 500);
+        });
+    };
+    PerceptionDetailsResult.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+    };
+    return PerceptionDetailsResult;
+}());
+PerceptionDetailsResult = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-perception-details-result',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\perception-details\detailResult\perceptionDetailResult.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{interfaceType}}接口查询结果</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n  <div class="scroll-conten">\n    <table class="table  table-condensed table-striped table-display-inline">\n      <thead>\n      <tr>\n        <th *ngFor="let prop of props" style="text-align: left;height: 32px;padding-left: 10px">{{prop}}</th>\n      </tr>\n      </thead>\n      <tbody >\n      <tr *ngFor="let one of datas">\n        <td *ngFor="let on of one" style="height: 32px;padding-left: 10px">{{on}}</td>\n      </tr>\n      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n      </tbody>\n    </table>\n  </div>\n</ion-content>\n<style>\n  .table-display-inline {\n    white-space: nowrap;\n    border: 1px solid #DCE1E3;\n  }\n  table tbody tr:nth-child(odd) {\n    background-color: #D9EDF7;\n  }\n  table tbody tr:nth-child(even) {\n    background-color: #F5F5F5;\n  }\n  .scroll-conten{\n    overflow: auto;\n  }\n</style>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\perception-details\detailResult\perceptionDetailResult.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* ToastController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_5__common_networkService__["a" /* NetworkService */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Events */]])
+], PerceptionDetailsResult);
+
+//# sourceMappingURL=perceptionDetailResult.js.map
+
+/***/ }),
+
+/***/ 211:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExceptionCausePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__exception_cause_constants__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__causeResult_causeResult__ = __webpack_require__(213);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the ExceptionCausePage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var ExceptionCausePage = (function () {
+    function ExceptionCausePage(navCtrl, navParams, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.cellType = 'network';
+        this.cellInput = "";
+        this.indicatorType = "attachFault";
+        this._indicatorTypes = __WEBPACK_IMPORTED_MODULE_3__exception_cause_constants__["a" /* INDICATOR_TYPES */];
+        this.env = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */];
+        // this.date = new Date().toISOString();   //当前时间
+        this._indicatorTypes;
+        this.date = new Date('2016-08-22').toISOString(); //测试时使用的时间
+    }
+    ExceptionCausePage.prototype.doSearch = function () {
+        if (this.cellType != "network") {
+            if (this.cellInput.length < 1) {
+                this.toastCtrl.create({
+                    message: '请填写' + this.cellType.toUpperCase() + "指标",
+                    position: 'top',
+                    duration: 3000
+                }).present();
+                return;
+            }
+        }
+        var date = new Date(this.date);
+        var searchValue = {
+            "cellType": this.cellType,
+            "cellInput": this.cellInput,
+            "indicatorType": this.indicatorType,
+            "date1": {
+                "date": {
+                    "day": date.getDate(),
+                    "month": date.getMonth() + 1,
+                    "year": date.getFullYear()
+                }
+            }
+        };
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__causeResult_causeResult__["a" /* CauseResultPage */], {
+            searchValue: searchValue
+        });
+    };
+    return ExceptionCausePage;
+}());
+ExceptionCausePage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-exception-cause',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\exception-cause\exception-cause.html"*/'<!--\n  Generated template for the ExceptionCausePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>异常事件原因分析</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="cards-bg">\n\n  <ion-list>\n    <ion-card-header class="ionCardHeader">\n      查询条件\n    </ion-card-header>\n    <ion-item>\n      <ion-label style="color:black">范围</ion-label>\n      <ion-select [(ngModel)]="cellType" interface="action-sheet">\n        <ion-option value="network" selected>全网</ion-option>\n        <ion-option value="eci">ECI</ion-option>\n        <ion-option value="imsi">IMSI</ion-option>\n      </ion-select>\n    </ion-item>\n    <ion-item *ngIf="cellType!=\'network\'">\n      <ion-label>请输入{{cellType.toUpperCase()}}:</ion-label>\n      <ion-input [(ngModel)]="cellInput" ></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label style="color:black">指标选择</ion-label>\n      <ion-select end style="color:black;text-align: right;width: 60%;" [(ngModel)]="indicatorType" >\n        <ion-option *ngFor="let op of _indicatorTypes" [value]="op.value">{{op.label}}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label style="color:black">开始时间</ion-label>\n      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date"></ion-datetime>\n    </ion-item>\n  </ion-list>\n\n\n  <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>\n\n</ion-content>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\exception-cause\exception-cause.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
+], ExceptionCausePage);
+
+//# sourceMappingURL=exception-cause.js.map
+
+/***/ }),
+
+/***/ 212:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return INDICATOR_TYPES; });
+var INDICATOR_TYPES = [
+    { label: 'ATTACH失败', value: 'attachFault' },
+    { label: 'SERVICE失败', value: 'serviceFault' },
+    { label: 'Extended Service失败（for CSFB)', value: 'csfbFault' },
+    { label: '默认承载激活失败', value: 'contextActivateFault' },
+    { label: 'UE请求PDN连接失败', value: 'pdnRequestFault' },
+    { label: 'TAU失败', value: 'tauFault' },
+    { label: 'X2接口切换失败', value: 'xhoFault' },
+    { label: 'S1接口切换失败', value: 'shoFault' },
+];
+//# sourceMappingURL=exception-cause.constants.js.map
+
+/***/ }),
+
+/***/ 213:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CauseResultPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_indicatorService__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__common_networkService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__exception_cause_constants__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_http__ = __webpack_require__(21);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var CauseResultPage = (function () {
+    function CauseResultPage(navCtrl, _allIndicators, navParams, storage, networkService, app, http, events) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this._allIndicators = _allIndicators;
+        this.navParams = navParams;
+        this.storage = storage;
+        this.networkService = networkService;
+        this.app = app;
+        this.http = http;
+        this.events = events;
+        this.env = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */];
+        this.resourceUrl = 'api/exception-causes/findByTimeAndImsiAndIndicatorType';
+        this.causePath = '/assets/json/exception-cause/cause-number.json';
+        this.indicatorTypes = __WEBPACK_IMPORTED_MODULE_7__exception_cause_constants__["a" /* INDICATOR_TYPES */];
+        this.title = "";
+        this.causeMap = {
+            attachFault: 'EMM',
+            serviceFault: 'EMM',
+            csfbFault: 'EMM',
+            tauFault: 'EMM',
+            contextActivateFault: 'ESM',
+            pdnRequestFault: 'ESM',
+            xhoFault: 'S1AP',
+            shoFault: 'S1AP',
+        };
+        this.http.get(this.causePath).subscribe(function (data) {
+            _this.causeNumber = data.json();
+            _this.searchValue = _this.navParams.get("searchValue");
+            var url = _this.env.host + "/" + _this.resourceUrl;
+            _this.networkService.loadWithTokenByGETGivenHeader(url, _this.searchValue)
+                .then(function (data) {
+                _this.data = data;
+                var chartData = _this.buildChartData(_this.causeNumber[_this.causeMap[_this.searchValue.indicatorType]], data);
+                // console.log(chartData);
+                _this.createEchartsOption(_this.searchValue, chartData);
+            })
+                .catch(function (error) { });
+        }, function (error) { return console.error('An error occurred', error); });
+    }
+    CauseResultPage.prototype.createEchartsOption = function (searchValue, chartData) {
+        var _this = this;
+        var legend = [];
+        for (var _i = 0, chartData_1 = chartData; _i < chartData_1.length; _i++) {
+            var d = chartData_1[_i];
+            legend.push(d.name);
+        }
+        this.title = this.getTitle(searchValue.indicatorType) + "\u5F02\u5E38\u539F\u56E0";
+        var ctx = this.container.nativeElement;
+        this.chart = echarts.init(ctx);
+        window.onresize = this.chart.resize;
+        this.chart.setOption(this.getOptions(legend, chartData));
+        var lastHeight = window.outerHeight;
+        setInterval(function () {
+            var newHeight = window.outerHeight;
+            if (lastHeight != newHeight) {
+                lastHeight = newHeight;
+                if (window.outerWidth > window.outerHeight) {
+                    _this.chart.setOption(_this.getOptions(legend, chartData));
+                }
+                else {
+                    _this.chart.setOption(_this.getOptions(legend, chartData));
+                }
+            }
+        }, 100);
+    };
+    CauseResultPage.prototype.getOptions = function (legend, chartData) {
+        var chartOptions = {
+            tooltip: {
+                trigger: 'item',
+                confine: true,
+                formatter: '{b} <br/> {c} ({d}%)',
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {},
+                    restore: {},
+                },
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: legend,
+            },
+            series: [
+                {
+                    name: this.title,
+                    type: 'pie',
+                    radius: '40%',
+                    center: [this.marginLeft(), this.marginTop(chartData)],
+                    data: chartData,
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true,
+                                confine: true,
+                                //	                            position:'inside',
+                                formatter: ' {c} ({d}%)'
+                            }
+                        },
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)',
+                        },
+                    },
+                },
+            ],
+        };
+        return chartOptions;
+    };
+    CauseResultPage.prototype.getTitle = function (indicatorType) {
+        var indicatorTypeName = '';
+        for (var _i = 0, _a = this.indicatorTypes; _i < _a.length; _i++) {
+            var i = _a[_i];
+            if (i.value === indicatorType) {
+                indicatorTypeName = i.label;
+            }
+        }
+        return indicatorTypeName;
+    };
+    CauseResultPage.prototype.marginTop = function (chartData) {
+        var length = chartData.length;
+        if (length > 5) {
+            var num = 50 + (length - 5) * 5;
+            if (num > 80) {
+                num = 80;
+            }
+            return num + "%";
+        }
+        else {
+            return "50%";
+        }
+    };
+    CauseResultPage.prototype.marginLeft = function () {
+        if (window.outerWidth > window.outerHeight) {
+            return "70%";
+        }
+        else {
+            return "50%";
+        }
+        // if(length>5){
+        //   return (50+(length-5)*5)+"%";
+        // }else{
+        //   return "50%";
+        // }
+    };
+    CauseResultPage.prototype.buildChartData = function (causeNumber, res) {
+        var result = [];
+        for (var _i = 0, res_1 = res; _i < res_1.length; _i++) {
+            var d = res_1[_i];
+            result.push({
+                name: "(" + d.cause + ")" + causeNumber[d.cause.toString()],
+                value: d.causeCount,
+            });
+        }
+        return result;
+    };
+    CauseResultPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
+    };
+    return CauseResultPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('container'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], CauseResultPage.prototype, "container", void 0);
+CauseResultPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-cause-result',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\exception-cause\causeResult\causeResult.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{title}}</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #container class="div-charts"></div>\n</ion-content>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\exception-cause\causeResult\causeResult.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_3__common_indicatorService__["a" /* IndicatorsService */]]
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_3__common_indicatorService__["a" /* IndicatorsService */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_6__common_networkService__["a" /* NetworkService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */],
+        __WEBPACK_IMPORTED_MODULE_8__angular_http__["c" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */]])
+], CauseResultPage);
+
+//# sourceMappingURL=causeResult.js.map
+
+/***/ }),
+
+/***/ 214:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrackPresentPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__trackResult_trackResult__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var TrackPresentPage = (function () {
+    function TrackPresentPage(navCtrl, alertCtrl, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
+        this.timeOptions = [];
+        this.indicatorOptions = [
+            { value: '1', label: 'RRC连接建立' },
+            { value: '3', label: 'RRC连接重配' },
+            { value: '4', label: 'RRC连接重建' },
+            { value: '6', label: '小区内部切换' },
+            { value: '7', label: '基站内切换' },
+            { value: '8', label: '基站间切换' },
+            { value: '10', label: '切出至其他RAT' },
+        ];
+        // this.date = new Date().toISOString();   //当前时间
+        this.date = new Date('2017-07-18').toISOString(); //测试时使用的时间
+        this.imsi = "460000891444152";
+        this.indicatorId = 1;
+        this.beginTime = 0;
+        this.endTime = 23;
+    }
+    TrackPresentPage.prototype.ngOnInit = function () {
+        for (var i = 0; i < 24; i++) {
+            this.timeOptions.push({ value: i.toString(), label: i + " " });
+        }
+    };
+    TrackPresentPage.prototype.doSearch = function () {
+        var parameters = {
+            imsi: this.imsi,
+            indicatorId: this.indicatorId,
+            date: this.date,
+            beginTime: this.beginTime,
+            endTime: this.endTime
+        };
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__trackResult_trackResult__["a" /* TrackResultPage */], {
+            params: parameters
+        });
+    };
+    TrackPresentPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
+    };
+    return TrackPresentPage;
+}());
+TrackPresentPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-track-present',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\track-present\trackPresent.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>用户指标轨迹呈现</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="cards-bg">\n\n    <ion-list>\n      <ion-card-header class="ionCardHeader">\n        查询条件\n      </ion-card-header>\n      <ion-item>\n        <ion-label>请输入IMSI:</ion-label>\n        <ion-input [(ngModel)]="imsi" ></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label style="color:black">指标</ion-label>\n        <ion-select [(ngModel)]="indicatorId" interface="action-sheet">\n          <ion-option *ngFor="let op of indicatorOptions" [value]="op.value">{{op.label}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label style="color:black">日期</ion-label>\n        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date"></ion-datetime>\n      </ion-item>\n      <ion-item>\n        <ion-label style="color:black">起始小时</ion-label>\n        <ion-select [(ngModel)]="beginTime" (ionChange)="checkTime(\'beginTime\')">\n          <ion-option *ngFor="let op of timeOptions" [value]="op.value">{{op.label}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label style="color:black">结束小时</ion-label>\n        <ion-select [(ngModel)]="endTime" (ionChange)="checkTime(\'endTime\')">\n          <ion-option *ngFor="let op of timeOptions" [value]="op.value">{{op.label}}</ion-option>\n        </ion-select>\n      </ion-item>\n    </ion-list>\n\n\n  <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>\n\n</ion-content>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\track-present\trackPresent.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
+], TrackPresentPage);
+
+//# sourceMappingURL=trackPresent.js.map
+
+/***/ }),
+
+/***/ 215:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrackResultPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_networkService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_openlayers__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_openlayers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_openlayers__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__layers_control__ = __webpack_require__(293);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var TrackResultPage = TrackResultPage_1 = (function () {
+    function TrackResultPage(navCtrl, navParams, networkService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.networkService = networkService;
+    }
+    TrackResultPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.mapInit();
+        var params = this.navParams.get("params");
+        var beginTime = TrackResultPage_1.getTimestamp2(new Date(params.date), params.beginTime);
+        var endTime = TrackResultPage_1.getTimestamp2(new Date(params.date), params.endTime);
+        var uri = "/api/tracks/findByTimeAndImsiAndIndicatorType?beginTime=" + beginTime + "&endTime=" + endTime + "&imsi=" + params.imsi + "&indicatorType=" + params.indicatorId;
+        this.networkService.loadWithTokenByGET(uri)
+            .then(function (data) {
+            var da = _this.combind(data);
+            // this.layer.getSource().clear();
+            _this.setLine(da);
+            _this.setPoints(da);
+            _this.map.getView().fit(_this.layer.getSource().getExtent(), { size: _this.map.getSize() });
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+    };
+    TrackResultPage.prototype.combind = function (data) {
+        // console.log(data);
+        var result = new Map();
+        data.map(function (v) {
+            if (result.get(v.cell)) {
+                result.get(v.cell).push(v);
+            }
+            else {
+                result.set(v.cell, [v]);
+            }
+        });
+        return result;
+    };
+    TrackResultPage.prototype.mapInit = function () {
+        this.layer = new __WEBPACK_IMPORTED_MODULE_5_openlayers__["layer"].Vector({
+            title: '指标轨迹层',
+            source: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["source"].Vector(),
+        });
+        var project = new __WEBPACK_IMPORTED_MODULE_5_openlayers__["proj"].Projection({
+            code: 'EPSG:4326',
+            units: 'degrees',
+            axisOrientation: 'neu',
+            global: true,
+        });
+        this.map = new __WEBPACK_IMPORTED_MODULE_5_openlayers__["Map"]({
+            layers: [
+                new __WEBPACK_IMPORTED_MODULE_5_openlayers__["layer"].Group({
+                    title: '基础图层',
+                    layers: [
+                        new __WEBPACK_IMPORTED_MODULE_5_openlayers__["layer"].Tile({ source: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["source"].OSM() }),
+                    ],
+                }),
+                new __WEBPACK_IMPORTED_MODULE_5_openlayers__["layer"].Group({
+                    title: '数据图层',
+                    layers: [
+                        this.layer,
+                    ],
+                }),
+            ],
+            view: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["View"]({
+                projection: project,
+            }),
+        });
+        this.map.addControl(new __WEBPACK_IMPORTED_MODULE_6__layers_control__["a" /* LayersControl */]({
+            tipLabel: 'label',
+        }));
+        this.map.setTarget(this.mapDiv.nativeElement);
+        this.map.getView().setCenter([113.7607, 23.0361]); // [114, 24]
+        this.map.getView().setZoom(12);
+    };
+    TrackResultPage.prototype.setLine = function (data) {
+        var coors = [];
+        data.forEach(function (v) {
+            coors.push([v[0].lon, v[0].lat]);
+        });
+        // console.log(coors);
+        var line = new __WEBPACK_IMPORTED_MODULE_5_openlayers__["geom"].LineString(coors);
+        var feature = new __WEBPACK_IMPORTED_MODULE_5_openlayers__["Feature"]({
+            geometry: line,
+        });
+        feature.setStyle(new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Style({
+            stroke: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Stroke({
+                color: 'green',
+                width: 2,
+            }),
+        }));
+        this.layer.getSource().addFeature(feature);
+    };
+    TrackResultPage.prototype.setPoints = function (data) {
+        var _this = this;
+        data.forEach(function (v) {
+            var success = 0;
+            v.map(function (o) {
+                if (o.status === 0) {
+                    success++;
+                }
+            });
+            var anchor = new __WEBPACK_IMPORTED_MODULE_5_openlayers__["Feature"]({
+                geometry: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["geom"].Point([v[0].lon, v[0].lat]),
+            });
+            // 设置文字style
+            anchor.setStyle(new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Style({
+                image: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Circle({
+                    radius: 4,
+                    fill: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Fill({ color: 'rgba(255, 0, 0, 0.1)' }),
+                    stroke: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Stroke({ color: 'red', width: 1 }),
+                }),
+                text: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Text({
+                    // font: '10px sans-serif',
+                    stroke: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Stroke({ color: '#fff', width: 2 }),
+                    text: "\u6210\u529F\u6B21\u6570:" + success + " \u603B\u6B21\u6570:" + v.length,
+                    offsetY: -10,
+                    fill: new __WEBPACK_IMPORTED_MODULE_5_openlayers__["style"].Fill({ color: 'black' }),
+                }),
+            }));
+            _this.layer.getSource().addFeature(anchor);
+        });
+    };
+    TrackResultPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+    };
+    TrackResultPage.getTimestamp2 = function (date, hour) {
+        date.setHours(date.getHours() + hour, 0, 0, 0);
+        return date.setMonth(date.getMonth() + 1);
+    };
+    return TrackResultPage;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('map'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], TrackResultPage.prototype, "mapDiv", void 0);
+TrackResultPage = TrackResultPage_1 = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-track-result',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\track-present\trackResult\trackResult.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>轨迹呈现结果</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div #map id="myMap" style="width: 100%; height: 100%;"></div>\n</ion-content>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\track-present\trackResult\trackResult.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_4__common_networkService__["a" /* NetworkService */]])
+], TrackResultPage);
+
+var TrackResultPage_1;
+//# sourceMappingURL=trackResult.js.map
+
+/***/ }),
+
+/***/ 217:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventRecallPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__recallResult_recallResult__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file_transfer__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__common_indicatorService__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_file_saver__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_file_saver___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_file_saver__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__environments_environment__ = __webpack_require__(18);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Created by yangch on 2017/8/7.
+ */
+var EventRecallPage = (function () {
+    function EventRecallPage(navCtrl, storage, http, loadingCtrl, alertCtrl, file, fileTransfer, platform) {
+        this.navCtrl = navCtrl;
+        this.storage = storage;
+        this.http = http;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.file = file;
+        this.fileTransfer = fileTransfer;
+        this.platform = platform;
+        this.beginTime = [];
+        this.endTime = [];
+        this.beg = '0';
+        this.en = '23';
+        this.env = __WEBPACK_IMPORTED_MODULE_10__environments_environment__["a" /* environment */];
+        for (var i = 0; i < 24; i++) {
+            this.beginTime.push(i);
+            this.endTime.push(i);
+        }
+        this.myDate = new Date('2017-07-17').toISOString();
+    }
+    EventRecallPage.prototype.checkTime = function (source) {
+        //console.log(source);
+        if (this.beg > this.en) {
+            if (source == "en") {
+                this.beg = this.en;
+            }
+            else if (source == 'beg') {
+                this.en = this.beg;
+            }
+        }
+    };
+    EventRecallPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+    };
+    EventRecallPage.prototype.doSearch = function () {
+        var date = new Date(this.myDate);
+        var dateMillis = (new Date(date.getFullYear(), date.getMonth(), date.getDate())).setHours(0, 0, 0, 0);
+        var begin = dateMillis + parseInt(this.beg) * 60 * 60 * 1000;
+        var end = dateMillis + parseInt(this.en) * 60 * 60 * 1000;
+        var imsi = this.imsi;
+        if (imsi == null || imsi.trim() == '') {
+            var alert_1 = this.alertCtrl.create({
+                title: 'IMSI为必填项',
+                buttons: ['确定']
+            });
+            alert_1.present();
+            return false;
+        }
+        var url = "/api/signallings/findByTimeAndImsi?beginTime=" + begin + "&endTime=" + end
+            + "&imsi=" + imsi + "&page=" + 0 + "&size=" + 25;
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__recallResult_recallResult__["a" /* RecallResultPage */], {
+            url: url,
+            page: 0,
+            begin: begin,
+            end: end,
+            imsi: imsi,
+        });
+    };
+    EventRecallPage.prototype.doExport = function () {
+        var _this = this;
+        var date = new Date(this.myDate);
+        var dateMillis = (new Date(date.getFullYear(), date.getMonth(), date.getDate())).setHours(0, 0, 0, 0);
+        var begin = dateMillis + parseInt(this.beg) * 60 * 60 * 1000;
+        var end = dateMillis + parseInt(this.en) * 60 * 60 * 1000;
+        var imsi = this.imsi;
+        if (imsi == null || imsi.trim() == '') {
+            var alert_2 = this.alertCtrl.create({
+                title: 'IMSI为必填项',
+                buttons: ['确定']
+            });
+            alert_2.present();
+            return false;
+        }
+        var url = "/api/signallings/mobile/downloadByTimeAndImsi?beginTime=" + begin + "&endTime=" + end
+            + "&imsi=" + imsi;
+        this.storage.get("id_token")
+            .then(function (id_token) {
+            var loading = _this.loadingCtrl.create({
+                content: '请稍候...',
+                enableBackdropDismiss: true
+            });
+            loading.present();
+            var headers = new __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* Headers */]({ 'Authorization': 'Bearer ' + id_token });
+            var options = new __WEBPACK_IMPORTED_MODULE_5__angular_http__["e" /* RequestOptions */]({
+                headers: headers,
+                responseType: __WEBPACK_IMPORTED_MODULE_5__angular_http__["f" /* ResponseContentType */].Blob
+            });
+            if (_this.platform.is('mobileweb')) {
+                location.href = _this.env.host + url + '&id_token=' + id_token;
+                loading.dismiss();
+            }
+            else if (_this.platform.is('android')) {
+                var transferObject = _this.fileTransfer.create();
+                transferObject.download(_this.env.host + url, _this.file.externalRootDirectory + '/用户信令事件回溯提取结果.xlsx', false, options)
+                    .then(function (entry) {
+                    loading.dismiss();
+                    var alert = _this.alertCtrl.create({
+                        title: '提取成功，文件位置在SD卡根目录下',
+                        buttons: ['确定']
+                    });
+                    alert.present();
+                }, function (error) {
+                    loading.dismiss();
+                    var alert2 = _this.alertCtrl.create({
+                        title: '提取失败，请检查应用是否开启存储权限！',
+                        buttons: ['确定']
+                    });
+                    alert2.present();
+                });
+                loading.present();
+            }
+            else {
+                _this.http.get(_this.env.host + url, options)
+                    .subscribe(function (res) {
+                    Object(__WEBPACK_IMPORTED_MODULE_8_file_saver__["saveAs"])(new Blob([res.blob()], { type: 'application/x.ms-excel' }), '用户信令事件回溯提取结果.xlsx');
+                    loading.dismiss();
+                });
+            }
+        });
+    };
+    return EventRecallPage;
+}());
+EventRecallPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-event-recall',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\event-recall\eventRecall.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>用户信令事件回溯</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content class="cards-bg">\n  <ion-list>\n    <ion-card-header class="ionCardHeader">\n      查询条件\n    </ion-card-header>\n\n    <ion-item>\n      <ion-label style="color:black">日期</ion-label>\n      <ion-datetime displayFormat="YYYY-MM-DD" placeholder="选择日期" [(ngModel)]="myDate"></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label style="color:black">开始时间</ion-label>\n      <ion-select  style="color:black" [(ngModel)]="beg" (ionChange)="checkTime(\'beg\')">\n        <div *ngFor="let begin of beginTime;let i = index">\n          <ion-option *ngIf="i == 0" selected>{{begin}}</ion-option>\n          <ion-option *ngIf="i != 0">{{begin}}</ion-option>\n        </div>\n      </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label style="color:black">结束时间</ion-label>\n      <ion-select style="color:black" [(ngModel)]="en" (ionChange)="checkTime(\'en\')">\n        <div *ngFor="let end of endTime;let i = index">\n          <ion-option *ngIf="i !=23">{{end}}</ion-option>\n          <ion-option *ngIf="i ==23" selected>{{end}}</ion-option>\n        </div>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label style="color:black">IMSI</ion-label>\n      <ion-input value="460000340879716" placeholder="输入IMSI" [(ngModel)]="imsi"></ion-input>\n    </ion-item>\n\n\n  </ion-list>\n\n\n  <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>\n  <button ion-button color="warning" class="button-work" (click)="doExport()">提取</button>\n</ion-content>\n<style>\n  .cards-bg{\n    background: #efeff4;\n  }\n  .ionCardHeader{\n    color: #00f;\n  }\n  .button-work{\n    border-radius: 2px;\n    width: 100%;\n  }\n  .ion-option{\n    color: #8e8e93;\n  }\n\n  input.text-input{\n    text-align:right\n  }\n\n</style>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\event-recall\eventRecall.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_7__common_indicatorService__["a" /* IndicatorsService */], __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_file_transfer__["b" /* FileTransferObject */]]
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__["a" /* File */],
+        __WEBPACK_IMPORTED_MODULE_6__ionic_native_file_transfer__["a" /* FileTransfer */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */]])
+], EventRecallPage);
+
+//# sourceMappingURL=eventRecall.js.map
+
+/***/ }),
+
+/***/ 218:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecallResultPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_networkService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__common_indicatorService__ = __webpack_require__(25);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Created by yangch on 2017/8/8.
+ */
+var RecallResultPage = (function () {
+    function RecallResultPage(navCtrl, navParams, alertCtrl, networkService, indicatorService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
+        this.networkService = networkService;
+        this.indicatorService = indicatorService;
+        this.props = [];
+        this.datas = [];
+        this.oneData = [];
+        this.networkService.loadWithTokenByGET(this.navParams.data.url).then(function (data) {
+            _this.data = data;
+            console.log(_this.data);
+            if (_this.data == null) {
+                var alert_1 = _this.alertCtrl.create({
+                    title: '抱歉，无查询结果！',
+                    buttons: ['确定']
+                });
+                alert_1.present();
+            }
+            else {
+                //console.log(this.data);
+                for (var _i = 0, _a = _this.data; _i < _a.length; _i++) {
+                    var re = _a[_i];
+                    if (_this.data.indexOf(re) == 0) {
+                        for (var r in re) {
+                            if (r != 'id') {
+                                _this.props.push(_this.indicatorService.getIndicatorNamebyID('signaling', r));
+                            }
+                        }
+                    }
+                }
+                for (var _b = 0, _c = _this.data; _b < _c.length; _b++) {
+                    var re = _c[_b];
+                    _this.oneData = [];
+                    for (var a in re) {
+                        if (a != 'id') {
+                            _this.oneData.push(re[a]);
+                        }
+                    }
+                    _this.datas.push(_this.oneData);
+                }
+            }
+        });
+    }
+    RecallResultPage.prototype.toIndex = function () {
+        this.navCtrl.popToRoot(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */]);
+    };
+    RecallResultPage.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        var page = this.navParams.data.page + 1;
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                var url = "/api/signallings/findByTimeAndImsi?beginTime=" + _this.navParams.data.begin + "&endTime=" + _this.navParams.data.end
+                    + "&imsi=" + _this.navParams.data.imsi + "&page=" + page + "&size=" + 25;
+                _this.networkService.loadWithTokenByGetNoBack(url)
+                    .then(function (data) {
+                    _this.data = data;
+                    //console.log(this.data);
+                    for (var _i = 0, _a = _this.data; _i < _a.length; _i++) {
+                        var re = _a[_i];
+                        _this.oneData = [];
+                        for (var a in re) {
+                            if (a != 'id') {
+                                _this.oneData.push(re[a]);
+                            }
+                        }
+                        _this.datas.push(_this.oneData);
+                    }
+                    resolve(_this.datas);
+                });
+                infiniteScroll.complete();
+            }, 500);
+        });
+    };
+    return RecallResultPage;
+}());
+RecallResultPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-recall-result',template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\pages\event-recall\recallResult\recallResult.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>查询结果</ion-title>\n    <ion-buttons end (click)="toIndex()">\n      <button ion-button icon-only>\n        <ion-icon name="md-home">\n        </ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n  <div class="scroll-conten">\n    <table class="table  table-condensed table-striped table-display-inline">\n      <thead>\n      <tr>\n        <th *ngFor="let prop of props" style="text-align: left;height: 32px;padding-left: 10px">{{prop}}</th>\n      </tr>\n      </thead>\n      <tbody >\n      <tr *ngFor="let one of datas">\n        <td *ngFor="let on of one" style="height: 32px;padding-left: 10px">{{on}}</td>\n      </tr>\n      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n        <ion-infinite-scroll-content></ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n      </tbody>\n    </table>\n  </div>\n</ion-content>\n<style>\n  .table-display-inline {\n    white-space: nowrap;\n    border: 1px solid #DCE1E3;\n  }\n  table tbody tr:nth-child(odd) {\n    background-color: #D9EDF7;\n  }\n  table tbody tr:nth-child(even) {\n    background-color: #F5F5F5;\n  }\n  .scroll-conten{\n    overflow: auto;\n  }\n</style>\n\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\pages\event-recall\recallResult\recallResult.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_3__common_networkService__["a" /* NetworkService */],
+        __WEBPACK_IMPORTED_MODULE_4__common_indicatorService__["a" /* IndicatorsService */]])
+], RecallResultPage);
+
+//# sourceMappingURL=recallResult.js.map
+
+/***/ }),
+
+/***/ 219:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(238);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 238:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_perception_analysis_perceptionAnalysis__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_perception_trend_perceptionTrend__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_forms__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_common_indicatorService__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_perception_analysis_analysisChart_analysisChart__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_perception_trend_trendResult_trendResult__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_perception_details_perceptionDetails__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_perception_details_detailResult_perceptionDetailResult__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_login_login__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_common_networkService__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_exception_cause_exception_cause__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_exception_cause_causeResult_causeResult__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_track_present_trackPresent__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_track_present_trackResult_trackResult__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_event_recall_eventRecall__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_event_recall_recallResult_recallResult__ = __webpack_require__(218);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AppModule = (function () {
+    function AppModule() {
+    }
+    return AppModule;
+}());
+AppModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_7__pages_perception_analysis_perceptionAnalysis__["a" /* PerceptionAnalysisPage */],
+            __WEBPACK_IMPORTED_MODULE_8__pages_perception_trend_perceptionTrend__["a" /* PerceptionTrendPage */],
+            __WEBPACK_IMPORTED_MODULE_12__pages_perception_analysis_analysisChart_analysisChart__["a" /* PerceptionAnalysisChart */],
+            __WEBPACK_IMPORTED_MODULE_13__pages_perception_trend_trendResult_trendResult__["a" /* TrendResultPage */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_perception_details_perceptionDetails__["a" /* PerceptionDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_perception_details_detailResult_perceptionDetailResult__["a" /* PerceptionDetailsResult */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_exception_cause_exception_cause__["a" /* ExceptionCausePage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_exception_cause_causeResult_causeResult__["a" /* CauseResultPage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_track_present_trackPresent__["a" /* TrackPresentPage */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_track_present_trackResult_trackResult__["a" /* TrackResultPage */],
+            __WEBPACK_IMPORTED_MODULE_23__pages_event_recall_eventRecall__["a" /* EventRecallPage */],
+            __WEBPACK_IMPORTED_MODULE_24__pages_event_recall_recallResult_recallResult__["a" /* RecallResultPage */]
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_9__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_11__angular_http__["d" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */]),
+            __WEBPACK_IMPORTED_MODULE_17__ionic_storage__["a" /* IonicStorageModule */].forRoot()
+        ],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicApp */]],
+        entryComponents: [
+            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_7__pages_perception_analysis_perceptionAnalysis__["a" /* PerceptionAnalysisPage */],
+            __WEBPACK_IMPORTED_MODULE_8__pages_perception_trend_perceptionTrend__["a" /* PerceptionTrendPage */],
+            __WEBPACK_IMPORTED_MODULE_12__pages_perception_analysis_analysisChart_analysisChart__["a" /* PerceptionAnalysisChart */],
+            __WEBPACK_IMPORTED_MODULE_13__pages_perception_trend_trendResult_trendResult__["a" /* TrendResultPage */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_perception_details_perceptionDetails__["a" /* PerceptionDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_perception_details_detailResult_perceptionDetailResult__["a" /* PerceptionDetailsResult */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_exception_cause_exception_cause__["a" /* ExceptionCausePage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_exception_cause_causeResult_causeResult__["a" /* CauseResultPage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_track_present_trackPresent__["a" /* TrackPresentPage */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_track_present_trackResult_trackResult__["a" /* TrackResultPage */],
+            __WEBPACK_IMPORTED_MODULE_23__pages_event_recall_eventRecall__["a" /* EventRecallPage */],
+            __WEBPACK_IMPORTED_MODULE_24__pages_event_recall_recallResult_recallResult__["a" /* RecallResultPage */]
+        ],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_common_indicatorService__["a" /* IndicatorsService */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_common_networkService__["a" /* NetworkService */],
+            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicErrorHandler */] }
+        ]
+    })
+], AppModule);
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 25:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IndicatorsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var allIndicator = {
+    uu: {
+        indicators: [
+            { id: 'rrcConnectSuccessRate', name: 'RRC连接建立成功率', params: 'bar' },
+            { id: 'rrcConnectRequest', name: 'RRC连接建立请求次数', params: 'line' },
+            { id: 'rrcConnectSuccess', name: 'RRC连接建立成功次数', params: 'line' },
+            { id: 'smActivateSuccessRate', name: '安全模式激活成功率', params: 'bar' },
+            { id: 'smActivateRequest', name: '安全模式激活请求次数', params: 'line' },
+            { id: 'smActivateSuccess', name: '安全模式激活成功次数', params: 'line' },
+            { id: 'rrcReconfigSuccessRate', name: 'RRC连接重配成功率', params: 'bar' },
+            { id: 'rrcReconfigRequest', name: 'RRC连接重配请求次数', params: 'line' },
+            { id: 'rrcReconfigSuccess', name: 'RRC连接重配成功次数', params: 'line' },
+            { id: 'rrcReconstructionSuccessRate', name: 'RRC连接重建成功率', params: 'bar' },
+            { id: 'rrcReconstructionRequest', name: 'RRC连接重建请求次数', params: 'line' },
+            { id: 'rrcReconstructionSuccess', name: 'RRC连接重建成功次数', params: 'line' },
+            { id: 'rrcReleaseSuccessRate', name: 'RRC连接释放成功率', params: 'bar' },
+            { id: 'rrcReleaseRequest', name: 'RRC连接释放请求次数', params: 'line' },
+            { id: 'rrcReleaseSuccess', name: 'RRC连接释放成功次数', params: 'line' },
+            { id: 'cellInterHandoverSuccessRate', name: '小区内部切换成功率', params: 'bar' },
+            { id: 'cellInterHandoverRequest', name: '小区内部切换请求次数', params: 'line' },
+            { id: 'cellInterHandoverSuccess', name: '小区内部切换成功次数', params: 'line' },
+            { id: 'stationInterHandoverSuccessRate', name: '基站内切换成功率', params: 'bar' },
+            { id: 'stationInterHandoverRequest', name: '基站内切换请求次数', params: 'line' },
+            { id: 'stationInterHandoverSuccess', name: '基站内切换成功次数', params: 'line' },
+            { id: 'stationIntraHandoverSuccessRate', name: '基站间切换成功率', params: 'bar' },
+            { id: 'stationIntraHandoverRequest', name: '基站间切换请求次数', params: 'line' },
+            { id: 'stationIntraHandoverSuccess', name: '基站间切换成功次数', params: 'line' },
+            { id: 'ratInSuccessRate', name: '从其它RAT切入成功率', params: 'bar' },
+            { id: 'ratInRequest', name: '从其它RAT切入请求次数', params: 'line' },
+            { id: 'ratInSuccess', name: '从其它RAT切入成功次数', params: 'line' },
+            { id: 'ratOutSuccessRate', name: '切出至其他RAT成功率', params: 'bar' },
+            { id: 'ratOutRequest', name: '切出至其他RAT请求次数', params: 'line' },
+            { id: 'ratOutSuccess', name: '切出至其他RAT成功次数', params: 'line' },
+            { id: 'psPagingSuccessRate', name: 'PS寻呼成功率', params: 'bar' },
+            { id: 'psPagingRequest', name: 'PS寻呼请求次数', params: 'line' },
+            { id: 'psPagingSuccess', name: 'PS寻呼成功次数', params: 'line' },
+            { id: 'csPagingSuccessRate', name: 'CS寻呼成功率', params: 'bar' },
+            { id: 'csPagingRequest', name: 'CS寻呼请求次数', params: 'line' },
+            { id: 'csPagingSuccess', name: 'CS寻呼成功次数', params: 'line' },
+            { id: 'othereventSuccessRate', name: '其它事件成功率', params: 'bar' },
+            { id: 'othereventRequest', name: '其它事件请求次数', params: 'line' },
+            { id: 'othereventSuccess', name: '其它事件成功次数', params: 'line' },
+        ],
+    },
+    mr: {
+        indicators: [
+            { id: 'rsrpAvg', name: '平均电平统计', params: 'line' },
+            { id: 'rsrqAvg', name: '平均RSRQ统计', params: 'line' },
+            { id: 'ulsinrAvg', name: '平均ULSINR统计', params: 'line' },
+            { id: 'phrAvg', name: '平均PHR统计', params: 'line' },
+            { id: 'erpAvg', name: '平均eNB Received Power统计', params: 'line' },
+            { id: 'taAvg', name: '平均TA统计', params: 'line' },
+            { id: 'overlapAvg', name: '重叠覆盖度', params: 'line' },
+        ],
+    },
+    x2: {
+        indicators: [
+            { id: 'switchSuccessRate', name: 'X2切换成功率', params: 'bar' },
+            { id: 'switchRequest', name: 'X2切换请求次数', params: 'line' },
+            { id: 'switchSuccess', name: 'X2切换成功次数', params: 'line' },
+        ],
+    },
+    brd31: {
+        indicators: [
+            { id: 'flowSum', name: '全业务访问总量', params: 'line' },
+            { id: 'rateFlowRate', name: '速率要求类业务访问量占比', params: 'line' },
+            { id: 'rateFlowSuccessRate', name: '速率要求类业务访问成功率', params: 'bar' },
+            { id: 'rateFlowSuccessDegradationRate', name: '速率要求类业务访问成功率劣化比例', params: 'bar' },
+            { id: 'rateFlow', name: '速率要求类业务访问量', params: 'line' },
+            { id: 'rateFlowRequest', name: '速率要求类业务请求次数', params: 'line' },
+            { id: 'rateFlowBpSpeed', name: '速率要求类业务大包下载速率（500KB以上文件）(kb/s)', params: 'line' },
+            { id: 'rateFlowBpDegradationRate', name: '速率要求类业务大包下载速率劣化比例', params: 'bar' },
+            { id: 'rateFlowSpDelay', name: '速率要求类业务小包时延（30KB以下文件）(ms)', params: 'line' },
+            { id: 'rateFlowSpDelayDegradationRate', name: '速率要求类业务小包时延劣化比例', params: 'bar' },
+            { id: 'delayFlowRate', name: '时延要求类业务访问量占比', params: 'bar' },
+            { id: 'delayFlowSuccessRate', name: '时延要求类业务访问成功率', params: 'bar' },
+            { id: 'delayFlowSuccessDegradationRate', name: '时延要求类业务访问成功率劣化比例', params: 'bar' },
+            { id: 'delayFlow', name: '时延要求类业务访问量', params: 'line' },
+            { id: 'delayFlowRequest', name: '时延要求类业务请求次数', params: 'line' },
+            { id: 'delayFlowBpSpeed', name: '时延要求类业务大包下载速率（500KB以上文件）(kb/s)', params: 'line' },
+            { id: 'delayFlowBpSpeedRated', name: '时延要求类业务大包下载速率劣化比例', params: 'bar' },
+            { id: 'delayFlowSpDelay', name: '时延要求类业务小包时延（30KB以下文件）(ms)', params: 'line' },
+            { id: 'delayFlowSpDelayRated', name: '时延要求类业务小包时延劣化比例', params: 'bar' },
+            { id: 'refreshFlowRate', name: '普通刷新类业务访问量占比', params: 'bar' },
+            { id: 'refreshFlowSuccessRate', name: '普通刷新类业务访问成功率', params: 'bar' },
+            { id: 'refreshFlowSuccessRated', name: '普通刷新类业务访问成功率劣化比例', params: 'bar' },
+            { id: 'refreshFlow', name: '普通刷新类业务访问量', params: 'line' },
+            { id: 'refreshFlowRequest', name: '普通刷新类业务页面请求次数', params: 'line' },
+            { id: 'refreshFlowBpSpeed', name: '普通刷新类业务大包下载速率（500KB以上文件）(kb/s)', params: 'line' },
+            { id: 'refreshFlowBpSpeedRated', name: '普通刷新类业务大包下载速率劣化比例', params: 'bar' },
+            { id: 'refreshFlowSpDelay', name: '普通刷新类业务小包时延（30KB以下文件）(ms)', params: 'line' },
+            { id: 'refreshFlowSpDelayRated', name: '普通刷新类业务小包时延劣化比例', params: 'bar' },
+            { id: 'instantFlow', name: '即时通信访问量占比', params: 'line' },
+            { id: 'instantFlowSuccessRate', name: '即时通信访问成功率', params: 'bar' },
+            { id: 'instantFlowSuccessRated', name: '即时通信访问成功率劣化比例', params: 'bar' },
+            { id: 'instantFlow', name: '即时通信访问量', params: 'line' },
+            { id: 'instantFlowRequest', name: '即时通信请求次数', params: 'line' },
+            { id: 'instantFlowBpSpeed', name: '即时通信大包下载速率（500KB以上文件）(kb/s)', params: 'line' },
+            { id: 'instantFlowBpSpeedRated', name: '即时通信大包下载速率劣化比例', params: 'bar' },
+            { id: 'instantFlowSpDelay', name: '即时通信小包时延（30KB以下文件）(ms)', params: 'line' },
+            { id: 'instantFlowSpDelayRated', name: '即时通信小包时延劣化比例', params: 'bar' },
+        ],
+    },
+    brd39: {
+        indicators: [
+            { id: 'attachSuccessRate', name: 'Attach成功率', params: 'bar' },
+            { id: 'attachRequest', name: 'Attach请求次数', params: 'line' },
+            { id: 'attachSuccess', name: 'Attach成功次数', params: 'line' },
+            { id: 'serviceSuccessRate', name: 'SERVICE成功率', params: 'bar' },
+            { id: 'serviceRequest', name: 'SERVICE请求次数', params: 'line' },
+            { id: 'serviceRequestSuccess', name: 'SERVICE请求成功次数', params: 'line' },
+            { id: 'contextdefSetupSuccessRate ', name: '默认承载建立成功率', params: 'bar' },
+            { id: 'contextdefActivateRequest', name: '默认承载激活请求次数', params: 'line' },
+            { id: 'contextdefActivateSuccess', name: '默认承载激活成功次数', params: 'line' },
+            { id: 'pdnRequestSuccessRate', name: 'UE请求PDN连接成功率', params: 'bar' },
+            { id: 'pdnRequest', name: 'UE请求PDN连接请求次数', params: 'line' },
+            { id: 'pdnRequestSuccess', name: 'UE请求PDN连接成功次数', params: 'line' },
+            { id: 'tauSuccessRate', name: 'TAU成功率', params: 'bar' },
+            { id: 'tauRequest', name: 'TAU请求次数', params: 'line' },
+            { id: 'tauSuccess', name: 'TAU成功次数', params: 'line' },
+            { id: 'xhoSuccessRate', name: 'X2接口切换成功率', params: 'bar' },
+            { id: 'xhoRequest', name: 'X2接口切换尝试数', params: 'line' },
+            { id: 'xhoSuccess', name: 'X2接口切换成功次数', params: 'line' },
+            { id: 'shoSuccessRate', name: 'S1接口切换成功率', params: 'bar' },
+            { id: 'shoRequest', name: 'S1接口切换请求次数', params: 'line' },
+            { id: 'shoSuccess', name: 'S1接口切换成功次数', params: 'line' },
+        ],
+    },
+    signaling: {
+        indicators: [
+            { id: 'pdate', name: '日期', params: 'bar' },
+            { id: 'startTime', name: '开始时间', params: 'line' },
+            { id: 'endTime', name: '结束时间', params: 'line' },
+            { id: 'interfaceType', name: '接口类型', params: 'bar' },
+            { id: 'cell', name: 'cell', params: 'line' },
+            { id: 'imei', name: 'imei', params: 'line' },
+            { id: 'imsi', name: 'imsi', params: 'bar' },
+            { id: 'appType', name: 'appType', params: 'line' },
+            { id: 'appStatus', name: 'appStatus', params: 'line' },
+            { id: 'protocolType', name: '协议类型', params: 'bar' },
+            { id: 'appSubType', name: '应用程序子类型', params: 'line' },
+            { id: 'ulData', name: '上行数据流量', params: 'line' },
+            { id: 'dlData', name: '下行数据流量', params: 'bar' },
+            { id: 'lastHttpResponseDelay', name: 'Http响应延迟', params: 'line' },
+            { id: 'procedureType', name: '程序类型', params: 'line' },
+            { id: 'procedureStatus', name: '程序状态', params: 'bar' },
+            { id: 'cause', name: '原因', params: 'line' },
+            { id: 'keyword', name: '关键词', params: 'line' },
+            { id: 'targetCellid', name: '目标小区标识', params: 'bar' },
+            { id: 'csfbIndication', name: 'csfb指标', params: 'line' },
+            { id: 'reqCauseType', name: '请求原因类型', params: 'line' },
+            { id: 'reqCause', name: '请求原因', params: 'line' },
+            { id: 'failureCauseType', name: '故障原因类型', params: 'line' },
+            { id: 'failureCause', name: '失败原因', params: 'line' },
+            { id: 'errorCauseType', name: '错误原因类型', params: 'line' },
+            { id: 'errorCause', name: '错误原因', params: 'line' },
+            { id: 'hoCancelCauseType', name: '切换取消原因类型', params: 'line' },
+            { id: 'hoCancelCause', name: '切换取消原因', params: 'line' },
+            { id: 'rowCount', name: '匹配MR行数', params: 'line' },
+            { id: 'servingRsrp', name: '服务Rsrp', params: 'line' },
+            { id: 'servingRsrpAvg', name: '服务平均Rsrp', params: 'line' },
+            { id: 'servingRsrpStdDev', name: '服务Rsrp标准差', params: 'line' },
+            { id: 'servingRsrq', name: '服务Rsrq', params: 'line' },
+            { id: 'servingRsrqAvg', name: '服务平均Rsrq', params: 'line' },
+            { id: 'servingRsrqStdDev', name: '服务Rsrq标准差', params: 'line' },
+            { id: 'aoa', name: 'aoa', params: 'line' },
+            { id: 'aoaAvg', name: '平均aoa', params: 'line' },
+            { id: 'aoaStdDev', name: 'aoa标准差', params: 'line' },
+            { id: 'ta', name: 'ta', params: 'line' },
+            { id: 'taAvg', name: '平均ta', params: 'line' },
+            { id: 'taStdDev', name: 'ta标准差', params: 'line' },
+            { id: 'ulSinr', name: 'ulSinr', params: 'line' },
+            { id: 'ulSinrAvg', name: '平均ulSinr', params: 'line' },
+            { id: 'ulSinrStdDev', name: 'ulSinr标准差', params: 'line' },
+            { id: 'enbReceivedPower', name: 'enbReceivedPower', params: 'line' },
+            { id: 'enbReceivedPowerAvg', name: '平均enbReceivedPower', params: 'line' },
+            { id: 'enbReceivedPowerStdDev', name: 'enbReceivedPower标准差', params: 'line' },
+            { id: 'phr', name: 'phr', params: 'line' },
+            { id: 'phrAvg', name: '平均phr', params: 'line' },
+            { id: 'phrStdDev', name: 'phr标准差', params: 'line' },
+        ],
+    },
+};
+var IndicatorsService = (function () {
+    function IndicatorsService() {
+    }
+    IndicatorsService.prototype.getAllIndicators = function () {
+        return allIndicator;
+    };
+    IndicatorsService.prototype.getIndicatorsSelects = function (inter) {
+        return allIndicator[inter].indicators;
+    };
+    IndicatorsService.prototype.getIndicatorNamebyID = function (interfaces, id) {
+        var resultName = "";
+        allIndicator[interfaces].indicators.forEach(function (item) {
+            if (item.id == id) {
+                resultName = item.name;
+            }
+        });
+        return resultName;
+    };
+    IndicatorsService.prototype.getIdByNameAndInter = function (inter, name) {
+        var indicatorId = "";
+        for (var _i = 0, _a = allIndicator[inter].indicators; _i < _a.length; _i++) {
+            var indicator = _a[_i];
+            if (indicator.name == name) {
+                indicatorId = indicator.id;
+            }
+        }
+        return indicatorId;
+    };
+    return IndicatorsService;
+}());
+IndicatorsService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [])
+], IndicatorsService);
+
+//# sourceMappingURL=indicatorService.js.map
+
+/***/ }),
+
+/***/ 286:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var MyApp = (function () {
+    function MyApp(platform, statusBar, splashScreen, events, storage) {
+        var _this = this;
+        this.events = events;
+        this.storage = storage;
+        platform.ready().then(function () {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            statusBar.styleDefault();
+            splashScreen.hide();
+        });
+        this.events.subscribe("popToLastPage", function () {
+            _this.nav.pop();
+        });
+        this.events.subscribe("goto.login", function () {
+            _this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_4__pages_login_login__["a" /* LoginPage */]);
+        });
+        this.storage.get("id_token")
+            .then(function (result) {
+            if (result.length > 0) {
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */];
+            }
+            else {
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_login_login__["a" /* LoginPage */];
+            }
+        })
+            .catch(function (error) {
+            _this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_login_login__["a" /* LoginPage */];
+        });
+    }
+    return MyApp;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */])
+], MyApp.prototype, "nav", void 0);
+MyApp = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"D:\svn-repo\xdr-app\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"D:\svn-repo\xdr-app\src\app\app.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]])
+], MyApp);
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 293:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LayersControl; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_openlayers__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_openlayers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_openlayers__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var LayersControl = (function (_super) {
+    __extends(LayersControl, _super);
+    function LayersControl(opt) {
+        var _this = _super.call(this, {
+            element: document.createElement('div'),
+            target: opt.target,
+        }) || this;
+        _this.mapListeners = [];
+        _this.hiddenClassName = 'ol-unselectable ol-control layer-switcher';
+        _this.element = document.createElement('div');
+        /**
+         * Show the layer panel.
+         */
+        _this.showPanel = function () {
+            if (_this.element.className !== _this.shownClassName) {
+                _this.element.className = _this.shownClassName;
+                _this.renderPanel();
+            }
+        };
+        /**
+         * Hide the layer panel.
+         */
+        _this.hidePanel = function () {
+            if (_this.element.className !== _this.hiddenClassName) {
+                _this.element.className = _this.hiddenClassName;
+            }
+        };
+        /**
+         * Re-draw the layer panel to represent the current state of the layers.
+         */
+        _this.renderPanel = function () {
+            _this.ensureTopVisibleBaseLayerShown();
+            while (_this.panel.firstChild) {
+                _this.panel.removeChild(_this.panel.firstChild);
+            }
+            var ul = document.createElement('ul');
+            _this.panel.appendChild(ul);
+            _this.renderLayers(_this.getMap(), ul);
+        };
+        /**
+         * Ensure only the top-most base layer is visible if more than one is visible.
+         * @private
+         */
+        _this.ensureTopVisibleBaseLayerShown = function () {
+            var lastVisibleBaseLyr;
+            _this.forEachRecursive(_this.getMap(), function (l, idx, a) {
+                if (l.get('type') === 'base' && l.getVisible()) {
+                    lastVisibleBaseLyr = l;
+                }
+            });
+            if (lastVisibleBaseLyr) {
+                _this.setVisible(lastVisibleBaseLyr, true);
+            }
+        };
+        /**
+         * Toggle the visible state of a layer.
+         * Takes care of hiding other layers in the same exclusive group if the layer
+         * is toggle to visible.
+         * @private
+         * @param {ol.layer.Base} The layer whos visibility will be toggled.
+         */
+        _this.setVisible = function (lyr, visible) {
+            var map = _this.getMap();
+            lyr.setVisible(visible);
+            if (visible && lyr.get('type') === 'base') {
+                // Hide all other base layers regardless of grouping
+                _this.forEachRecursive(map, function (l, idx, a) {
+                    if (l !== lyr && l.get('type') === 'base') {
+                        l.setVisible(false);
+                    }
+                });
+            }
+        };
+        /**
+         * Render all layers that are children of a group.
+         * @private
+         * @param {ol.layer.Base} lyr Layer to be rendered (should have a title property).
+         * @param {Number} idx Position in parent group list.
+         */
+        _this.renderLayer = function (lyr) {
+            var t = _this;
+            var li = document.createElement('li');
+            var lyrTitle = lyr.get('title');
+            var lyrId = _this.uuid();
+            var label = document.createElement('label');
+            if (lyr.getLayers && !lyr.get('combine')) {
+                li.className = 'group';
+                label.innerHTML = lyrTitle;
+                li.appendChild(label);
+                var ul = document.createElement('ul');
+                li.appendChild(ul);
+                _this.renderLayers(lyr, ul);
+            }
+            else {
+                li.className = 'layer';
+                var input = document.createElement('input');
+                if (lyr.get('type') === 'base') {
+                    input.type = 'radio';
+                    input.name = 'base';
+                }
+                else {
+                    input.type = 'checkbox';
+                }
+                input.id = lyrId;
+                input.checked = lyr.get('visible');
+                input.onchange = function (e) {
+                    // console.log(<any>e.target);
+                    t.setVisible(lyr, e.target.checked);
+                };
+                li.appendChild(input);
+                label.htmlFor = lyrId;
+                label.innerHTML = lyrTitle;
+                li.appendChild(label);
+            }
+            return li;
+        };
+        /**
+         * Render all layers that are children of a group.
+         * @private
+         * @param {ol.layer.Group} lyr Group layer whos children will be rendered.
+         * @param {Element} elm DOM element that children will be appended to.
+         */
+        _this.renderLayers = function (lyr, elm) {
+            var lyrs = lyr.getLayers().getArray().slice().reverse();
+            for (var i = 0, l = void 0; i < lyrs.length; i++) {
+                l = lyrs[i];
+                if (l.get('title')) {
+                    elm.appendChild(_this.renderLayer(l));
+                }
+            }
+        };
+        /**
+         * **Static** Call the supplied function for each layer in the passed layer group
+         * recursing nested groups.
+         * @param {ol.layer.Group} lyr The layer group to start iterating from.
+         * @param {Function} fn Callback which will be called for each `ol.layer.Base`
+         * found under `lyr`. The signature for `fn` is the same as `ol.Collection#forEach`
+         */
+        _this.forEachRecursive = function (lyr, fn) {
+            var forEachRecursive = _this.forEachRecursive;
+            lyr.getLayers().forEach(function (l, idx, a) {
+                fn(l, idx, a);
+                if (l.getLayers) {
+                    forEachRecursive(l, fn);
+                }
+            });
+        };
+        /**
+        * @private
+        * @desc Apply workaround to enable scrolling of overflowing content within an
+        * element. Adapted from https://gist.github.com/chrismbarr/4107472
+        */
+        _this.enableTouchScroll = function (elm) {
+            if (_this.isTouchDevice_()) {
+                var scrollStartPos_1 = 0;
+                elm.addEventListener('touchstart', function (event) {
+                    scrollStartPos_1 = this.scrollTop + event.touches[0].pageY;
+                }, false);
+                elm.addEventListener('touchmove', function (event) {
+                    this.scrollTop = scrollStartPos_1 - event.touches[0].pageY;
+                }, false);
+            }
+        };
+        console.log("adsf");
+        var options = opt || { tipLabel: null };
+        var tipLabel = options.tipLabel ?
+            options.tipLabel : 'Legend';
+        if (_this.isTouchDevice_()) {
+            _this.hiddenClassName += ' touch';
+        }
+        _this.shownClassName = _this.hiddenClassName + " shown";
+        var element = _this.element;
+        element.className = _this.hiddenClassName;
+        var button = document.createElement('button');
+        button.setAttribute('title', tipLabel);
+        element.appendChild(button);
+        _this.panel = document.createElement('div');
+        _this.panel.className = 'panel';
+        element.appendChild(_this.panel);
+        _this.enableTouchScroll(_this.panel);
+        var t = _this;
+        button.onmouseover = function (e) {
+            t.showPanel();
+        };
+        button.onclick = function (e) {
+            e = e || window.event;
+            t.showPanel();
+            e.preventDefault();
+        };
+        t.panel.onmouseout = function (e) {
+            e = e || window.event;
+            if (!t.panel.contains((e.toElement || e.relatedTarget))) {
+                t.hidePanel();
+            }
+        };
+        return _this;
+        // ol.control.Control.call(this, {
+        //     element: element,
+        //     target: options.target
+        // });
+    }
+    /**
+     * Set the map instance the control is associated with.
+     * @param {ol.Map} map The map instance.
+     */
+    LayersControl.prototype.setMap = function (map) {
+        _super.prototype.setMap.call(this, map);
+        // Clean up listeners associated with the previous map
+        for (var i = 0, key = void 0; i < this.mapListeners.length; i++) {
+            // this.getMap().un(<Function>this.mapListeners[i]);
+            this.getMap().un(typeof (this.mapListeners[i]), this.mapListeners[i]);
+            key = 0;
+        }
+        this.mapListeners.length = 0;
+        // Wire up listeners etc. and store reference to new map
+        __WEBPACK_IMPORTED_MODULE_0_openlayers__["control"].Control.prototype.setMap.call(this, map);
+        if (map) {
+            var t_1 = this;
+            this.mapListeners.push(map.on('pointerdown', function () {
+                t_1.hidePanel();
+            }));
+            this.renderPanel();
+        }
+    };
+    /**
+     * Generate a UUID
+     * @returns {String} UUID
+     *
+     * Adapted from http://stackoverflow.com/a/2117523/526860
+     */
+    LayersControl.prototype.uuid = function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 || 0;
+            var v = c === 'x' ? r : (r && 0x3 || 0x8);
+            return v.toString(16);
+        });
+    };
+    /**
+     * @private
+     * @desc Determine if the current browser supports touch events. Adapted from
+     * https://gist.github.com/chrismbarr/4107472
+     */
+    LayersControl.prototype.isTouchDevice_ = function () {
+        try {
+            document.createEvent('TouchEvent');
+            return true;
+        }
+        catch (e) {
+            return false;
+        }
+    };
+    return LayersControl;
+}(__WEBPACK_IMPORTED_MODULE_0_openlayers__["control"].Control));
+
+//# sourceMappingURL=layers-control.js.map
+
+/***/ }),
+
+/***/ 34:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NetworkService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__environments_environment__ = __webpack_require__(18);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var NetworkService = (function () {
+    function NetworkService(loadingCtrl, alertCtrl, storage, http, events) {
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.storage = storage;
+        this.http = http;
+        this.events = events;
+        this.env = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */];
+    }
+    NetworkService.prototype.loadWithTokenByGET = function (params) {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: '请稍候...',
+        });
+        loading.present();
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("id_token")
+                .then(function (id_token) {
+                var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Authorization': 'Bearer ' + id_token });
+                var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({ headers: headers });
+                _this.http.get(_this.env.host + params, options)
+                    .subscribe(function (data) {
+                    data = data.json();
+                    loading.dismiss();
+                    if (data.toString().length > 0) {
+                        resolve(data);
+                    }
+                    else {
+                        var alert_1 = _this.alertCtrl.create({
+                            message: '未查询到数据',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_1.onDidDismiss(function () {
+                            _this.events.publish("popToLastPage", "");
+                        });
+                        alert_1.present();
+                    }
+                }, function (error) {
+                    loading.dismiss();
+                    if (error.status == 0 || (error.status >= 500 && error.status < 600)) {
+                        var alert_2 = _this.alertCtrl.create({
+                            message: '网络连接失败或服务器正在维护',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_2.onDidDismiss(function () {
+                            _this.events.publish("popToLastPage", "");
+                        });
+                        alert_2.present();
+                    }
+                    else if (error.status == 401) {
+                        var alert_3 = _this.alertCtrl.create({
+                            message: '未授权的操作',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_3.onDidDismiss(function () {
+                            _this.events.publish("goto.login", "");
+                        });
+                        alert_3.present();
+                    }
+                    else if (error.status == 404) {
+                        var alert_4 = _this.alertCtrl.create({
+                            message: '错误的请求',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_4.onDidDismiss(function () {
+                            _this.events.publish("popToLastPage", "");
+                        });
+                        alert_4.present();
+                    }
+                    else {
+                        var alert_5 = _this.alertCtrl.create({
+                            message: '未知的错误',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_5.onDidDismiss(function () {
+                            _this.events.publish("goto.login", "");
+                        });
+                        alert_5.present();
+                    }
+                });
+            })
+                .catch(function (error) {
+                console.log(error);
+                var alert = _this.alertCtrl.create({
+                    message: '未登录',
+                    buttons: [{
+                            text: 'OK'
+                        }]
+                });
+                alert.onDidDismiss(function () {
+                    _this.events.publish("goto.login", "");
+                });
+                alert.present();
+            });
+        });
+    };
+    NetworkService.prototype.loadWithTokenByGETGivenHeader = function (url, searchValue) {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: '请稍候...',
+        });
+        loading.present();
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("id_token")
+                .then(function (id_token) {
+                var options = _this.createRequestOption(searchValue, id_token);
+                _this.http.get(url, options)
+                    .subscribe(function (data) {
+                    data = data.json();
+                    loading.dismiss();
+                    if (data.toString().length > 0) {
+                        resolve(data);
+                    }
+                    else {
+                        var alert_6 = _this.alertCtrl.create({
+                            message: '未查询到数据',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_6.onDidDismiss(function () {
+                            _this.events.publish("popToLastPage", "");
+                        });
+                        alert_6.present();
+                    }
+                }, function (error) {
+                    loading.dismiss();
+                    if (error.status == 0 || (error.status >= 500 && error.status < 600)) {
+                        var alert_7 = _this.alertCtrl.create({
+                            message: '网络连接失败或服务器正在维护',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_7.onDidDismiss(function () {
+                            _this.events.publish("popToLastPage", "");
+                        });
+                        alert_7.present();
+                    }
+                    else if (error.status == 401) {
+                        var alert_8 = _this.alertCtrl.create({
+                            message: '未授权的操作',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_8.onDidDismiss(function () {
+                            _this.events.publish("goto.login", "");
+                        });
+                        alert_8.present();
+                    }
+                    else if (error.status == 404) {
+                        var alert_9 = _this.alertCtrl.create({
+                            message: '错误的请求',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_9.onDidDismiss(function () {
+                            _this.events.publish("popToLastPage", "");
+                        });
+                        alert_9.present();
+                    }
+                    else {
+                        var alert_10 = _this.alertCtrl.create({
+                            message: '未知的错误',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_10.onDidDismiss(function () {
+                            _this.events.publish("goto.login", "");
+                        });
+                        alert_10.present();
+                    }
+                });
+            })
+                .catch(function (error) {
+                var alert = _this.alertCtrl.create({
+                    message: '未登录',
+                    buttons: [{
+                            text: 'OK'
+                        }]
+                });
+                alert.onDidDismiss(function () {
+                    _this.events.publish("goto.login", "");
+                });
+                alert.present();
+            });
+        });
+    };
+    NetworkService.prototype.createRequestOption = function (req, id_token) {
+        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* BaseRequestOptions */]();
+        if (req) {
+            var params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["g" /* URLSearchParams */]();
+            if (req.date1) {
+                var dateModel = req.date1;
+                var date1 = new Date(dateModel.date.year, dateModel.date.month - 1, dateModel.date.day);
+                var dateMilli = date1.setHours(8);
+                params.set('date', dateMilli.toString());
+            }
+            switch (req.cellType) {
+                case 'imsi':
+                    params.append('imsi', req.cellInput);
+                    break;
+                case 'eci':
+                    params.append('eci', req.cellInput);
+                    break;
+                default:
+                    break;
+            }
+            if (req.indicatorType) {
+                params.append('indicatorType', req.indicatorType);
+            }
+            options.params = params;
+            options.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Authorization': 'Bearer ' + id_token });
+        }
+        return options;
+    };
+    NetworkService.prototype.loadWithTokenByGetNoBack = function (params) {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: '请稍候...',
+        });
+        loading.present();
+        return new Promise(function (resolve, reject) {
+            _this.storage.get("id_token")
+                .then(function (id_token) {
+                var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]({ 'Authorization': 'Bearer ' + id_token });
+                var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({ headers: headers });
+                _this.http.get(_this.env.host + params, options)
+                    .subscribe(function (data) {
+                    data = data.json();
+                    loading.dismiss();
+                    if (data.toString().length > 0) {
+                        resolve(data);
+                    }
+                    else {
+                        var alert_11 = _this.alertCtrl.create({
+                            message: '未查询到数据',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_11.present();
+                    }
+                }, function (error) {
+                    loading.dismiss();
+                    if (error.status == 0 || (error.status >= 500 && error.status < 600)) {
+                        var alert_12 = _this.alertCtrl.create({
+                            message: '网络连接失败或服务器正在维护',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_12.present();
+                    }
+                    else if (error.status == 401) {
+                        var alert_13 = _this.alertCtrl.create({
+                            message: '未授权的操作',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_13.present();
+                    }
+                    else if (error.status == 404) {
+                        var alert_14 = _this.alertCtrl.create({
+                            message: '错误的请求',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_14.present();
+                    }
+                    else {
+                        var alert_15 = _this.alertCtrl.create({
+                            message: '未知的错误',
+                            buttons: [{
+                                    text: 'OK'
+                                }]
+                        });
+                        alert_15.present();
+                    }
+                });
+            })
+                .catch(function (error) {
+                var alert = _this.alertCtrl.create({
+                    message: '未登录',
+                    buttons: [{
+                            text: 'OK'
+                        }]
+                });
+                alert.onDidDismiss(function () {
+                    _this.events.publish("goto.login", "");
+                });
+                alert.present();
+            });
+        });
+    };
+    return NetworkService;
+}());
+NetworkService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        providers: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* Nav */]]
+    }),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["g" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* Events */]])
+], NetworkService);
+
+//# sourceMappingURL=networkService.js.map
+
+/***/ })
+
+},[219]);
+//# sourceMappingURL=main.js.map

@@ -1,0 +1,256 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUuLabel" jhiTranslate="backendApp.uu.home.createOrEditLabel">Create or edit a Uu</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!uu.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="uu.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.pdate" for="field_pdate">Pdate</label>
+            <div class="input-group">
+                <input id="field_pdate" type="text" class="form-control" name="pdate" ngbDatepicker  #pdateDp="ngbDatepicker" [(ngModel)]="uu.pdate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="pdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.pdate?.dirty && editForm.controls.pdate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pdate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.phour" for="field_phour">Phour</label>
+            <input type="number" class="form-control" name="phour" id="field_phour"
+                [(ngModel)]="uu.phour"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.cell" for="field_cell">Cell</label>
+            <input type="text" class="form-control" name="cell" id="field_cell"
+                [(ngModel)]="uu.cell"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.imei" for="field_imei">Imei</label>
+            <input type="text" class="form-control" name="imei" id="field_imei"
+                [(ngModel)]="uu.imei"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.imsi" for="field_imsi">Imsi</label>
+            <input type="text" class="form-control" name="imsi" id="field_imsi"
+                [(ngModel)]="uu.imsi"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcConnectRequest" for="field_rrcConnectRequest">Rrc Connect Request</label>
+            <input type="number" class="form-control" name="rrcConnectRequest" id="field_rrcConnectRequest"
+                [(ngModel)]="uu.rrcConnectRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcConnectSuccess" for="field_rrcConnectSuccess">Rrc Connect Success</label>
+            <input type="number" class="form-control" name="rrcConnectSuccess" id="field_rrcConnectSuccess"
+                [(ngModel)]="uu.rrcConnectSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcConnectSuccessRate" for="field_rrcConnectSuccessRate">Rrc Connect Success Rate</label>
+            <input type="number" class="form-control" name="rrcConnectSuccessRate" id="field_rrcConnectSuccessRate"
+                [(ngModel)]="uu.rrcConnectSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReconfigRequest" for="field_rrcReconfigRequest">Rrc Reconfig Request</label>
+            <input type="number" class="form-control" name="rrcReconfigRequest" id="field_rrcReconfigRequest"
+                [(ngModel)]="uu.rrcReconfigRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReconfigSuccess" for="field_rrcReconfigSuccess">Rrc Reconfig Success</label>
+            <input type="number" class="form-control" name="rrcReconfigSuccess" id="field_rrcReconfigSuccess"
+                [(ngModel)]="uu.rrcReconfigSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReconfigSuccessRate" for="field_rrcReconfigSuccessRate">Rrc Reconfig Success Rate</label>
+            <input type="number" class="form-control" name="rrcReconfigSuccessRate" id="field_rrcReconfigSuccessRate"
+                [(ngModel)]="uu.rrcReconfigSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReconstructionRequest" for="field_rrcReconstructionRequest">Rrc Reconstruction Request</label>
+            <input type="number" class="form-control" name="rrcReconstructionRequest" id="field_rrcReconstructionRequest"
+                [(ngModel)]="uu.rrcReconstructionRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReconstructionSuccess" for="field_rrcReconstructionSuccess">Rrc Reconstruction Success</label>
+            <input type="number" class="form-control" name="rrcReconstructionSuccess" id="field_rrcReconstructionSuccess"
+                [(ngModel)]="uu.rrcReconstructionSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReconstructionSuccessRate" for="field_rrcReconstructionSuccessRate">Rrc Reconstruction Success Rate</label>
+            <input type="number" class="form-control" name="rrcReconstructionSuccessRate" id="field_rrcReconstructionSuccessRate"
+                [(ngModel)]="uu.rrcReconstructionSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReleaseRequest" for="field_rrcReleaseRequest">Rrc Release Request</label>
+            <input type="number" class="form-control" name="rrcReleaseRequest" id="field_rrcReleaseRequest"
+                [(ngModel)]="uu.rrcReleaseRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReleaseSuccess" for="field_rrcReleaseSuccess">Rrc Release Success</label>
+            <input type="number" class="form-control" name="rrcReleaseSuccess" id="field_rrcReleaseSuccess"
+                [(ngModel)]="uu.rrcReleaseSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.rrcReleaseSuccessRate" for="field_rrcReleaseSuccessRate">Rrc Release Success Rate</label>
+            <input type="number" class="form-control" name="rrcReleaseSuccessRate" id="field_rrcReleaseSuccessRate"
+                [(ngModel)]="uu.rrcReleaseSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.smActivateRequest" for="field_smActivateRequest">Sm Activate Request</label>
+            <input type="number" class="form-control" name="smActivateRequest" id="field_smActivateRequest"
+                [(ngModel)]="uu.smActivateRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.smActivateSuccess" for="field_smActivateSuccess">Sm Activate Success</label>
+            <input type="number" class="form-control" name="smActivateSuccess" id="field_smActivateSuccess"
+                [(ngModel)]="uu.smActivateSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.smActivateSuccessRate" for="field_smActivateSuccessRate">Sm Activate Success Rate</label>
+            <input type="number" class="form-control" name="smActivateSuccessRate" id="field_smActivateSuccessRate"
+                [(ngModel)]="uu.smActivateSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.cellInterHandoverRequest" for="field_cellInterHandoverRequest">Cell Inter Handover Request</label>
+            <input type="number" class="form-control" name="cellInterHandoverRequest" id="field_cellInterHandoverRequest"
+                [(ngModel)]="uu.cellInterHandoverRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.cellInterHandoverSuccess" for="field_cellInterHandoverSuccess">Cell Inter Handover Success</label>
+            <input type="number" class="form-control" name="cellInterHandoverSuccess" id="field_cellInterHandoverSuccess"
+                [(ngModel)]="uu.cellInterHandoverSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.cellInterHandoverSuccessRate" for="field_cellInterHandoverSuccessRate">Cell Inter Handover Success Rate</label>
+            <input type="number" class="form-control" name="cellInterHandoverSuccessRate" id="field_cellInterHandoverSuccessRate"
+                [(ngModel)]="uu.cellInterHandoverSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.stationIntraHandoverRequest" for="field_stationIntraHandoverRequest">Station Intra Handover Request</label>
+            <input type="number" class="form-control" name="stationIntraHandoverRequest" id="field_stationIntraHandoverRequest"
+                [(ngModel)]="uu.stationIntraHandoverRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.stationIntraHandoverSuccess" for="field_stationIntraHandoverSuccess">Station Intra Handover Success</label>
+            <input type="number" class="form-control" name="stationIntraHandoverSuccess" id="field_stationIntraHandoverSuccess"
+                [(ngModel)]="uu.stationIntraHandoverSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.stationIntraHandoverSuccessRate" for="field_stationIntraHandoverSuccessRate">Station Intra Handover Success Rate</label>
+            <input type="number" class="form-control" name="stationIntraHandoverSuccessRate" id="field_stationIntraHandoverSuccessRate"
+                [(ngModel)]="uu.stationIntraHandoverSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.stationInterHandoverRequest" for="field_stationInterHandoverRequest">Station Inter Handover Request</label>
+            <input type="number" class="form-control" name="stationInterHandoverRequest" id="field_stationInterHandoverRequest"
+                [(ngModel)]="uu.stationInterHandoverRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.stationInterHandoverSuccess" for="field_stationInterHandoverSuccess">Station Inter Handover Success</label>
+            <input type="number" class="form-control" name="stationInterHandoverSuccess" id="field_stationInterHandoverSuccess"
+                [(ngModel)]="uu.stationInterHandoverSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.stationInterHandoverSuccessRate" for="field_stationInterHandoverSuccessRate">Station Inter Handover Success Rate</label>
+            <input type="number" class="form-control" name="stationInterHandoverSuccessRate" id="field_stationInterHandoverSuccessRate"
+                [(ngModel)]="uu.stationInterHandoverSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.ratInRequest" for="field_ratInRequest">Rat In Request</label>
+            <input type="number" class="form-control" name="ratInRequest" id="field_ratInRequest"
+                [(ngModel)]="uu.ratInRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.ratInSuccess" for="field_ratInSuccess">Rat In Success</label>
+            <input type="number" class="form-control" name="ratInSuccess" id="field_ratInSuccess"
+                [(ngModel)]="uu.ratInSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.ratInSuccessRate" for="field_ratInSuccessRate">Rat In Success Rate</label>
+            <input type="number" class="form-control" name="ratInSuccessRate" id="field_ratInSuccessRate"
+                [(ngModel)]="uu.ratInSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.ratOutRequest" for="field_ratOutRequest">Rat Out Request</label>
+            <input type="number" class="form-control" name="ratOutRequest" id="field_ratOutRequest"
+                [(ngModel)]="uu.ratOutRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.ratOutSuccess" for="field_ratOutSuccess">Rat Out Success</label>
+            <input type="number" class="form-control" name="ratOutSuccess" id="field_ratOutSuccess"
+                [(ngModel)]="uu.ratOutSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.ratOutSuccessRate" for="field_ratOutSuccessRate">Rat Out Success Rate</label>
+            <input type="number" class="form-control" name="ratOutSuccessRate" id="field_ratOutSuccessRate"
+                [(ngModel)]="uu.ratOutSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.psPagingRequest" for="field_psPagingRequest">Ps Paging Request</label>
+            <input type="number" class="form-control" name="psPagingRequest" id="field_psPagingRequest"
+                [(ngModel)]="uu.psPagingRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.psPagingSuccess" for="field_psPagingSuccess">Ps Paging Success</label>
+            <input type="number" class="form-control" name="psPagingSuccess" id="field_psPagingSuccess"
+                [(ngModel)]="uu.psPagingSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.psPagingSuccessRate" for="field_psPagingSuccessRate">Ps Paging Success Rate</label>
+            <input type="number" class="form-control" name="psPagingSuccessRate" id="field_psPagingSuccessRate"
+                [(ngModel)]="uu.psPagingSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.csPagingRequest" for="field_csPagingRequest">Cs Paging Request</label>
+            <input type="number" class="form-control" name="csPagingRequest" id="field_csPagingRequest"
+                [(ngModel)]="uu.csPagingRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.csPagingSuccess" for="field_csPagingSuccess">Cs Paging Success</label>
+            <input type="number" class="form-control" name="csPagingSuccess" id="field_csPagingSuccess"
+                [(ngModel)]="uu.csPagingSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.csPagingSuccessRate" for="field_csPagingSuccessRate">Cs Paging Success Rate</label>
+            <input type="number" class="form-control" name="csPagingSuccessRate" id="field_csPagingSuccessRate"
+                [(ngModel)]="uu.csPagingSuccessRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.othereventRequest" for="field_othereventRequest">Otherevent Request</label>
+            <input type="number" class="form-control" name="othereventRequest" id="field_othereventRequest"
+                [(ngModel)]="uu.othereventRequest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.othereventSuccess" for="field_othereventSuccess">Otherevent Success</label>
+            <input type="number" class="form-control" name="othereventSuccess" id="field_othereventSuccess"
+                [(ngModel)]="uu.othereventSuccess"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.uu.othereventSuccessRate" for="field_othereventSuccessRate">Otherevent Success Rate</label>
+            <input type="number" class="form-control" name="othereventSuccessRate" id="field_othereventSuccessRate"
+                [(ngModel)]="uu.othereventSuccessRate"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

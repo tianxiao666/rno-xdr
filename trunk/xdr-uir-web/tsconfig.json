@@ -1,0 +1,19 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "declaration": false,
+        "baseUrl": "src",
+        "outDir": "./dist/out-tsc",
+        "lib": ["es6", "dom"],
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "plugins": [{"name": "tslint-language-service"}]
+  }
+}

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar >
+    <ion-title>登录</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg" >
+
+  <ion-card>
+    <ion-card-header class="ionCardHeader">
+      登录
+    </ion-card-header>
+    <ion-item>
+      <ion-label fixed style="color:black">用户名</ion-label>
+      <ion-input type="text" [(ngModel)]="username" placeholder="用户名" autocomplete="on"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed style="color:black">密码</ion-label>
+      <ion-input type="password" [(ngModel)]="password" placeholder="密码" autocomplete="on"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed style="color:black">记住我</ion-label>
+      <ion-checkbox type="rememberMe" [(ngModel)]="rememberMe"></ion-checkbox>
+    </ion-item>
+  </ion-card>
+  <button ion-button color="secondary" class="button-work" (click)="login()">登录</button>
+</ion-content>

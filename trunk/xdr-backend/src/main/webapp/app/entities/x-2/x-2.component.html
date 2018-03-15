@@ -1,0 +1,91 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.x2.home.title">X 2 S</span>
+        <button class="btn btn-primary float-right create-x-2" [routerLink]="['/', { outlets: { popup: ['x-2-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.x2.home.createLabel">
+            Create new X 2
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.x2.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="x2S">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdate"><span jhiTranslate="backendApp.x2.pdate">Pdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phour"><span jhiTranslate="backendApp.x2.phour">Phour</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cell"><span jhiTranslate="backendApp.x2.cell">Cell</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imei"><span jhiTranslate="backendApp.x2.imei">Imei</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imsi"><span jhiTranslate="backendApp.x2.imsi">Imsi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="switchRequest"><span jhiTranslate="backendApp.x2.switchRequest">Switch Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="switchSuccess"><span jhiTranslate="backendApp.x2.switchSuccess">Switch Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="switchSuccessRate"><span jhiTranslate="backendApp.x2.switchSuccessRate">Switch Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let x2 of x2S ;trackBy: trackId">
+                <td><a [routerLink]="['../x-2', x2.id ]">{{x2.id}}</a></td>
+                <td>{{x2.pdate | date:'mediumDate'}}</td>
+                <td>{{x2.phour}}</td>
+                <td>{{x2.cell}}</td>
+                <td>{{x2.imei}}</td>
+                <td>{{x2.imsi}}</td>
+                <td>{{x2.switchRequest}}</td>
+                <td>{{x2.switchSuccess}}</td>
+                <td>{{x2.switchSuccessRate}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../x-2', x2.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'x-2/'+ x2.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'x-2/'+ x2.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="x2S && x2S.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

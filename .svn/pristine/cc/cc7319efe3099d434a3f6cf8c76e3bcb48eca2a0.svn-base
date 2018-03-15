@@ -1,0 +1,125 @@
+<form class="form-inline">
+
+  <div class="form-group">
+    <div class="input-group">
+      <my-date-picker name="mydate" [options]="myDatePickerOptions" style="width: 180px;height: 36px"
+                      [(ngModel)]="countcondition.date1"></my-date-picker>
+    </div>
+    <div [hidden]="countcondition.date1!=null" class="alert alert-danger" style="padding: 0.53rem 1rem;">
+      时间为必填项！
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 2px"></div>
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" name="obj" [(ngModel)]="countcondition.cellType" style="width: 170px;height: 36px">
+        <option *ngFor="let op of _cellTypes" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+  <!-- 分隔 -->
+  <div style="width: 2px" [hidden]="countcondition.cellType=='network'"></div>
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" #cellId="ngModel" [hidden]="countcondition.cellType=='network'"
+             [(ngModel)]="countcondition.cellInput" name="cellId" required>
+    </div>
+    <div [hidden]="cellId.valid||countcondition.cellType=='network'" class="alert alert-danger"
+         style="padding: 0.53rem 1rem;">
+      {{countcondition.cellType}}为必填项！
+    </div>
+  </div>
+  <div style="width: 10px"></div>
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" name="candtype" [(ngModel)]="countcondition.logicalOperationone" style="width: auto;height: 36px">
+        <option *ngFor="let cand of _logicalOperation"  [value]="cand.value">{{cand.label}}</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <select class="form-control" name="selonetype" [(ngModel)]="countcondition.indicatorSelectitemone" style="width: auto;height: 36px">
+        <option *ngFor="let sel of _exceptionSelectItems" [value]="sel.value">{{sel.label}}</option>
+      </select>
+      <select class="form-control" name="relonetype" [(ngModel)]="countcondition.operatorone" style="width: auto;height: 36px">
+        <option *ngFor="let rel of _operators" [value]="rel.value">{{rel.label}}</option>
+      </select>
+      <input class="form-control" #selone="ngModel" [(ngModel)]="countcondition.selone"
+             name="selone" style="width: 80px;height: 36px">
+    </div>
+    <div [hidden]="selone.value>=0" class="alert alert-danger"
+         style="padding: 0.53rem 1rem;">
+      请输入正确数字！
+    </div>
+  </div>
+</form>
+<form class="form-inline">
+  <div style="width: 361px"></div>
+  <div class="input-group">
+    <select class="form-control" name="calthreetype" [(ngModel)]="countcondition.logicalOperationtwo" style="width: auto;height: 36px">
+      <option *ngFor="let cal of _logicalOperations" [value]="cal.value">{{cal.label}}</option>
+    </select>
+  </div>
+  <div style="width: 2px"></div>
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" name="seltwoype" [(ngModel)]="countcondition.indicatorSelectitemtwo" style="width: auto;height: 36px">
+        <option *ngFor="let sel of _exceptionSelectItems" [value]="sel.value">{{sel.label}}</option>
+      </select>
+      <select class="form-control" name="reltwotype" [(ngModel)]="countcondition.operatortwo" style="width: auto;height: 36px">
+        <option *ngFor="let rel of _operators" [value]="rel.value">{{rel.label}}</option>
+      </select>
+      <input class="form-control" name="seltwo" #seltwo="ngModel" [(ngModel)]="countcondition.seltwo" style="width: 80px;height: 36px">
+    </div>
+    <div [hidden]="seltwo.value>=0" class="alert alert-danger"
+         style="padding: 0.53rem 1rem;">
+      请输入正确数字！
+    </div>
+  </div>
+</form>
+<form class="form-inline">
+  <div style="width: 361px"></div>
+  <div class="input-group">
+    <select class="form-control" name="calthreetype" [(ngModel)]="countcondition.logicalOperationthree" style="width: auto;height: 36px">
+      <option *ngFor="let cal of _logicalOperations" [value]="cal.value">{{cal.label}}</option>
+    </select>
+  </div>
+  <div style="width: 2px"></div>
+  <div class="form-group">
+    <div class="input-group">
+      <select class="form-control" name="selthreetype" [(ngModel)]="countcondition.indicatorSelectitemthree" style="width: auto;height: 36px">
+        <option *ngFor="let sel of _exceptionSelectItems" [value]="sel.value">{{sel.label}}</option>
+      </select>
+      <select class="form-control" name="relthreetype" [(ngModel)]="countcondition.operatorthree" style="width: auto;height: 36px">
+        <option *ngFor="let rel of _operators" [value]="rel.value">{{rel.label}}</option>
+      </select>
+      <input class="form-control" name="selthree" #selthree="ngModel" [(ngModel)]="countcondition.selthree" style="width: 80px;height: 36px">
+    </div>
+    <div [hidden]="selthree.value>=0" class="alert alert-danger"
+         style="padding: 0.53rem 1rem;">
+      请输入正确数字！
+    </div>
+  </div>
+  <!-- 分隔 -->
+  <div style="width: 20px"></div>
+  <div class="form-group">
+    <div class="input-group">
+      <button type="button" class="btn btn-default" [disabled]="countcondition.date1==null||
+             countcondition.cellType!='network'&&countcondition.cellInput==''||
+                                      !(selone.value>=0&&selone.value<=1)||!(seltwo.value>=0)||!(selthree.value>=0)"
+              (click)="searchExceptionClick($event)" icon="fa-search">查询</button>
+    </div>
+  </div>
+  <!-- 分隔 -->
+  <div style="width: 10px"></div>
+  <div class="form-group">
+    <div class="input-group">
+      <button type="button" class="btn btn-default"  [disabled]="countcondition.date1==null||
+             countcondition.cellType!='network'&&countcondition.cellInput==''||
+                                        !(selone.value>=0)||!(seltwo.value>=0)||!(selthree.value>=0)"
+              (click)="exportExceptionClick($event)" icon="fa-search">导出</button>
+    </div>
+  </div>
+</form>
+

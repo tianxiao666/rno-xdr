@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pdate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cell",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "imei",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "imsi",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "indicatorType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cause",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "causeCount",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170715062021",
+    "entityTableName": "exception_cause",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

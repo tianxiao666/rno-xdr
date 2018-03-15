@@ -1,0 +1,52 @@
+
+<div *ngIf="task">
+    <h2><span jhiTranslate="backendApp.task.detail.title">Task</span> {{task.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.task.name">Name</span></dt>
+        <dd>
+            <span>{{task.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.task.status">Status</span></dt>
+        <dd>
+            <span>{{task.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.task.description">Description</span></dt>
+        <dd>
+            <span>{{task.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.task.fileId">File Id</span></dt>
+        <dd>
+            <span>{{task.fileId}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.task.startTime">Start Time</span></dt>
+        <dd>
+            <span>{{task.startTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.task.endTime">End Time</span></dt>
+        <dd>
+            <span>{{task.endTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.task.confidence">Confidence</span></dt>
+        <dd>
+            <span>{{task.confidence}}</span>
+        </dd>
+        <dd>
+            <span>{{task.type}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'task/'+ task.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

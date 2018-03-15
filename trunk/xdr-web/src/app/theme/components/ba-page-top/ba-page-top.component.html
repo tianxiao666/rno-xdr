@@ -1,0 +1,42 @@
+<header class="page-top clearfix" baScrollPosition maxHeight="50" (scrollChange)="scrolledChanged($event)"
+     [ngClass]="{scrolled: isScrolled}">
+  <a routerLink="/pages/perception-analysis" class="al-logo clearfix"><span>基于信令大数据的用户感知评估分析系统</span></a>
+  <a href (click)="toggleMenu()" class="collapse-menu-link ion-navicon"></a>
+
+  <!--<div class="search">
+    <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+    <input id="searchInput" type="text" placeholder="Search for...">
+  </div>-->
+
+  <div class="user-profile clearfix">
+    <div class="dropdown al-user-profile">
+      <!--<a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
+        <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
+      </a>-->
+      <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-user"></i>&nbsp;&nbsp;<span *ngIf="account">{{account.login}}</span>
+      </a>
+      <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
+        <!--<li class="dropdown-item">
+          <a routerLink="/help" routerLinkActive="active">
+            <i class="fa fa-book"></i>
+            <span translate>{{'login.help'}}</span>
+          </a>
+        </li>-->
+        <li class="dropdown-item">
+          <a routerLink="/pages/user-setting" routerLinkActive="active">
+            <i class="fa fa-cog"></i>
+            <span translate>{{'login.setting'}}</span>
+          </a>
+        </li>
+        <li class="dropdown-item">
+          <a class="signout" routerLink="/login" routerLinkActive="active" (click)="logout()">
+            <i class="fa fa-power-off"></i>
+            <span translate>{{'login.sign_out'}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--<ba-msg-center></ba-msg-center>-->
+  </div>
+</header>

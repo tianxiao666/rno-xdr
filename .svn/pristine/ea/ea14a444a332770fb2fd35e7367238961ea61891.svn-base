@@ -1,0 +1,181 @@
+<div>
+    <h2>
+        <span jhiTranslate="backendApp.uhttp.home.title">Uhttps</span>
+        <button class="btn btn-primary float-right create-uhttp" [routerLink]="['/', { outlets: { popup: ['uhttp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="backendApp.uhttp.home.createLabel">
+            Create new Uhttp
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'backendApp.uhttp.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="uhttps">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pdate"><span jhiTranslate="backendApp.uhttp.pdate">Pdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phour"><span jhiTranslate="backendApp.uhttp.phour">Phour</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cell"><span jhiTranslate="backendApp.uhttp.cell">Cell</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imei"><span jhiTranslate="backendApp.uhttp.imei">Imei</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="imsi"><span jhiTranslate="backendApp.uhttp.imsi">Imsi</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="flowSum"><span jhiTranslate="backendApp.uhttp.flowSum">Flow Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlowRate"><span jhiTranslate="backendApp.uhttp.rateFlowRate">Rate Flow Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlowSuccessRate"><span jhiTranslate="backendApp.uhttp.rateFlowSuccessRate">Rate Flow Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlowSuccessDRate"><span jhiTranslate="backendApp.uhttp.rateFlowSuccessDRate">Rate Flow Success D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlow"><span jhiTranslate="backendApp.uhttp.rateFlow">Rate Flow</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlowRequest"><span jhiTranslate="backendApp.uhttp.rateFlowRequest">Rate Flow Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlowBpSpeed"><span jhiTranslate="backendApp.uhttp.rateFlowBpSpeed">Rate Flow Bp Speed</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlowBpSpeedDRate"><span jhiTranslate="backendApp.uhttp.rateFlowBpSpeedDRate">Rate Flow Bp Speed D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlowSpDelay"><span jhiTranslate="backendApp.uhttp.rateFlowSpDelay">Rate Flow Sp Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rateFlowSpDelayDRate"><span jhiTranslate="backendApp.uhttp.rateFlowSpDelayDRate">Rate Flow Sp Delay D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlowRate"><span jhiTranslate="backendApp.uhttp.delayFlowRate">Delay Flow Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlowSuccessRate"><span jhiTranslate="backendApp.uhttp.delayFlowSuccessRate">Delay Flow Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlowSuccessDRate"><span jhiTranslate="backendApp.uhttp.delayFlowSuccessDRate">Delay Flow Success D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlow"><span jhiTranslate="backendApp.uhttp.delayFlow">Delay Flow</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlowRequest"><span jhiTranslate="backendApp.uhttp.delayFlowRequest">Delay Flow Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlowBpSpeed"><span jhiTranslate="backendApp.uhttp.delayFlowBpSpeed">Delay Flow Bp Speed</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlowBpSpeedDRate"><span jhiTranslate="backendApp.uhttp.delayFlowBpSpeedDRate">Delay Flow Bp Speed D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlowSpDelay"><span jhiTranslate="backendApp.uhttp.delayFlowSpDelay">Delay Flow Sp Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="delayFlowSpDelayDRate"><span jhiTranslate="backendApp.uhttp.delayFlowSpDelayDRate">Delay Flow Sp Delay D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlowRate"><span jhiTranslate="backendApp.uhttp.refreshFlowRate">Refresh Flow Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlowSuccessRate"><span jhiTranslate="backendApp.uhttp.refreshFlowSuccessRate">Refresh Flow Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlowSuccessDRate"><span jhiTranslate="backendApp.uhttp.refreshFlowSuccessDRate">Refresh Flow Success D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlow"><span jhiTranslate="backendApp.uhttp.refreshFlow">Refresh Flow</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlowRequest"><span jhiTranslate="backendApp.uhttp.refreshFlowRequest">Refresh Flow Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlowBpSpeed"><span jhiTranslate="backendApp.uhttp.refreshFlowBpSpeed">Refresh Flow Bp Speed</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlowBpSpeedDRate"><span jhiTranslate="backendApp.uhttp.refreshFlowBpSpeedDRate">Refresh Flow Bp Speed D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlowSpDelay"><span jhiTranslate="backendApp.uhttp.refreshFlowSpDelay">Refresh Flow Sp Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refreshFlowSpDelayDRate"><span jhiTranslate="backendApp.uhttp.refreshFlowSpDelayDRate">Refresh Flow Sp Delay D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlowRate"><span jhiTranslate="backendApp.uhttp.instantFlowRate">Instant Flow Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlowSuccessRate"><span jhiTranslate="backendApp.uhttp.instantFlowSuccessRate">Instant Flow Success Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlowSuccessDRate"><span jhiTranslate="backendApp.uhttp.instantFlowSuccessDRate">Instant Flow Success D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlow"><span jhiTranslate="backendApp.uhttp.instantFlow">Instant Flow</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlowRequest"><span jhiTranslate="backendApp.uhttp.instantFlowRequest">Instant Flow Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlowBpSpeed"><span jhiTranslate="backendApp.uhttp.instantFlowBpSpeed">Instant Flow Bp Speed</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlowBpSpeedDRate"><span jhiTranslate="backendApp.uhttp.instantFlowBpSpeedDRate">Instant Flow Bp Speed D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlowSpDelay"><span jhiTranslate="backendApp.uhttp.instantFlowSpDelay">Instant Flow Sp Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="instantFlowSpDelayDRate"><span jhiTranslate="backendApp.uhttp.instantFlowSpDelayDRate">Instant Flow Sp Delay D Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tcpCreactlinkDelay"><span jhiTranslate="backendApp.uhttp.tcpCreactlinkDelay">Tcp Creactlink Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tcpCreactlinkCount"><span jhiTranslate="backendApp.uhttp.tcpCreactlinkCount">Tcp Creactlink Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tcpCreactlinkResponseDelay"><span jhiTranslate="backendApp.uhttp.tcpCreactlinkResponseDelay">Tcp Creactlink Response Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tcpCreactlinkResponseCount"><span jhiTranslate="backendApp.uhttp.tcpCreactlinkResponseCount">Tcp Creactlink Response Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tcpCreactlinkConfirmDelay"><span jhiTranslate="backendApp.uhttp.tcpCreactlinkConfirmDelay">Tcp Creactlink Confirm Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tcpCreactlinkConfirmCount"><span jhiTranslate="backendApp.uhttp.tcpCreactlinkConfirmCount">Tcp Creactlink Confirm Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="bpFlow"><span jhiTranslate="backendApp.uhttp.bpFlow">Bp Flow</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="bpDelay"><span jhiTranslate="backendApp.uhttp.bpDelay">Bp Delay</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceRequest"><span jhiTranslate="backendApp.uhttp.serviceRequest">Service Request</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="serviceSuccess"><span jhiTranslate="backendApp.uhttp.serviceSuccess">Service Success</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tencentVideoServiceRequest"><span jhiTranslate="backendApp.uhttp.tencentVideoServiceRequest">Tencent Video Service Request</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let uhttp of uhttps ;trackBy: trackId">
+                <td><a [routerLink]="['../uhttp', uhttp.id ]">{{uhttp.id}}</a></td>
+                <td>{{uhttp.pdate | date:'mediumDate'}}</td>
+                <td>{{uhttp.phour}}</td>
+                <td>{{uhttp.cell}}</td>
+                <td>{{uhttp.imei}}</td>
+                <td>{{uhttp.imsi}}</td>
+                <td>{{uhttp.flowSum}}</td>
+                <td>{{uhttp.rateFlowRate}}</td>
+                <td>{{uhttp.rateFlowSuccessRate}}</td>
+                <td>{{uhttp.rateFlowSuccessDRate}}</td>
+                <td>{{uhttp.rateFlow}}</td>
+                <td>{{uhttp.rateFlowRequest}}</td>
+                <td>{{uhttp.rateFlowBpSpeed}}</td>
+                <td>{{uhttp.rateFlowBpSpeedDRate}}</td>
+                <td>{{uhttp.rateFlowSpDelay}}</td>
+                <td>{{uhttp.rateFlowSpDelayDRate}}</td>
+                <td>{{uhttp.delayFlowRate}}</td>
+                <td>{{uhttp.delayFlowSuccessRate}}</td>
+                <td>{{uhttp.delayFlowSuccessDRate}}</td>
+                <td>{{uhttp.delayFlow}}</td>
+                <td>{{uhttp.delayFlowRequest}}</td>
+                <td>{{uhttp.delayFlowBpSpeed}}</td>
+                <td>{{uhttp.delayFlowBpSpeedDRate}}</td>
+                <td>{{uhttp.delayFlowSpDelay}}</td>
+                <td>{{uhttp.delayFlowSpDelayDRate}}</td>
+                <td>{{uhttp.refreshFlowRate}}</td>
+                <td>{{uhttp.refreshFlowSuccessRate}}</td>
+                <td>{{uhttp.refreshFlowSuccessDRate}}</td>
+                <td>{{uhttp.refreshFlow}}</td>
+                <td>{{uhttp.refreshFlowRequest}}</td>
+                <td>{{uhttp.refreshFlowBpSpeed}}</td>
+                <td>{{uhttp.refreshFlowBpSpeedDRate}}</td>
+                <td>{{uhttp.refreshFlowSpDelay}}</td>
+                <td>{{uhttp.refreshFlowSpDelayDRate}}</td>
+                <td>{{uhttp.instantFlowRate}}</td>
+                <td>{{uhttp.instantFlowSuccessRate}}</td>
+                <td>{{uhttp.instantFlowSuccessDRate}}</td>
+                <td>{{uhttp.instantFlow}}</td>
+                <td>{{uhttp.instantFlowRequest}}</td>
+                <td>{{uhttp.instantFlowBpSpeed}}</td>
+                <td>{{uhttp.instantFlowBpSpeedDRate}}</td>
+                <td>{{uhttp.instantFlowSpDelay}}</td>
+                <td>{{uhttp.instantFlowSpDelayDRate}}</td>
+                <td>{{uhttp.tcpCreactlinkDelay}}</td>
+                <td>{{uhttp.tcpCreactlinkCount}}</td>
+                <td>{{uhttp.tcpCreactlinkResponseDelay}}</td>
+                <td>{{uhttp.tcpCreactlinkResponseCount}}</td>
+                <td>{{uhttp.tcpCreactlinkConfirmDelay}}</td>
+                <td>{{uhttp.tcpCreactlinkConfirmCount}}</td>
+                <td>{{uhttp.bpFlow}}</td>
+                <td>{{uhttp.bpDelay}}</td>
+                <td>{{uhttp.serviceRequest}}</td>
+                <td>{{uhttp.serviceSuccess}}</td>
+                <td>{{uhttp.tencentVideoServiceRequest}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../uhttp', uhttp.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'uhttp/'+ uhttp.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'uhttp/'+ uhttp.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="uhttps && uhttps.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

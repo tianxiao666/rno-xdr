@@ -1,0 +1,175 @@
+{
+  "login": {
+    "title": "登陆XDR系统",
+    "signup_link": "新用户注册",
+    "email": "邮箱",
+    "account": "帐号",
+    "password": "密码",
+    "sign_in": "登录",
+    "sign_out": "注销",
+    "forgot_password": "忘记密码?",
+    "remember_me": "记住我",
+    "error_authentication": "登录失败! 请检查您的登录信息, 并重试一次.",
+    "help": "帮助",
+    "setting": "设置",
+    "directly_sign_in": "直接登录"
+  },
+  "reset": {
+    "request": {
+      "title": "重置您的密码",
+      "form": {
+        "button": "重置密码"
+      },
+      "messages": {
+        "info": "请输入您注册时使用的邮件地址",
+        "success": "已将重置密码的操作说明发送到您的邮箱，请检查邮件.",
+        "notfound": "<strong>没有与该邮件地址关联的账号.</strong> 请使用其他邮件地址"
+      }
+    },
+    "finish" : {
+      "title": "重置密码",
+      "form": {
+        "button": "确定"
+      },
+      "messages": {
+        "info": "请设置新密码",
+        "success": "<strong>您的密码已被重置.</strong> 请 ",
+        "keymissing": "无效的重置密码请求.",
+        "error": "无法重置密码. 您必须在请求重置密码后24小时内完成重置."
+      }
+    }
+  },
+  "global": {
+    "form": {
+      "username": "账号",
+      "username.placeholder": "您的账号",
+      "newpassword": "新密码",
+      "newpassword.placeholder": "您的新密码",
+      "confirmpassword": "新密码确认",
+      "confirmpassword.placeholder": "确认您的新密码",
+      "email": "电子邮件",
+      "email.placeholder": "您的电子邮件"
+    },
+    "messages": {
+      "validate": {
+        "firstname": {
+          "maxlength": "您的姓名长度不能超过50个字符"
+        },
+        "newpassword": {
+          "required": "您的密码是必填项.",
+          "minlength": "您的密码长度至少要有4个字符",
+          "maxlength": "您的密码长度不能超过50个字符",
+          "strength": "密码强度:"
+        },
+        "confirmpassword": {
+          "required": "您的确认密码是必填项.",
+          "minlength": "您的确认密码长度至少要有4个字符",
+          "maxlength": "您的确认密码长度不能超过50个字符"
+        },
+        "email": {
+          "required": "您的电子邮件是必填项.",
+          "invalid": "您的电子邮件格式格式不正确.",
+          "minlength": "您的电子邮件长度至少要有5个字符",
+          "maxlength": "您的电子邮件长度不能超过50个字符"
+        }
+      },
+      "error": {
+        "dontmatch": "两次输入的密码不一致",
+        "email.inuse": "该邮箱已经被使用"
+      }
+    }
+  },
+  "general": {
+    "akveo": "Akveo",
+    "home": "Home",
+    "forms": {
+      "option1": "Option 1"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "editors": "Editors",
+      "ck_editor": "CKEditor",
+      "components": "Components",
+      "tree_view": "Tree View",
+      "charts": "Charts",
+      "chartist_js": "Chartist.Js",
+      "ui_features": "UI Features",
+      "typography": "Typography",
+      "buttons": "Buttons",
+      "icons": "Icons",
+      "modals": "Modals",
+      "grid": "Grid",
+      "form_elements": "Form Elements",
+      "form_inputs": "Form Inputs",
+      "form_layouts": "Form Layouts",
+      "tables": "Tables",
+      "basic_tables": "Basic Tables",
+      "smart_tables": "Smart Tables",
+      "maps": "Maps",
+      "google_maps": "Google Maps",
+      "leaflet_maps": "Leaflet Maps",
+      "bubble_maps": "Bubble Maps",
+      "line_maps": "Line Maps",
+      "pages": "Pages",
+      "login": "Login",
+      "register": "Register",
+      "menu_level_1": "Menu Level 1",
+      "menu_level_1_1": "Menu Level 1.1",
+      "menu_level_1_2": "Menu Level 1.2",
+      "menu_level_1_2_1": "Menu Level 1.2.1",
+      "external_link": "External Link"
+    },
+    "created_with": "Created with"
+  },
+  "dashboard": {
+    "acquisition_channels": "Acquisition Channels",
+    "users_by_country": "Users by Country",
+    "revenue": "Revenue",
+    "feed": "Feed",
+    "todo_list": "To Do List",
+    "calendar": "Calendar",
+    "new_visits": "New Visits",
+    "purchases": "Purchases",
+    "active_users": "Active Users",
+    "returned": "Returned",
+    "popular_app": {
+      "super_app": "Super App",
+      "most_popular_app": "Most Popular App",
+      "total_visits": "Total Visits",
+      "new_visits": "New Visits",
+      "sales": "Sales"
+    },
+    "todo": {
+      "task_todo": "Task to do.."
+    },
+    "traffic_chart": {
+      "view_total": "Views Total"
+    }
+  },
+  "tree_view": {
+    "title": "basic",
+    "programming": "Programming languages by programming paradigm",
+    "oop": "Object-oriented programming",
+    "java": "Java",
+    "c_plus_plus": "C++",
+    "c_sharp": "C#",
+    "prototype": "Prototype-based programming",
+    "java_script": "JavaScript",
+    "coffee_script": "CoffeeScript",
+    "lua": "Lua"
+  },
+  "chart": {
+    "lines": "Lines",
+    "bars": "Bars",
+    "simple_line_chart": "Simple line chart",
+    "line_chart": "Line chart with area",
+    "bi_polar_line_chart": "Bi-polar line chart with area only",
+    "simple_bar_chart": "Simple bar chart",
+    "multi_line_labels_bar_chart": "Multi-line labels bar chart",
+    "stacked_bar_chart": "Stacked bar chart",
+    "pies_and_donuts": "Pies & Donuts",
+    "simple_pie": "Simple Pie",
+    "pie_with_labels": "Pie with labels",
+    "donut": "Donut"
+  }
+}

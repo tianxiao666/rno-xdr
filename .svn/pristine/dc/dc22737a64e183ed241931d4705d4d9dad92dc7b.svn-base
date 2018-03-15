@@ -1,0 +1,49 @@
+
+<div *ngIf="record">
+    <h2><span jhiTranslate="backendApp.record.detail.title">Record</span> {{record.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.record.area">Area</span></dt>
+        <dd>
+            <span>{{record.area}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.record.date">Date</span></dt>
+        <dd>
+            <span>{{record.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.record.userId">User Id</span></dt>
+        <dd>
+            <span>{{record.userId}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.record.title">Title</span></dt>
+        <dd>
+            <span>{{record.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.record.type">Type</span></dt>
+        <dd>
+            <span>{{record.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.record.size">Size</span></dt>
+        <dd>
+            <span>{{record.size}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.record.records">Records</span></dt>
+        <dd>
+            <span>{{record.records}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'record/'+ record.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

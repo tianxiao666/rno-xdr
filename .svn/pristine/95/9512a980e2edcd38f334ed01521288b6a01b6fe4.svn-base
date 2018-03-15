@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>用户指标轨迹呈现</ion-title>
+    <ion-buttons end (click)="toIndex()">
+      <button ion-button icon-only>
+        <ion-icon name="md-home">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+
+    <ion-list>
+      <ion-card-header class="ionCardHeader">
+        查询条件
+      </ion-card-header>
+      <ion-item>
+        <ion-label style="color: black;">请输入IMSI:</ion-label>
+        <ion-input [(ngModel)]="imsi" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label style="color:black">指标</ion-label>
+        <ion-select [(ngModel)]="indicatorId" interface="action-sheet">
+          <ion-option *ngFor="let op of indicatorOptions" [value]="op.value">{{op.label}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color:black">日期</ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color:black">起始小时</ion-label>
+        <ion-select [(ngModel)]="beginTime" (ionChange)="checkTime('beginTime')">
+          <ion-option *ngFor="let op of timeOptions" [value]="op.value">{{op.label}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color:black">结束小时</ion-label>
+        <ion-select [(ngModel)]="endTime" (ionChange)="checkTime('endTime')">
+          <ion-option *ngFor="let op of timeOptions" [value]="op.value">{{op.label}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+
+  <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>
+
+</ion-content>

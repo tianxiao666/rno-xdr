@@ -1,0 +1,125 @@
+
+<div *ngIf="mr">
+    <h2><span jhiTranslate="backendApp.mr.detail.title">Mr</span> {{mr.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.mr.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{mr.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.phour">Phour</span></dt>
+        <dd>
+            <span>{{mr.phour}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.cell">Cell</span></dt>
+        <dd>
+            <span>{{mr.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.imei">Imei</span></dt>
+        <dd>
+            <span>{{mr.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{mr.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.rsrpSum">Rsrp Sum</span></dt>
+        <dd>
+            <span>{{mr.rsrpSum}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.rsrpCount">Rsrp Count</span></dt>
+        <dd>
+            <span>{{mr.rsrpCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.rsrpAvg">Rsrp Avg</span></dt>
+        <dd>
+            <span>{{mr.rsrpAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.rsrqSum">Rsrq Sum</span></dt>
+        <dd>
+            <span>{{mr.rsrqSum}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.rsrqCount">Rsrq Count</span></dt>
+        <dd>
+            <span>{{mr.rsrqCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.rsrqAvg">Rsrq Avg</span></dt>
+        <dd>
+            <span>{{mr.rsrqAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.ulsinrSum">Ulsinr Sum</span></dt>
+        <dd>
+            <span>{{mr.ulsinrSum}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.ulsinrCount">Ulsinr Count</span></dt>
+        <dd>
+            <span>{{mr.ulsinrCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.ulsinrAvg">Ulsinr Avg</span></dt>
+        <dd>
+            <span>{{mr.ulsinrAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.phrSum">Phr Sum</span></dt>
+        <dd>
+            <span>{{mr.phrSum}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.phrCount">Phr Count</span></dt>
+        <dd>
+            <span>{{mr.phrCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.phrAvg">Phr Avg</span></dt>
+        <dd>
+            <span>{{mr.phrAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.erpSum">Erp Sum</span></dt>
+        <dd>
+            <span>{{mr.erpSum}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.erpCount">Erp Count</span></dt>
+        <dd>
+            <span>{{mr.erpCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.erpAvg">Erp Avg</span></dt>
+        <dd>
+            <span>{{mr.erpAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.taSum">Ta Sum</span></dt>
+        <dd>
+            <span>{{mr.taSum}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.taCount">Ta Count</span></dt>
+        <dd>
+            <span>{{mr.taCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.taAvg">Ta Avg</span></dt>
+        <dd>
+            <span>{{mr.taAvg}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.overlapSum">Overlap Sum</span></dt>
+        <dd>
+            <span>{{mr.overlapSum}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.overlapCount">Overlap Count</span></dt>
+        <dd>
+            <span>{{mr.overlapCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.mr.overlapAvg">Overlap Avg</span></dt>
+        <dd>
+            <span>{{mr.overlapAvg}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mr/'+ mr.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

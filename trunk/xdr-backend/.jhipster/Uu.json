@@ -1,0 +1,190 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pdate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "phour",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cell",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imei",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imsi",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rrcConnectRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rrcConnectSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rrcConnectSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rrcReconfigRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rrcReconfigSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rrcReconfigSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rrcReconstructionRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rrcReconstructionSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rrcReconstructionSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rrcReleaseRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rrcReleaseSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rrcReleaseSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "smActivateRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "smActivateSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "smActivateSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cellInterHandoverRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cellInterHandoverSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cellInterHandoverSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "stationIntraHandoverRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "stationIntraHandoverSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "stationIntraHandoverSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "stationInterHandoverRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "stationInterHandoverSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "stationInterHandoverSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ratInRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ratInSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ratInSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "ratOutRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ratOutSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ratOutSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "psPagingRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "psPagingSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "psPagingSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "csPagingRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "csPagingSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "csPagingSuccessRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "othereventRequest",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "othereventSuccess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "othereventSuccessRate",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20170715062010",
+    "entityTableName": "uu",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

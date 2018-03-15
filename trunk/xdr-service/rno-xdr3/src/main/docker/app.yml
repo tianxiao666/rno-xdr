@@ -1,0 +1,14 @@
+version: '2'
+services:
+    rnoxdr3-app:
+        image: rnoxdr3
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://rnoxdr3-postgresql:5432/rnoxdr3
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    rnoxdr3-postgresql:
+        extends:
+            file: postgresql.yml
+            service: rnoxdr3-postgresql

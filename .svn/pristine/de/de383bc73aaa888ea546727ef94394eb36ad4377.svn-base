@@ -1,0 +1,25 @@
+<div class="row">
+  <ba-card class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+           title="网络质量感知详情" baCardClass="traffic-panel auto-card">
+
+    <xdr-detail (search)="searchDetailData($event)"
+            (export)="exportDetailData($event)"
+    ></xdr-detail>
+
+    <!-- 分隔 -->
+    <div style="height: 15px"></div>
+    <div *ngIf="isShowLoading" class="loading">加载中...</div>
+    <div #notFoundData style="display: none" class="warning">没有找到相应的数据</div>
+    <div #programError style="display: none" class="warning">后台程序服务错误</div>
+
+    <div style="width: 100%; overflow:auto;">
+      <xdr-tableshow [hidden]="isShowDetailTable==false"
+                 (paragram)="searchParameterData($event)"
+                 (pageChange)="pageParameterData($event)"
+                 [input]="data"
+      >
+      </xdr-tableshow>
+    </div>
+
+  </ba-card>
+</div>

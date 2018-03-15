@@ -1,0 +1,47 @@
+{
+    "backendApp": {
+        "mme" : {
+            "home": {
+                "title": "Mmes",
+                "createLabel": "Create a new Mme",
+                "createOrEditLabel": "Create or edit a Mme",
+                "search": "Search for Mme"
+            },
+            "created": "A new Mme is created with identifier {{ param }}",
+            "updated": "A Mme is updated with identifier {{ param }}",
+            "deleted": "A Mme is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Mme {{ id }}?"
+            },
+            "detail": {
+                "title": "Mme"
+            },
+            "pdate": "Pdate",
+            "phour": "Phour",
+            "cell": "Cell",
+            "imei": "Imei",
+            "imsi": "Imsi",
+            "attachRequest": "Attach Request",
+            "attachSuccess": "Attach Success",
+            "attachSuccessRate": "Attach Success Rate",
+            "serviceRequest": "Service Request",
+            "serviceRequestSuccess": "Service Request Success",
+            "serviceSuccessRate": "Service Success Rate",
+            "defaultBearerActivateRequest": "Default Bearer Activate Request",
+            "defaultBearerActivateSuccess": "Default Bearer Activate Success",
+            "defaultBearerSetupSuccessRate": "Default Bearer Setup Success Rate",
+            "pdnRequest": "Pdn Request",
+            "pdnRequestSuccess": "Pdn Request Success",
+            "pdnRequestSuccessRate": "Pdn Request Success Rate",
+            "tauRequest": "Tau Request",
+            "tauSuccess": "Tau Success",
+            "tauSuccessRate": "Tau Success Rate",
+            "xhoRequest": "Xho Request",
+            "xhoSuccess": "Xho Success",
+            "xhoSuccessRate": "Xho Success Rate",
+            "shoRequest": "Sho Request",
+            "shoSuccess": "Sho Success",
+            "shoSuccessRate": "Sho Success Rate"
+        }
+    }
+}

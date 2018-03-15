@@ -1,0 +1,18 @@
+<div class="row">
+  <ba-card class="col-xlg-12 col-xl-12 col-lg-12 col-sm-12 col-12"
+           title="网络质量感知趋势" baCardClass="traffic-panel auto-card">
+
+    <trend (search)="searchForData($event)"></trend>
+
+    <!-- 分隔 -->
+    <!--<div style="height: 50px"></div>-->
+    <div style="height: 50px" [hidden]="isShowEcharts==false"></div>
+    <div *ngIf="isShowLoading" class="loading">加载中...</div>
+    <div #notFoundData style="display: none" class="warning">没有找到相应的数据</div>
+    <div #programError style="display: none" class="warning">后台程序服务错误</div>
+    <!--<app-echarts></app-echarts>-->
+    <!--<div echarts [hidden]="isShowEcharts==false" [options]="echartsOption" class="demo-chart"></div>-->
+    <div echarts theme="dark" (chartInit)="onChartInit($event)" *ngIf="isShowEcharts" [options]="echartsOption"
+         class="demo-chart"></div>
+  </ba-card>
+</div>

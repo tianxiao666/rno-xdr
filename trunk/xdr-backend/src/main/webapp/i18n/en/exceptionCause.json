@@ -1,0 +1,28 @@
+{
+    "backendApp": {
+        "exceptionCause" : {
+            "home": {
+                "title": "Exception Causes",
+                "createLabel": "Create a new Exception Cause",
+                "createOrEditLabel": "Create or edit a Exception Cause",
+                "search": "Search for Exception Cause"
+            },
+            "created": "A new Exception Cause is created with identifier {{ param }}",
+            "updated": "A Exception Cause is updated with identifier {{ param }}",
+            "deleted": "A Exception Cause is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Exception Cause {{ id }}?"
+            },
+            "detail": {
+                "title": "Exception Cause"
+            },
+            "pdate": "Pdate",
+            "cell": "Cell",
+            "imei": "Imei",
+            "imsi": "Imsi",
+            "indicatorType": "Indicator Type",
+            "cause": "Cause",
+            "causeCount": "Cause Count"
+        }
+    }
+}

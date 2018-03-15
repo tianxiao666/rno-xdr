@@ -1,0 +1,65 @@
+{
+    "backendApp": {
+        "uu" : {
+            "home": {
+                "title": "Uus",
+                "createLabel": "Create a new Uu",
+                "createOrEditLabel": "Create or edit a Uu",
+                "search": "Search for Uu"
+            },
+            "created": "A new Uu is created with identifier {{ param }}",
+            "updated": "A Uu is updated with identifier {{ param }}",
+            "deleted": "A Uu is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Uu {{ id }}?"
+            },
+            "detail": {
+                "title": "Uu"
+            },
+            "pdate": "Pdate",
+            "phour": "Phour",
+            "cell": "Cell",
+            "imei": "Imei",
+            "imsi": "Imsi",
+            "rrcConnectRequest": "Rrc Connect Request",
+            "rrcConnectSuccess": "Rrc Connect Success",
+            "rrcConnectSuccessRate": "Rrc Connect Success Rate",
+            "rrcReconfigRequest": "Rrc Reconfig Request",
+            "rrcReconfigSuccess": "Rrc Reconfig Success",
+            "rrcReconfigSuccessRate": "Rrc Reconfig Success Rate",
+            "rrcReconstructionRequest": "Rrc Reconstruction Request",
+            "rrcReconstructionSuccess": "Rrc Reconstruction Success",
+            "rrcReconstructionSuccessRate": "Rrc Reconstruction Success Rate",
+            "rrcReleaseRequest": "Rrc Release Request",
+            "rrcReleaseSuccess": "Rrc Release Success",
+            "rrcReleaseSuccessRate": "Rrc Release Success Rate",
+            "smActivateRequest": "Sm Activate Request",
+            "smActivateSuccess": "Sm Activate Success",
+            "smActivateSuccessRate": "Sm Activate Success Rate",
+            "cellInterHandoverRequest": "Cell Inter Handover Request",
+            "cellInterHandoverSuccess": "Cell Inter Handover Success",
+            "cellInterHandoverSuccessRate": "Cell Inter Handover Success Rate",
+            "stationIntraHandoverRequest": "Station Intra Handover Request",
+            "stationIntraHandoverSuccess": "Station Intra Handover Success",
+            "stationIntraHandoverSuccessRate": "Station Intra Handover Success Rate",
+            "stationInterHandoverRequest": "Station Inter Handover Request",
+            "stationInterHandoverSuccess": "Station Inter Handover Success",
+            "stationInterHandoverSuccessRate": "Station Inter Handover Success Rate",
+            "ratInRequest": "Rat In Request",
+            "ratInSuccess": "Rat In Success",
+            "ratInSuccessRate": "Rat In Success Rate",
+            "ratOutRequest": "Rat Out Request",
+            "ratOutSuccess": "Rat Out Success",
+            "ratOutSuccessRate": "Rat Out Success Rate",
+            "psPagingRequest": "Ps Paging Request",
+            "psPagingSuccess": "Ps Paging Success",
+            "psPagingSuccessRate": "Ps Paging Success Rate",
+            "csPagingRequest": "Cs Paging Request",
+            "csPagingSuccess": "Cs Paging Success",
+            "csPagingSuccessRate": "Cs Paging Success Rate",
+            "othereventRequest": "Otherevent Request",
+            "othereventSuccess": "Otherevent Success",
+            "othereventSuccessRate": "Otherevent Success Rate"
+        }
+    }
+}

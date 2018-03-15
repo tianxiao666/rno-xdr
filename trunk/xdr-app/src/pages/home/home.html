@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>主页</ion-title>
+    <ion-buttons end (click)="logout()">
+      <button ion-button icon-only>
+        <ion-icon name="log-out">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-item (click)="pushPerceptionAnalysis()">
+    <ion-thumbnail item-start>
+      <img src="assets/img/analysis.png"/>
+    </ion-thumbnail>
+    <h2>网络质量感知分析</h2>
+  </ion-item>
+  <ion-item (click)="pushPerceptionTrend()">
+    <ion-thumbnail item-start>
+      <img src="assets/img/trend.png"/>
+    </ion-thumbnail>
+    <h2>网络质量感知趋势</h2>
+  </ion-item>
+  <ion-item (click)="pushPerceptionDetail()">
+    <ion-thumbnail item-start>
+      <img src="assets/img/list.png"/>
+    </ion-thumbnail>
+    <h2>网络质量感知详情</h2>
+  </ion-item>
+  <ion-item (click)="pushExceptionCause()">
+    <ion-thumbnail item-start>
+      <img src="assets/img/cause.png"/>
+    </ion-thumbnail>
+    <h2>异常事件原因分析</h2>
+  </ion-item>
+  <ion-item (click)="pushEventRecall()">
+    <ion-thumbnail item-start>
+      <img src="assets/img/signaling-event-track.png">
+    </ion-thumbnail>
+    <h2>用户信令事件回溯</h2>
+  </ion-item>
+  <ion-item (click)="pushExceptionStats()">
+    <ion-thumbnail item-start>
+      <img src="assets/img/statistics.png"/>
+    </ion-thumbnail>
+    <h2>小区指标异常统计</h2>
+  </ion-item>
+  <ion-item (click)="pushTrackPresent()">
+    <ion-thumbnail item-start>
+      <img src="assets/img/track.png"/>
+    </ion-thumbnail>
+    <h2>用户指标轨迹呈现</h2>
+  </ion-item>
+</ion-content>
+
+
+
+

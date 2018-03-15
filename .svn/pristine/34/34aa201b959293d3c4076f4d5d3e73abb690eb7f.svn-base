@@ -1,0 +1,65 @@
+
+<div *ngIf="track">
+    <h2><span jhiTranslate="backendApp.track.detail.title">Track</span> {{track.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.track.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{track.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.startTime">Start Time</span></dt>
+        <dd>
+            <span>{{track.startTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.endTime">End Time</span></dt>
+        <dd>
+            <span>{{track.endTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.cell">Cell</span></dt>
+        <dd>
+            <span>{{track.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.imei">Imei</span></dt>
+        <dd>
+            <span>{{track.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{track.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.msisdn">Msisdn</span></dt>
+        <dd>
+            <span>{{track.msisdn}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.lon">Lon</span></dt>
+        <dd>
+            <span>{{track.lon}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.lat">Lat</span></dt>
+        <dd>
+            <span>{{track.lat}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.indicatorType">Indicator Type</span></dt>
+        <dd>
+            <span>{{track.indicatorType}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.track.status">Status</span></dt>
+        <dd>
+            <span>{{track.status}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'track/'+ track.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

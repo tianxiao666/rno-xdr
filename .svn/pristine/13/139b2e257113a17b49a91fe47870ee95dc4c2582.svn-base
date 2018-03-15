@@ -1,0 +1,61 @@
+<form class="form-inline">
+
+  <div class="form-group">
+    <p class="p-control">地市：</p>
+    <div class="input-group">
+      <select class="form-control" name="obj" [(ngModel)]="conditions.area" style="height: 36px">
+        <option *ngFor="let op of _cellTypes" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 分隔 -->
+  <div style="width: 20px"></div>
+
+  <div class="form-group">
+    <p class="p-control">时间：</p>
+    <div class="input-group">
+      <my-date-picker name="mydate" [options]="myDatePickerOptions" style="width: 160px;height: 36px"
+                      [(ngModel)]="conditions.date1"></my-date-picker>
+    </div>
+    <div style="width: 5px"></div>
+    <p class="p-control">到</p>
+    <div style="width: 5px"></div>
+    <div class="input-group">
+      <my-date-picker name="mydate" [options]="myDatePickerOptions" style="width: 160px;height: 36px"
+                      [(ngModel)]="conditions.date2"></my-date-picker>
+    </div>
+  </div>
+
+
+  <!-- 分隔 -->
+  <div style="width: 20px"></div>
+
+  <div class="form-group">
+    <p class="p-control">类型：</p>
+    <div class="input-group">
+      <select class="form-control" name="datatype" [(ngModel)]="conditions.interfereType" style="height: 36px">
+        <option *ngFor="let op of _interfaces" [value]="op.value">{{op.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div style="width: 50px"></div>
+
+  <div class="form-group">
+      <div class="input-group">
+        <button type="button" class="btn btn-default"  (click)="searchDetailClick($event)" icon="fa-search">查询导入记录</button>
+      </div>
+  </div>
+</form>
+<form class="form-inline">
+  <div class="input-group">
+    <input type="file" class="form-control"  (change)="uploadSelect($event)" id="file_input"
+           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/plain"
+           [multiple]="true" #fileInput >
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="import($event);">导入文件</button>
+    </span>
+  </div>
+</form>
+

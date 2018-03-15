@@ -1,0 +1,233 @@
+
+<div *ngIf="uhttp">
+    <h2><span jhiTranslate="backendApp.uhttp.detail.title">Uhttp</span> {{uhttp.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.uhttp.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{uhttp.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.phour">Phour</span></dt>
+        <dd>
+            <span>{{uhttp.phour}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.cell">Cell</span></dt>
+        <dd>
+            <span>{{uhttp.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.imei">Imei</span></dt>
+        <dd>
+            <span>{{uhttp.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{uhttp.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.flowSum">Flow Sum</span></dt>
+        <dd>
+            <span>{{uhttp.flowSum}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlowRate">Rate Flow Rate</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlowRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlowSuccessRate">Rate Flow Success Rate</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlowSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlowSuccessDRate">Rate Flow Success D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlowSuccessDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlow">Rate Flow</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlow}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlowRequest">Rate Flow Request</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlowRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlowBpSpeed">Rate Flow Bp Speed</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlowBpSpeed}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlowBpSpeedDRate">Rate Flow Bp Speed D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlowBpSpeedDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlowSpDelay">Rate Flow Sp Delay</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlowSpDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.rateFlowSpDelayDRate">Rate Flow Sp Delay D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.rateFlowSpDelayDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlowRate">Delay Flow Rate</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlowRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlowSuccessRate">Delay Flow Success Rate</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlowSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlowSuccessDRate">Delay Flow Success D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlowSuccessDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlow">Delay Flow</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlow}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlowRequest">Delay Flow Request</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlowRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlowBpSpeed">Delay Flow Bp Speed</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlowBpSpeed}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlowBpSpeedDRate">Delay Flow Bp Speed D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlowBpSpeedDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlowSpDelay">Delay Flow Sp Delay</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlowSpDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.delayFlowSpDelayDRate">Delay Flow Sp Delay D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.delayFlowSpDelayDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlowRate">Refresh Flow Rate</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlowRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlowSuccessRate">Refresh Flow Success Rate</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlowSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlowSuccessDRate">Refresh Flow Success D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlowSuccessDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlow">Refresh Flow</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlow}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlowRequest">Refresh Flow Request</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlowRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlowBpSpeed">Refresh Flow Bp Speed</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlowBpSpeed}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlowBpSpeedDRate">Refresh Flow Bp Speed D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlowBpSpeedDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlowSpDelay">Refresh Flow Sp Delay</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlowSpDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.refreshFlowSpDelayDRate">Refresh Flow Sp Delay D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.refreshFlowSpDelayDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlowRate">Instant Flow Rate</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlowRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlowSuccessRate">Instant Flow Success Rate</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlowSuccessRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlowSuccessDRate">Instant Flow Success D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlowSuccessDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlow">Instant Flow</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlow}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlowRequest">Instant Flow Request</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlowRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlowBpSpeed">Instant Flow Bp Speed</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlowBpSpeed}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlowBpSpeedDRate">Instant Flow Bp Speed D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlowBpSpeedDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlowSpDelay">Instant Flow Sp Delay</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlowSpDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.instantFlowSpDelayDRate">Instant Flow Sp Delay D Rate</span></dt>
+        <dd>
+            <span>{{uhttp.instantFlowSpDelayDRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.tcpCreactlinkDelay">Tcp Creactlink Delay</span></dt>
+        <dd>
+            <span>{{uhttp.tcpCreactlinkDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.tcpCreactlinkCount">Tcp Creactlink Count</span></dt>
+        <dd>
+            <span>{{uhttp.tcpCreactlinkCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.tcpCreactlinkResponseDelay">Tcp Creactlink Response Delay</span></dt>
+        <dd>
+            <span>{{uhttp.tcpCreactlinkResponseDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.tcpCreactlinkResponseCount">Tcp Creactlink Response Count</span></dt>
+        <dd>
+            <span>{{uhttp.tcpCreactlinkResponseCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.tcpCreactlinkConfirmDelay">Tcp Creactlink Confirm Delay</span></dt>
+        <dd>
+            <span>{{uhttp.tcpCreactlinkConfirmDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.tcpCreactlinkConfirmCount">Tcp Creactlink Confirm Count</span></dt>
+        <dd>
+            <span>{{uhttp.tcpCreactlinkConfirmCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.bpFlow">Bp Flow</span></dt>
+        <dd>
+            <span>{{uhttp.bpFlow}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.bpDelay">Bp Delay</span></dt>
+        <dd>
+            <span>{{uhttp.bpDelay}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.serviceRequest">Service Request</span></dt>
+        <dd>
+            <span>{{uhttp.serviceRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.serviceSuccess">Service Success</span></dt>
+        <dd>
+            <span>{{uhttp.serviceSuccess}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.uhttp.tencentVideoServiceRequest">Tencent Video Service Request</span></dt>
+        <dd>
+            <span>{{uhttp.tencentVideoServiceRequest}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'uhttp/'+ uhttp.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

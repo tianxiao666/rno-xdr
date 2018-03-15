@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>网络质量感知分析</ion-title>
+    <ion-buttons end (click)="toIndex()">
+      <button ion-button icon-only>
+        <ion-icon name="md-home">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="cards-bg">
+  <form (ngSubmit)="onSubmit()" #perceptionAnalysisForm="ngForm">
+    <div class="cards-list-demo">
+      <ion-card-header class="ionCardHeader">
+        查询条件
+      </ion-card-header>
+      <ion-list>
+        <ion-item>
+          <ion-label>日期</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD"
+            [(ngModel)] ="cond.time" name="time" #time="ngModel"></ion-datetime>
+        </ion-item>
+        <ion-item class="form-group">
+          <ion-label>范围</ion-label>
+          <ion-select [(ngModel)]="cond.indicator" name="indicator"
+                      #indicator="ngModel" interface="alert">
+            <ion-option value="network" selected>全网</ion-option>
+            <ion-option value="eci">ECI</ion-option>
+            <ion-option value="imsi">IMSI</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="cond.indicator !='network' ">
+          <ion-label  for="subIndic">请输入{{cond.indicator}}</ion-label>
+          <ion-input type="text" [(ngModel)] ="cond.subIndic" name="subIndic" id="subIndic"
+                     #subIndic="ngModel"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>接口类型</ion-label>
+          <ion-select [(ngModel)]="cond.interfaceType" name="interfaceType" #interfaceType="ngModel"
+                      (ngModelChange)="fillIndicatorType(cond.interfaceType)" interface="alert">
+            <ion-option value="uu">uu</ion-option>
+            <ion-option value="mr">mr</ion-option>
+            <ion-option value="x2">x2</ion-option>
+            <ion-option value="brd31">brd31</ion-option>
+            <ion-option value="brd39">brd39</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>指标</ion-label>
+          <ion-select multiple="true"  id="interfaceName"
+                      name="interfaceName"  interface="alert" placeholder="请选择">
+            <ion-option *ngFor="let one of cond.interfaceName">{{one}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+    <button ion-button color="secondary" class="button-work" (click)="doSearch()">查询</button>
+  </form>
+</ion-content>
+<style>
+  .cards-bg{
+    background: #efeff4;
+  }
+  .ionCardHeader{
+    color: #00f;
+  }
+  .button-work{
+    border-radius: 2px;
+    width: 100% ;
+  }
+</style>

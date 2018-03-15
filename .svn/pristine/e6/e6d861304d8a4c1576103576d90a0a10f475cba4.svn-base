@@ -1,0 +1,71 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myExceptionCauseLabel" jhiTranslate="backendApp.exceptionCause.home.createOrEditLabel">Create or edit a Exception Cause</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!exceptionCause.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="exceptionCause.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionCause.pdate" for="field_pdate">Pdate</label>
+            <div class="input-group">
+                <input id="field_pdate" type="text" class="form-control" name="pdate" ngbDatepicker  #pdateDp="ngbDatepicker" [(ngModel)]="exceptionCause.pdate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="pdateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.pdate?.dirty && editForm.controls.pdate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pdate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionCause.cell" for="field_cell">Cell</label>
+            <input type="number" class="form-control" name="cell" id="field_cell"
+                [(ngModel)]="exceptionCause.cell"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionCause.imei" for="field_imei">Imei</label>
+            <input type="number" class="form-control" name="imei" id="field_imei"
+                [(ngModel)]="exceptionCause.imei"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionCause.imsi" for="field_imsi">Imsi</label>
+            <input type="number" class="form-control" name="imsi" id="field_imsi"
+                [(ngModel)]="exceptionCause.imsi"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionCause.indicatorType" for="field_indicatorType">Indicator Type</label>
+            <input type="text" class="form-control" name="indicatorType" id="field_indicatorType"
+                [(ngModel)]="exceptionCause.indicatorType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionCause.cause" for="field_cause">Cause</label>
+            <input type="number" class="form-control" name="cause" id="field_cause"
+                [(ngModel)]="exceptionCause.cause"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.exceptionCause.causeCount" for="field_causeCount">Cause Count</label>
+            <input type="number" class="form-control" name="causeCount" id="field_causeCount"
+                [(ngModel)]="exceptionCause.causeCount"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

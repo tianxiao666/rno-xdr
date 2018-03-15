@@ -1,0 +1,1693 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myInterfereLabel" jhiTranslate="backendApp.interfere.home.createOrEditLabel">Create or edit a Interfere</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!interfere.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="interfere.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.time" for="field_time">Time</label>
+            <div class="d-flex">
+                <input id="field_time" type="datetime-local" class="form-control" name="time" [(ngModel)]="interfere.time"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.fileId" for="field_fileId">File Id</label>
+            <input type="number" class="form-control" name="fileId" id="field_fileId"
+                [(ngModel)]="interfere.fileId" required />
+            <div [hidden]="!(editForm.controls.fileId?.dirty && editForm.controls.fileId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fileId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.fileId?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.areaId" for="field_areaId">Area Id</label>
+            <input type="number" class="form-control" name="areaId" id="field_areaId"
+                [(ngModel)]="interfere.areaId" required />
+            <div [hidden]="!(editForm.controls.areaId?.dirty && editForm.controls.areaId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.areaId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.areaId?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.taskId" for="field_taskId">Task Id</label>
+            <input type="number" class="form-control" name="taskId" id="field_taskId"
+                [(ngModel)]="interfere.taskId" required />
+            <div [hidden]="!(editForm.controls.taskId?.dirty && editForm.controls.taskId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.taskId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.taskId?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.factory" for="field_factory">Factory</label>
+            <input type="text" class="form-control" name="factory" id="field_factory"
+                [(ngModel)]="interfere.factory"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.enodeb" for="field_enodeb">Enodeb</label>
+            <input type="text" class="form-control" name="enodeb" id="field_enodeb"
+                [(ngModel)]="interfere.enodeb"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.cellName" for="field_cellName">Cell Name</label>
+            <input type="text" class="form-control" name="cellName" id="field_cellName"
+                [(ngModel)]="interfere.cellName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.cellIdendifier" for="field_cellIdendifier">Cell Idendifier</label>
+            <input type="number" class="form-control" name="cellIdendifier" id="field_cellIdendifier"
+                [(ngModel)]="interfere.cellIdendifier"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.coverType" for="field_coverType">Cover Type</label>
+            <input type="text" class="form-control" name="coverType" id="field_coverType"
+                [(ngModel)]="interfere.coverType"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.longitude" for="field_longitude">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="field_longitude"
+                [(ngModel)]="interfere.longitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.latitude" for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                [(ngModel)]="interfere.latitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.workBand" for="field_workBand">Work Band</label>
+            <input type="text" class="form-control" name="workBand" id="field_workBand"
+                [(ngModel)]="interfere.workBand"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.carrierFrequency" for="field_carrierFrequency">Carrier Frequency</label>
+            <input type="number" class="form-control" name="carrierFrequency" id="field_carrierFrequency"
+                [(ngModel)]="interfere.carrierFrequency"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb0" for="field_prb0">Prb 0</label>
+            <input type="number" class="form-control" name="prb0" id="field_prb0"
+                [(ngModel)]="interfere.prb0" required />
+            <div [hidden]="!(editForm.controls.prb0?.dirty && editForm.controls.prb0?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb0?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb0?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb1" for="field_prb1">Prb 1</label>
+            <input type="number" class="form-control" name="prb1" id="field_prb1"
+                [(ngModel)]="interfere.prb1" required />
+            <div [hidden]="!(editForm.controls.prb1?.dirty && editForm.controls.prb1?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb1?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb1?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb2" for="field_prb2">Prb 2</label>
+            <input type="number" class="form-control" name="prb2" id="field_prb2"
+                [(ngModel)]="interfere.prb2" required />
+            <div [hidden]="!(editForm.controls.prb2?.dirty && editForm.controls.prb2?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb2?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb2?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb3" for="field_prb3">Prb 3</label>
+            <input type="number" class="form-control" name="prb3" id="field_prb3"
+                [(ngModel)]="interfere.prb3" required />
+            <div [hidden]="!(editForm.controls.prb3?.dirty && editForm.controls.prb3?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb3?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb3?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb4" for="field_prb4">Prb 4</label>
+            <input type="number" class="form-control" name="prb4" id="field_prb4"
+                [(ngModel)]="interfere.prb4" required />
+            <div [hidden]="!(editForm.controls.prb4?.dirty && editForm.controls.prb4?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb4?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb4?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb5" for="field_prb5">Prb 5</label>
+            <input type="number" class="form-control" name="prb5" id="field_prb5"
+                [(ngModel)]="interfere.prb5" required />
+            <div [hidden]="!(editForm.controls.prb5?.dirty && editForm.controls.prb5?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb5?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb5?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb6" for="field_prb6">Prb 6</label>
+            <input type="number" class="form-control" name="prb6" id="field_prb6"
+                [(ngModel)]="interfere.prb6" required />
+            <div [hidden]="!(editForm.controls.prb6?.dirty && editForm.controls.prb6?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb6?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb6?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb7" for="field_prb7">Prb 7</label>
+            <input type="number" class="form-control" name="prb7" id="field_prb7"
+                [(ngModel)]="interfere.prb7" required />
+            <div [hidden]="!(editForm.controls.prb7?.dirty && editForm.controls.prb7?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb7?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb7?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb8" for="field_prb8">Prb 8</label>
+            <input type="number" class="form-control" name="prb8" id="field_prb8"
+                [(ngModel)]="interfere.prb8" required />
+            <div [hidden]="!(editForm.controls.prb8?.dirty && editForm.controls.prb8?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb8?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb8?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb9" for="field_prb9">Prb 9</label>
+            <input type="number" class="form-control" name="prb9" id="field_prb9"
+                [(ngModel)]="interfere.prb9" required />
+            <div [hidden]="!(editForm.controls.prb9?.dirty && editForm.controls.prb9?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb9?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb9?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb10" for="field_prb10">Prb 10</label>
+            <input type="number" class="form-control" name="prb10" id="field_prb10"
+                [(ngModel)]="interfere.prb10" required />
+            <div [hidden]="!(editForm.controls.prb10?.dirty && editForm.controls.prb10?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb10?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb10?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb11" for="field_prb11">Prb 11</label>
+            <input type="number" class="form-control" name="prb11" id="field_prb11"
+                [(ngModel)]="interfere.prb11" required />
+            <div [hidden]="!(editForm.controls.prb11?.dirty && editForm.controls.prb11?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb11?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb11?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb12" for="field_prb12">Prb 12</label>
+            <input type="number" class="form-control" name="prb12" id="field_prb12"
+                [(ngModel)]="interfere.prb12" required />
+            <div [hidden]="!(editForm.controls.prb12?.dirty && editForm.controls.prb12?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb12?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb12?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb13" for="field_prb13">Prb 13</label>
+            <input type="number" class="form-control" name="prb13" id="field_prb13"
+                [(ngModel)]="interfere.prb13" required />
+            <div [hidden]="!(editForm.controls.prb13?.dirty && editForm.controls.prb13?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb13?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb13?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb14" for="field_prb14">Prb 14</label>
+            <input type="number" class="form-control" name="prb14" id="field_prb14"
+                [(ngModel)]="interfere.prb14" required />
+            <div [hidden]="!(editForm.controls.prb14?.dirty && editForm.controls.prb14?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb14?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb14?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb15" for="field_prb15">Prb 15</label>
+            <input type="number" class="form-control" name="prb15" id="field_prb15"
+                [(ngModel)]="interfere.prb15" required />
+            <div [hidden]="!(editForm.controls.prb15?.dirty && editForm.controls.prb15?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb15?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb15?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb16" for="field_prb16">Prb 16</label>
+            <input type="number" class="form-control" name="prb16" id="field_prb16"
+                [(ngModel)]="interfere.prb16" required />
+            <div [hidden]="!(editForm.controls.prb16?.dirty && editForm.controls.prb16?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb16?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb16?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb17" for="field_prb17">Prb 17</label>
+            <input type="number" class="form-control" name="prb17" id="field_prb17"
+                [(ngModel)]="interfere.prb17" required />
+            <div [hidden]="!(editForm.controls.prb17?.dirty && editForm.controls.prb17?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb17?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb17?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb18" for="field_prb18">Prb 18</label>
+            <input type="number" class="form-control" name="prb18" id="field_prb18"
+                [(ngModel)]="interfere.prb18" required />
+            <div [hidden]="!(editForm.controls.prb18?.dirty && editForm.controls.prb18?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb18?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb18?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb19" for="field_prb19">Prb 19</label>
+            <input type="number" class="form-control" name="prb19" id="field_prb19"
+                [(ngModel)]="interfere.prb19" required />
+            <div [hidden]="!(editForm.controls.prb19?.dirty && editForm.controls.prb19?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb19?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb19?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb20" for="field_prb20">Prb 20</label>
+            <input type="number" class="form-control" name="prb20" id="field_prb20"
+                [(ngModel)]="interfere.prb20" required />
+            <div [hidden]="!(editForm.controls.prb20?.dirty && editForm.controls.prb20?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb20?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb20?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb21" for="field_prb21">Prb 21</label>
+            <input type="number" class="form-control" name="prb21" id="field_prb21"
+                [(ngModel)]="interfere.prb21" required />
+            <div [hidden]="!(editForm.controls.prb21?.dirty && editForm.controls.prb21?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb21?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb21?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb22" for="field_prb22">Prb 22</label>
+            <input type="number" class="form-control" name="prb22" id="field_prb22"
+                [(ngModel)]="interfere.prb22" required />
+            <div [hidden]="!(editForm.controls.prb22?.dirty && editForm.controls.prb22?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb22?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb22?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb23" for="field_prb23">Prb 23</label>
+            <input type="number" class="form-control" name="prb23" id="field_prb23"
+                [(ngModel)]="interfere.prb23" required />
+            <div [hidden]="!(editForm.controls.prb23?.dirty && editForm.controls.prb23?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb23?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb23?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb24" for="field_prb24">Prb 24</label>
+            <input type="number" class="form-control" name="prb24" id="field_prb24"
+                [(ngModel)]="interfere.prb24" required />
+            <div [hidden]="!(editForm.controls.prb24?.dirty && editForm.controls.prb24?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb24?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb24?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb25" for="field_prb25">Prb 25</label>
+            <input type="number" class="form-control" name="prb25" id="field_prb25"
+                [(ngModel)]="interfere.prb25" required />
+            <div [hidden]="!(editForm.controls.prb25?.dirty && editForm.controls.prb25?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb25?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb25?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb26" for="field_prb26">Prb 26</label>
+            <input type="number" class="form-control" name="prb26" id="field_prb26"
+                [(ngModel)]="interfere.prb26" required />
+            <div [hidden]="!(editForm.controls.prb26?.dirty && editForm.controls.prb26?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb26?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb26?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb27" for="field_prb27">Prb 27</label>
+            <input type="number" class="form-control" name="prb27" id="field_prb27"
+                [(ngModel)]="interfere.prb27" required />
+            <div [hidden]="!(editForm.controls.prb27?.dirty && editForm.controls.prb27?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb27?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb27?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb28" for="field_prb28">Prb 28</label>
+            <input type="number" class="form-control" name="prb28" id="field_prb28"
+                [(ngModel)]="interfere.prb28" required />
+            <div [hidden]="!(editForm.controls.prb28?.dirty && editForm.controls.prb28?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb28?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb28?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb29" for="field_prb29">Prb 29</label>
+            <input type="number" class="form-control" name="prb29" id="field_prb29"
+                [(ngModel)]="interfere.prb29" required />
+            <div [hidden]="!(editForm.controls.prb29?.dirty && editForm.controls.prb29?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb29?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb29?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb30" for="field_prb30">Prb 30</label>
+            <input type="number" class="form-control" name="prb30" id="field_prb30"
+                [(ngModel)]="interfere.prb30" required />
+            <div [hidden]="!(editForm.controls.prb30?.dirty && editForm.controls.prb30?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb30?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb30?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb31" for="field_prb31">Prb 31</label>
+            <input type="number" class="form-control" name="prb31" id="field_prb31"
+                [(ngModel)]="interfere.prb31" required />
+            <div [hidden]="!(editForm.controls.prb31?.dirty && editForm.controls.prb31?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb31?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb31?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb32" for="field_prb32">Prb 32</label>
+            <input type="number" class="form-control" name="prb32" id="field_prb32"
+                [(ngModel)]="interfere.prb32" required />
+            <div [hidden]="!(editForm.controls.prb32?.dirty && editForm.controls.prb32?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb32?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb32?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb33" for="field_prb33">Prb 33</label>
+            <input type="number" class="form-control" name="prb33" id="field_prb33"
+                [(ngModel)]="interfere.prb33" required />
+            <div [hidden]="!(editForm.controls.prb33?.dirty && editForm.controls.prb33?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb33?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb33?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb34" for="field_prb34">Prb 34</label>
+            <input type="number" class="form-control" name="prb34" id="field_prb34"
+                [(ngModel)]="interfere.prb34" required />
+            <div [hidden]="!(editForm.controls.prb34?.dirty && editForm.controls.prb34?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb34?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb34?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb35" for="field_prb35">Prb 35</label>
+            <input type="number" class="form-control" name="prb35" id="field_prb35"
+                [(ngModel)]="interfere.prb35" required />
+            <div [hidden]="!(editForm.controls.prb35?.dirty && editForm.controls.prb35?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb35?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb35?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb36" for="field_prb36">Prb 36</label>
+            <input type="number" class="form-control" name="prb36" id="field_prb36"
+                [(ngModel)]="interfere.prb36" required />
+            <div [hidden]="!(editForm.controls.prb36?.dirty && editForm.controls.prb36?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb36?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb36?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb37" for="field_prb37">Prb 37</label>
+            <input type="number" class="form-control" name="prb37" id="field_prb37"
+                [(ngModel)]="interfere.prb37" required />
+            <div [hidden]="!(editForm.controls.prb37?.dirty && editForm.controls.prb37?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb37?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb37?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb38" for="field_prb38">Prb 38</label>
+            <input type="number" class="form-control" name="prb38" id="field_prb38"
+                [(ngModel)]="interfere.prb38" required />
+            <div [hidden]="!(editForm.controls.prb38?.dirty && editForm.controls.prb38?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb38?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb38?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb39" for="field_prb39">Prb 39</label>
+            <input type="number" class="form-control" name="prb39" id="field_prb39"
+                [(ngModel)]="interfere.prb39" required />
+            <div [hidden]="!(editForm.controls.prb39?.dirty && editForm.controls.prb39?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb39?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb39?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb40" for="field_prb40">Prb 40</label>
+            <input type="number" class="form-control" name="prb40" id="field_prb40"
+                [(ngModel)]="interfere.prb40" required />
+            <div [hidden]="!(editForm.controls.prb40?.dirty && editForm.controls.prb40?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb40?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb40?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb41" for="field_prb41">Prb 41</label>
+            <input type="number" class="form-control" name="prb41" id="field_prb41"
+                [(ngModel)]="interfere.prb41" required />
+            <div [hidden]="!(editForm.controls.prb41?.dirty && editForm.controls.prb41?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb41?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb41?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb42" for="field_prb42">Prb 42</label>
+            <input type="number" class="form-control" name="prb42" id="field_prb42"
+                [(ngModel)]="interfere.prb42" required />
+            <div [hidden]="!(editForm.controls.prb42?.dirty && editForm.controls.prb42?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb42?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb42?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb43" for="field_prb43">Prb 43</label>
+            <input type="number" class="form-control" name="prb43" id="field_prb43"
+                [(ngModel)]="interfere.prb43" required />
+            <div [hidden]="!(editForm.controls.prb43?.dirty && editForm.controls.prb43?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb43?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb43?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb44" for="field_prb44">Prb 44</label>
+            <input type="number" class="form-control" name="prb44" id="field_prb44"
+                [(ngModel)]="interfere.prb44" required />
+            <div [hidden]="!(editForm.controls.prb44?.dirty && editForm.controls.prb44?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb44?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb44?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb45" for="field_prb45">Prb 45</label>
+            <input type="number" class="form-control" name="prb45" id="field_prb45"
+                [(ngModel)]="interfere.prb45" required />
+            <div [hidden]="!(editForm.controls.prb45?.dirty && editForm.controls.prb45?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb45?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb45?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb46" for="field_prb46">Prb 46</label>
+            <input type="number" class="form-control" name="prb46" id="field_prb46"
+                [(ngModel)]="interfere.prb46" required />
+            <div [hidden]="!(editForm.controls.prb46?.dirty && editForm.controls.prb46?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb46?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb46?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb47" for="field_prb47">Prb 47</label>
+            <input type="number" class="form-control" name="prb47" id="field_prb47"
+                [(ngModel)]="interfere.prb47" required />
+            <div [hidden]="!(editForm.controls.prb47?.dirty && editForm.controls.prb47?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb47?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb47?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb48" for="field_prb48">Prb 48</label>
+            <input type="number" class="form-control" name="prb48" id="field_prb48"
+                [(ngModel)]="interfere.prb48" required />
+            <div [hidden]="!(editForm.controls.prb48?.dirty && editForm.controls.prb48?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb48?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb48?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb49" for="field_prb49">Prb 49</label>
+            <input type="number" class="form-control" name="prb49" id="field_prb49"
+                [(ngModel)]="interfere.prb49" required />
+            <div [hidden]="!(editForm.controls.prb49?.dirty && editForm.controls.prb49?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb49?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb49?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb50" for="field_prb50">Prb 50</label>
+            <input type="number" class="form-control" name="prb50" id="field_prb50"
+                [(ngModel)]="interfere.prb50" required />
+            <div [hidden]="!(editForm.controls.prb50?.dirty && editForm.controls.prb50?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb50?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb50?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb51" for="field_prb51">Prb 51</label>
+            <input type="number" class="form-control" name="prb51" id="field_prb51"
+                [(ngModel)]="interfere.prb51" required />
+            <div [hidden]="!(editForm.controls.prb51?.dirty && editForm.controls.prb51?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb51?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb51?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb52" for="field_prb52">Prb 52</label>
+            <input type="number" class="form-control" name="prb52" id="field_prb52"
+                [(ngModel)]="interfere.prb52" required />
+            <div [hidden]="!(editForm.controls.prb52?.dirty && editForm.controls.prb52?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb52?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb52?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb53" for="field_prb53">Prb 53</label>
+            <input type="number" class="form-control" name="prb53" id="field_prb53"
+                [(ngModel)]="interfere.prb53" required />
+            <div [hidden]="!(editForm.controls.prb53?.dirty && editForm.controls.prb53?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb53?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb53?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb54" for="field_prb54">Prb 54</label>
+            <input type="number" class="form-control" name="prb54" id="field_prb54"
+                [(ngModel)]="interfere.prb54" required />
+            <div [hidden]="!(editForm.controls.prb54?.dirty && editForm.controls.prb54?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb54?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb54?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb55" for="field_prb55">Prb 55</label>
+            <input type="number" class="form-control" name="prb55" id="field_prb55"
+                [(ngModel)]="interfere.prb55" required />
+            <div [hidden]="!(editForm.controls.prb55?.dirty && editForm.controls.prb55?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb55?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb55?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb56" for="field_prb56">Prb 56</label>
+            <input type="number" class="form-control" name="prb56" id="field_prb56"
+                [(ngModel)]="interfere.prb56" required />
+            <div [hidden]="!(editForm.controls.prb56?.dirty && editForm.controls.prb56?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb56?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb56?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb57" for="field_prb57">Prb 57</label>
+            <input type="number" class="form-control" name="prb57" id="field_prb57"
+                [(ngModel)]="interfere.prb57" required />
+            <div [hidden]="!(editForm.controls.prb57?.dirty && editForm.controls.prb57?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb57?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb57?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb58" for="field_prb58">Prb 58</label>
+            <input type="number" class="form-control" name="prb58" id="field_prb58"
+                [(ngModel)]="interfere.prb58" required />
+            <div [hidden]="!(editForm.controls.prb58?.dirty && editForm.controls.prb58?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb58?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb58?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb59" for="field_prb59">Prb 59</label>
+            <input type="number" class="form-control" name="prb59" id="field_prb59"
+                [(ngModel)]="interfere.prb59" required />
+            <div [hidden]="!(editForm.controls.prb59?.dirty && editForm.controls.prb59?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb59?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb59?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb60" for="field_prb60">Prb 60</label>
+            <input type="number" class="form-control" name="prb60" id="field_prb60"
+                [(ngModel)]="interfere.prb60" required />
+            <div [hidden]="!(editForm.controls.prb60?.dirty && editForm.controls.prb60?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb60?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb60?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb61" for="field_prb61">Prb 61</label>
+            <input type="number" class="form-control" name="prb61" id="field_prb61"
+                [(ngModel)]="interfere.prb61" required />
+            <div [hidden]="!(editForm.controls.prb61?.dirty && editForm.controls.prb61?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb61?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb61?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb62" for="field_prb62">Prb 62</label>
+            <input type="number" class="form-control" name="prb62" id="field_prb62"
+                [(ngModel)]="interfere.prb62" required />
+            <div [hidden]="!(editForm.controls.prb62?.dirty && editForm.controls.prb62?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb62?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb62?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb63" for="field_prb63">Prb 63</label>
+            <input type="number" class="form-control" name="prb63" id="field_prb63"
+                [(ngModel)]="interfere.prb63" required />
+            <div [hidden]="!(editForm.controls.prb63?.dirty && editForm.controls.prb63?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb63?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb63?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb64" for="field_prb64">Prb 64</label>
+            <input type="number" class="form-control" name="prb64" id="field_prb64"
+                [(ngModel)]="interfere.prb64" required />
+            <div [hidden]="!(editForm.controls.prb64?.dirty && editForm.controls.prb64?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb64?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb64?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb65" for="field_prb65">Prb 65</label>
+            <input type="number" class="form-control" name="prb65" id="field_prb65"
+                [(ngModel)]="interfere.prb65" required />
+            <div [hidden]="!(editForm.controls.prb65?.dirty && editForm.controls.prb65?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb65?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb65?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb66" for="field_prb66">Prb 66</label>
+            <input type="number" class="form-control" name="prb66" id="field_prb66"
+                [(ngModel)]="interfere.prb66" required />
+            <div [hidden]="!(editForm.controls.prb66?.dirty && editForm.controls.prb66?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb66?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb66?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb67" for="field_prb67">Prb 67</label>
+            <input type="number" class="form-control" name="prb67" id="field_prb67"
+                [(ngModel)]="interfere.prb67" required />
+            <div [hidden]="!(editForm.controls.prb67?.dirty && editForm.controls.prb67?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb67?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb67?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb68" for="field_prb68">Prb 68</label>
+            <input type="number" class="form-control" name="prb68" id="field_prb68"
+                [(ngModel)]="interfere.prb68" required />
+            <div [hidden]="!(editForm.controls.prb68?.dirty && editForm.controls.prb68?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb68?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb68?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb69" for="field_prb69">Prb 69</label>
+            <input type="number" class="form-control" name="prb69" id="field_prb69"
+                [(ngModel)]="interfere.prb69" required />
+            <div [hidden]="!(editForm.controls.prb69?.dirty && editForm.controls.prb69?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb69?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb69?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb70" for="field_prb70">Prb 70</label>
+            <input type="number" class="form-control" name="prb70" id="field_prb70"
+                [(ngModel)]="interfere.prb70" required />
+            <div [hidden]="!(editForm.controls.prb70?.dirty && editForm.controls.prb70?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb70?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb70?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb71" for="field_prb71">Prb 71</label>
+            <input type="number" class="form-control" name="prb71" id="field_prb71"
+                [(ngModel)]="interfere.prb71" required />
+            <div [hidden]="!(editForm.controls.prb71?.dirty && editForm.controls.prb71?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb71?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb71?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb72" for="field_prb72">Prb 72</label>
+            <input type="number" class="form-control" name="prb72" id="field_prb72"
+                [(ngModel)]="interfere.prb72" required />
+            <div [hidden]="!(editForm.controls.prb72?.dirty && editForm.controls.prb72?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb72?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb72?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb73" for="field_prb73">Prb 73</label>
+            <input type="number" class="form-control" name="prb73" id="field_prb73"
+                [(ngModel)]="interfere.prb73" required />
+            <div [hidden]="!(editForm.controls.prb73?.dirty && editForm.controls.prb73?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb73?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb73?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb74" for="field_prb74">Prb 74</label>
+            <input type="number" class="form-control" name="prb74" id="field_prb74"
+                [(ngModel)]="interfere.prb74" required />
+            <div [hidden]="!(editForm.controls.prb74?.dirty && editForm.controls.prb74?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb74?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb74?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb75" for="field_prb75">Prb 75</label>
+            <input type="number" class="form-control" name="prb75" id="field_prb75"
+                [(ngModel)]="interfere.prb75" required />
+            <div [hidden]="!(editForm.controls.prb75?.dirty && editForm.controls.prb75?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb75?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb75?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb76" for="field_prb76">Prb 76</label>
+            <input type="number" class="form-control" name="prb76" id="field_prb76"
+                [(ngModel)]="interfere.prb76" required />
+            <div [hidden]="!(editForm.controls.prb76?.dirty && editForm.controls.prb76?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb76?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb76?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb77" for="field_prb77">Prb 77</label>
+            <input type="number" class="form-control" name="prb77" id="field_prb77"
+                [(ngModel)]="interfere.prb77" required />
+            <div [hidden]="!(editForm.controls.prb77?.dirty && editForm.controls.prb77?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb77?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb77?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb78" for="field_prb78">Prb 78</label>
+            <input type="number" class="form-control" name="prb78" id="field_prb78"
+                [(ngModel)]="interfere.prb78" required />
+            <div [hidden]="!(editForm.controls.prb78?.dirty && editForm.controls.prb78?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb78?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb78?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb79" for="field_prb79">Prb 79</label>
+            <input type="number" class="form-control" name="prb79" id="field_prb79"
+                [(ngModel)]="interfere.prb79" required />
+            <div [hidden]="!(editForm.controls.prb79?.dirty && editForm.controls.prb79?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb79?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb79?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb80" for="field_prb80">Prb 80</label>
+            <input type="number" class="form-control" name="prb80" id="field_prb80"
+                [(ngModel)]="interfere.prb80" required />
+            <div [hidden]="!(editForm.controls.prb80?.dirty && editForm.controls.prb80?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb80?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb80?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb81" for="field_prb81">Prb 81</label>
+            <input type="number" class="form-control" name="prb81" id="field_prb81"
+                [(ngModel)]="interfere.prb81" required />
+            <div [hidden]="!(editForm.controls.prb81?.dirty && editForm.controls.prb81?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb81?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb81?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb82" for="field_prb82">Prb 82</label>
+            <input type="number" class="form-control" name="prb82" id="field_prb82"
+                [(ngModel)]="interfere.prb82" required />
+            <div [hidden]="!(editForm.controls.prb82?.dirty && editForm.controls.prb82?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb82?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb82?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb83" for="field_prb83">Prb 83</label>
+            <input type="number" class="form-control" name="prb83" id="field_prb83"
+                [(ngModel)]="interfere.prb83" required />
+            <div [hidden]="!(editForm.controls.prb83?.dirty && editForm.controls.prb83?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb83?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb83?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb84" for="field_prb84">Prb 84</label>
+            <input type="number" class="form-control" name="prb84" id="field_prb84"
+                [(ngModel)]="interfere.prb84" required />
+            <div [hidden]="!(editForm.controls.prb84?.dirty && editForm.controls.prb84?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb84?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb84?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb85" for="field_prb85">Prb 85</label>
+            <input type="number" class="form-control" name="prb85" id="field_prb85"
+                [(ngModel)]="interfere.prb85" required />
+            <div [hidden]="!(editForm.controls.prb85?.dirty && editForm.controls.prb85?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb85?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb85?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb86" for="field_prb86">Prb 86</label>
+            <input type="number" class="form-control" name="prb86" id="field_prb86"
+                [(ngModel)]="interfere.prb86" required />
+            <div [hidden]="!(editForm.controls.prb86?.dirty && editForm.controls.prb86?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb86?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb86?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb87" for="field_prb87">Prb 87</label>
+            <input type="number" class="form-control" name="prb87" id="field_prb87"
+                [(ngModel)]="interfere.prb87" required />
+            <div [hidden]="!(editForm.controls.prb87?.dirty && editForm.controls.prb87?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb87?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb87?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb88" for="field_prb88">Prb 88</label>
+            <input type="number" class="form-control" name="prb88" id="field_prb88"
+                [(ngModel)]="interfere.prb88" required />
+            <div [hidden]="!(editForm.controls.prb88?.dirty && editForm.controls.prb88?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb88?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb88?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb89" for="field_prb89">Prb 89</label>
+            <input type="number" class="form-control" name="prb89" id="field_prb89"
+                [(ngModel)]="interfere.prb89" required />
+            <div [hidden]="!(editForm.controls.prb89?.dirty && editForm.controls.prb89?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb89?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb89?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb90" for="field_prb90">Prb 90</label>
+            <input type="number" class="form-control" name="prb90" id="field_prb90"
+                [(ngModel)]="interfere.prb90" required />
+            <div [hidden]="!(editForm.controls.prb90?.dirty && editForm.controls.prb90?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb90?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb90?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb91" for="field_prb91">Prb 91</label>
+            <input type="number" class="form-control" name="prb91" id="field_prb91"
+                [(ngModel)]="interfere.prb91" required />
+            <div [hidden]="!(editForm.controls.prb91?.dirty && editForm.controls.prb91?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb91?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb91?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb92" for="field_prb92">Prb 92</label>
+            <input type="number" class="form-control" name="prb92" id="field_prb92"
+                [(ngModel)]="interfere.prb92" required />
+            <div [hidden]="!(editForm.controls.prb92?.dirty && editForm.controls.prb92?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb92?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb92?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb93" for="field_prb93">Prb 93</label>
+            <input type="number" class="form-control" name="prb93" id="field_prb93"
+                [(ngModel)]="interfere.prb93" required />
+            <div [hidden]="!(editForm.controls.prb93?.dirty && editForm.controls.prb93?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb93?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb93?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb94" for="field_prb94">Prb 94</label>
+            <input type="number" class="form-control" name="prb94" id="field_prb94"
+                [(ngModel)]="interfere.prb94" required />
+            <div [hidden]="!(editForm.controls.prb94?.dirty && editForm.controls.prb94?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb94?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb94?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb95" for="field_prb95">Prb 95</label>
+            <input type="number" class="form-control" name="prb95" id="field_prb95"
+                [(ngModel)]="interfere.prb95" required />
+            <div [hidden]="!(editForm.controls.prb95?.dirty && editForm.controls.prb95?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb95?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb95?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb96" for="field_prb96">Prb 96</label>
+            <input type="number" class="form-control" name="prb96" id="field_prb96"
+                [(ngModel)]="interfere.prb96" required />
+            <div [hidden]="!(editForm.controls.prb96?.dirty && editForm.controls.prb96?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb96?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb96?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb97" for="field_prb97">Prb 97</label>
+            <input type="number" class="form-control" name="prb97" id="field_prb97"
+                [(ngModel)]="interfere.prb97" required />
+            <div [hidden]="!(editForm.controls.prb97?.dirty && editForm.controls.prb97?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb97?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb97?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb98" for="field_prb98">Prb 98</label>
+            <input type="number" class="form-control" name="prb98" id="field_prb98"
+                [(ngModel)]="interfere.prb98" required />
+            <div [hidden]="!(editForm.controls.prb98?.dirty && editForm.controls.prb98?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb98?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb98?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.prb99" for="field_prb99">Prb 99</label>
+            <input type="number" class="form-control" name="prb99" id="field_prb99"
+                [(ngModel)]="interfere.prb99" required />
+            <div [hidden]="!(editForm.controls.prb99?.dirty && editForm.controls.prb99?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prb99?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.prb99?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.averageInterfere" for="field_averageInterfere">Average Interfere</label>
+            <input type="number" class="form-control" name="averageInterfere" id="field_averageInterfere"
+                [(ngModel)]="interfere.averageInterfere"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.firstRb" for="field_firstRb">First Rb</label>
+            <input type="number" class="form-control" name="firstRb" id="field_firstRb"
+                [(ngModel)]="interfere.firstRb"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.secondRb" for="field_secondRb">Second Rb</label>
+            <input type="number" class="form-control" name="secondRb" id="field_secondRb"
+                [(ngModel)]="interfere.secondRb"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.thirdRb" for="field_thirdRb">Third Rb</label>
+            <input type="number" class="form-control" name="thirdRb" id="field_thirdRb"
+                [(ngModel)]="interfere.thirdRb"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.fourthRb" for="field_fourthRb">Fourth Rb</label>
+            <input type="number" class="form-control" name="fourthRb" id="field_fourthRb"
+                [(ngModel)]="interfere.fourthRb"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.fifthRb" for="field_fifthRb">Fifth Rb</label>
+            <input type="number" class="form-control" name="fifthRb" id="field_fifthRb"
+                [(ngModel)]="interfere.fifthRb"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.interferedRb" for="field_interferedRb">Interfered Rb</label>
+            <input type="number" class="form-control" name="interferedRb" id="field_interferedRb"
+                [(ngModel)]="interfere.interferedRb"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.interfereCoefficient" for="field_interfereCoefficient">Interfere Coefficient</label>
+            <input type="number" class="form-control" name="interfereCoefficient" id="field_interfereCoefficient"
+                [(ngModel)]="interfere.interfereCoefficient"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.interfereGrade" for="field_interfereGrade">Interfere Grade</label>
+            <input type="text" class="form-control" name="interfereGrade" id="field_interfereGrade"
+                [(ngModel)]="interfere.interfereGrade"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="backendApp.interfere.interfereType" for="field_interfereType">Interfere Type</label>
+            <input type="text" class="form-control" name="interfereType" id="field_interfereType"
+                [(ngModel)]="interfere.interfereType"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="backendApp.interfere.areaId" for="field_areaId">Area Id</label>
+            <select class="form-control" id="field_areaId" name="areaId" [(ngModel)]="interfere.areaId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="areaOption.id === interfere.areaId?.id ? interfere.areaId : areaOption" *ngFor="let areaOption of areaids; trackBy: trackAreaById">{{areaOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="backendApp.interfere.fileId" for="field_fileId">File Id</label>
+            <select class="form-control" id="field_fileId" name="fileId" [(ngModel)]="interfere.fileId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="recordOption.id === interfere.fileId?.id ? interfere.fileId : recordOption" *ngFor="let recordOption of records; trackBy: trackRecordById">{{recordOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="backendApp.interfere.taskId" for="field_taskId">Task Id</label>
+            <select class="form-control" id="field_taskId" name="taskId" [(ngModel)]="interfere.taskId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="taskOption.id === interfere.taskId?.id ? interfere.taskId : taskOption" *ngFor="let taskOption of tasks; trackBy: trackTaskById">{{taskOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

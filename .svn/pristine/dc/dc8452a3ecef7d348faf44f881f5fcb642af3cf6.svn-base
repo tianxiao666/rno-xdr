@@ -1,0 +1,133 @@
+
+<div *ngIf="exceptionStats">
+    <h2><span jhiTranslate="backendApp.exceptionStats.detail.title">Exception Stats</span> {{exceptionStats.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="backendApp.exceptionStats.pdate">Pdate</span></dt>
+        <dd>
+            <span>{{exceptionStats.pdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.cell">Cell</span></dt>
+        <dd>
+            <span>{{exceptionStats.cell}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.imei">Imei</span></dt>
+        <dd>
+            <span>{{exceptionStats.imei}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.imsi">Imsi</span></dt>
+        <dd>
+            <span>{{exceptionStats.imsi}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.attachFaultRate">Attach Fault Rate</span></dt>
+        <dd>
+            <span>{{exceptionStats.attachFaultRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.attachRequest">Attach Request</span></dt>
+        <dd>
+            <span>{{exceptionStats.attachRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.attachFault">Attach Fault</span></dt>
+        <dd>
+            <span>{{exceptionStats.attachFault}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.serviceFaultRate">Service Fault Rate</span></dt>
+        <dd>
+            <span>{{exceptionStats.serviceFaultRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.serviceRequest">Service Request</span></dt>
+        <dd>
+            <span>{{exceptionStats.serviceRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.serviceFault">Service Fault</span></dt>
+        <dd>
+            <span>{{exceptionStats.serviceFault}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.csfbFaultRate">Csfb Fault Rate</span></dt>
+        <dd>
+            <span>{{exceptionStats.csfbFaultRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.csfbRequest">Csfb Request</span></dt>
+        <dd>
+            <span>{{exceptionStats.csfbRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.csfbFault">Csfb Fault</span></dt>
+        <dd>
+            <span>{{exceptionStats.csfbFault}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.contextActivateFaultRate">Context Activate Fault Rate</span></dt>
+        <dd>
+            <span>{{exceptionStats.contextActivateFaultRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.contextActivateRequest">Context Activate Request</span></dt>
+        <dd>
+            <span>{{exceptionStats.contextActivateRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.contextActivateFault">Context Activate Fault</span></dt>
+        <dd>
+            <span>{{exceptionStats.contextActivateFault}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.pdnRequestFaultRate">Pdn Request Fault Rate</span></dt>
+        <dd>
+            <span>{{exceptionStats.pdnRequestFaultRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.pdnRequest">Pdn Request</span></dt>
+        <dd>
+            <span>{{exceptionStats.pdnRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.pdnRequestFault">Pdn Request Fault</span></dt>
+        <dd>
+            <span>{{exceptionStats.pdnRequestFault}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.tauFaultRate">Tau Fault Rate</span></dt>
+        <dd>
+            <span>{{exceptionStats.tauFaultRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.tauRequest">Tau Request</span></dt>
+        <dd>
+            <span>{{exceptionStats.tauRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.tauFault">Tau Fault</span></dt>
+        <dd>
+            <span>{{exceptionStats.tauFault}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.xhoFaultRate">Xho Fault Rate</span></dt>
+        <dd>
+            <span>{{exceptionStats.xhoFaultRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.xhoRequest">Xho Request</span></dt>
+        <dd>
+            <span>{{exceptionStats.xhoRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.xhoFault">Xho Fault</span></dt>
+        <dd>
+            <span>{{exceptionStats.xhoFault}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.shoFaultRate">Sho Fault Rate</span></dt>
+        <dd>
+            <span>{{exceptionStats.shoFaultRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.shoRequest">Sho Request</span></dt>
+        <dd>
+            <span>{{exceptionStats.shoRequest}}</span>
+        </dd>
+        <dt><span jhiTranslate="backendApp.exceptionStats.shoFault">Sho Fault</span></dt>
+        <dd>
+            <span>{{exceptionStats.shoFault}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'exception-stats/'+ exceptionStats.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
